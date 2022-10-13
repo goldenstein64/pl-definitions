@@ -1,5 +1,16 @@
 {
 	"Lua.workspace.library": [
-		"lua_modules/share/lua/5.1"
-	]
+		"lua_modules/share/lua/5.1",
+		"${3rd}/lfs"
+	],
+	"Lua.runtime.version": "LuaJIT",
+	"Lua.workspace.checkThirdParty": false,
+	"[lua]": {
+		"editor.quickSuggestions": {
+			"comments": "inline",
+			"other": "on",
+			"strings": "on"
+		},
+		"editor.defaultFormatter": "sumneko.lua"
+	}
 }
