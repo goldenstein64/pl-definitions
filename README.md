@@ -4,13 +4,13 @@ Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Pen
 
 ## Usage
 
-```json
+```js
 // settings.json
 {
 	"Lua.workspace.library": [
 		// path to wherever this repo was cloned to
 		"path/to/this/repo",
-		// e.g. "$USERPROFILE/Documents/LuaEnvironments/penlight
+		// e.g. "$USERPROFILE/Documents/LuaEnvironments/penlight"
 
 		// this library uses luafilesystem as a dependency
 		"${3rd}/lfs"
