@@ -2,15 +2,15 @@ name = "Penlight"
 
 words = {
 	-- requiring "pl"
-	"require%s*(\"pl\")",
+	"require%s*%(\"pl\"%)",
 	"require%s*\"pl\"",
-	"require%s*('pl')",
+	"require%s*%('pl'%)",
 	"require%s*'pl'",
 
 	-- requiring local modules
-	"require%s*(\"pl%.%w+\")",
+	"require%s*%(\"pl%.%w+\"%)",
 	"require%s*\"pl%.%w+\"",
-	"require%s*('pl%.%w+')",
+	"require%s*%('pl%.%w+'%)",
 	"require%s*'pl%.%w+'"
 }
 
