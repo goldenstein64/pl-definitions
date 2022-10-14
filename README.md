@@ -18,6 +18,6 @@ Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Pen
 }
 ```
 
-For a more detailed description of how to install a library of definition files, see the [wiki](https://github.com/sumneko/lua-language-server/wiki/Libraries).
+For a more detailed description of how to install a library of definition files, see the LSP's [wiki](https://github.com/sumneko/lua-language-server/wiki/Libraries).
 
 By default, this library imports everything into the global namespace. If you don't want this, delete (or move) `library/pl.lua`.
