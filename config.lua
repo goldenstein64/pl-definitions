@@ -18,6 +18,6 @@ configs = {
 	{
 		key = "Lua.workspace.library",
 		action = "add",
-		value = "${3rd}/lfs" -- `pl.path` uses this module
+		value = "${3rd}/lfs/library" -- `pl.path` uses this module
 	}
 }
