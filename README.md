@@ -4,7 +4,7 @@ Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Pen
 
 ## Usage
 
-```js
+```jsonc
 // settings.json
 {
 	"Lua.workspace.library": [
