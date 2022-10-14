@@ -1,6 +1,6 @@
 # Penlight Definitions
 
-Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Penlight) to use with [sumneko/lua-language-server](https://github.com/sumneko/lua-language-server).
+Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Penlight) to use with [sumneko/lua-language-server](https://github.com/sumneko/lua-language-server). The annotations have been manually re-written to be parsable by the LSP.
 
 ## Usage
 
