@@ -1,4 +1,4 @@
-name = "PenLight"
+name = "Penlight"
 
 words = {
 	-- requiring "pl"
