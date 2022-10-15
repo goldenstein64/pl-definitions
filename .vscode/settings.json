@@ -12,5 +12,8 @@
 			"strings": "on"
 		},
 		"editor.defaultFormatter": "sumneko.lua"
-	}
+	},
+	"cSpell.words": [
+		"metamethods"
+	]
 }
