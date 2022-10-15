@@ -45,7 +45,7 @@ local config = {}
 function config.lines(file) end
 
 ---a configuration table for the `config.read` function
----@class ConfigReadConfig
+---@class PLConfigReadConfig
 ---@field smart boolean? -- try to deduce what kind of config file we have (default false)
 ---@field variabilize boolean? -- make names into valid Lua identifiers (default true)
 ---@field convert_numbers boolean? -- try to convert values into numbers (default true)
@@ -56,7 +56,7 @@ function config.lines(file) end
 
 ---read a configuration file into a table
 ---@param file string|file* -- either a file-like object or a string, which must be a filename
----@param cnfg? ConfigReadConfig -- see `ConfigReadConfig` type for more info (optional)
+---@param cnfg? PLConfigReadConfig -- see `ConfigReadConfig` type for more info (optional)
 ---@return table? -- a table containing items, or `nil`
 ---@return string? -- error 'not a file-like object' or 'file is nil'
 ---@nodiscard
