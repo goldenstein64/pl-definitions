@@ -43,13 +43,16 @@ local class = require("pl.class")
 local Set = class()
 
 ---create a set.
+---@param self PLSet
 ---@param t? any[]|PLList|PLSet|PLMap -- may be a Set, Map or list-like table.
 function Set:_init(t) end
 
 ---get a list of the values in a set.
+---@param self PLSet
 ---@return PLList -- a list
 function Set:values() end
 
+---@param self PLSet
 ---@param fn fun(val: any, ...: any): any
 ---@param ... any
 ---@return PLSet
@@ -57,6 +60,7 @@ function Set:values() end
 function Set:map(fn, ...) end
 
 ---map a function over the values of a set.
+---@param self PLSet
 ---@param fn PLOpString -- a function
 ---@param ... any -- extra arguments to pass to the function.
 ---@return PLSet -- a new set
@@ -64,11 +68,13 @@ function Set:map(fn, ...) end
 function Set:map(fn, ...) end
 
 ---union of two sets (also `+`).
+---@param self PLSet
 ---@param set PLSet -- another set
 ---@return PLSet -- a new set
 function Set:union(set) end
 
 ---intersection of two sets (also `*`).
+---@param self PLSet
 ---@param set PLSet -- another set
 ---@return PLSet -- a new set
 ---
@@ -87,63 +93,76 @@ function Set:union(set) end
 function Set:intersection(set) end
 
 ---new set with elements in the set that are not in the other (also `-`).
+---@param self PLSet
 ---@param set PLSet -- another set
 ---@return PLSet -- a new set
 function Set:difference(set) end
 
 ---is the first set a subset of the second (also `<`)?
+---@param self PLSet
 ---@param set PLSet -- another set
 ---@return boolean
 function Set:issubset(set) end
 
 ---is the set empty?
+---@param self PLSet
 ---@return boolean
 function Set:isempty() end
 
 ---are the sets disjoint (no elements in common)? Uses naive definition, i.e. 
 ---that intersection is empty
+---@param self PLSet
 ---@param set PLSet -- another set
 ---@return boolean
 function Set:isdisjoint(set) end
 
 ---size of this set (also `#` for 5.2).
+---@param self PLSet
 ---@return integer size
 function Set:len() end
 
 ---string representation of a set.
+---@param self PLSet
 ---@return string
 function Set:__tostring() end
 
 ---union of sets.
+---@param self PLSet
 ---@param set PLSet
 ---@return PLSet
 function Set:__add(set) end
 
 ---intersection of sets.
+---@param self PLSet
 ---@param set PLSet
 ---@return PLSet
 function Set:__mul(set) end
 
 ---difference of sets.
+---@param self PLSet
 ---@param set PLSet
 ---@return PLSet
 function Set:__sub(set) end
 
 ---symmetric difference of sets.
+---@param self PLSet
 ---@param set PLSet
 ---@return PLSet
 function Set:__pow(set) end
 
 ---first set subset of second?
+---@param self PLSet
 ---@param set PLSet
 ---@return boolean
 function Set:__lt(set) end
 
 ---cardinality of set (5.2).
+---@param self PLSet
 ---@return integer
 function Set:__len(set) end
 
 ---equality between sets.
+---@param self PLSet
 ---@param set PLSet
 ---@return boolean
 function Set:__eq(set) end

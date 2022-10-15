@@ -19,12 +19,14 @@ local class = require("pl.class")
 local OrderedMap = class()
 
 ---construct an `OrderedMap`. Will throw an error if the argument is bad.
+---@param self PLOrderedMap
 ---@param t? {[any]: any}|{[any]: any}[]|PLOrderedMap -- optional initialization table, same as for `OrderedMap:update`
 function OrderedMap:_init(t) end
 
 ---update an `OrderedMap` using a table. If the table is itself an 
 ---`OrderedMap`, then its entries will be appended. if it is a table of the 
 ---form `{{key1 = val1}, {key2 = val2}, ...}` these will be appended.
+---@param self PLOrderedMap
 ---@param t {[any]: any}|{[any]: any}[]|PLOrderedMap
 ---@return PLOrderedMap? self -- the map, or `nil` in case of error
 ---@return string? error_message -- the error message
@@ -33,6 +35,7 @@ function OrderedMap:update(t) end
 ---set the key's value. This key will be appended at the end of the map.
 ---
 ---If the value is nil, then the key is removed.
+---@param self PLOrderedMap
 ---@param key any -- the key
 ---@param val any -- the value
 ---@return PLOrderedMap self -- the map
@@ -44,6 +47,7 @@ OrderedMap.__newindex = OrderedMap.set
 ---contains the key, then this effectively moves the item to the new position 
 ---by first removing at the old position. Has no effect if the key does not 
 ---exist and val is `nil`
+---@param self PLOrderedMap
 ---@param pos integer -- a position starting at 1
 ---@param key any -- the key
 ---@param val any -- the value; if `nil` use the old value
@@ -51,19 +55,23 @@ OrderedMap.__newindex = OrderedMap.set
 function OrderedMap:insert(pos, key, val) end
 
 ---return the keys in order. (Not a copy!)
+---@param self PLOrderedMap
 ---@return PLList
 function OrderedMap:keys() end
 
 ---return the values in order. this is relatively expensive.
+---@param self PLOrderedMap
 ---@return PLList
 function OrderedMap:values() end
 
 ---sort the keys.
+---@param self PLOrderedMap
 ---@param cmp? fun(key1: any, key2: any): boolean -- a comparison function as for `table.sort`
 ---@return PLOrderedMap self
 function OrderedMap:sort(cmp) end
 
 ---iterate over key-value pairs in order.
+---@param self PLOrderedMap
 ---@return fun(): (any, any)
 function OrderedMap:iter() end
 
@@ -71,6 +79,7 @@ function OrderedMap:iter() end
 OrderedMap.__pairs = OrderedMap.iter
 
 ---string representation of an ordered map.
+---@param self PLOrderedMap
 ---@return string
 function OrderedMap:__tostring() end
 

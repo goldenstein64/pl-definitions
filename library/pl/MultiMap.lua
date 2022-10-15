@@ -18,10 +18,12 @@ local class = require("pl.class")
 local MultiMap = class()
 
 ---update a MultiMap using a table.
+---@param self PLMultiMap
 ---@param t PLMultiMap|PLMap|{ [any]: any[] } -- either a Multimap or a map-like table.
 function MultiMap:update(t) end
 
 ---add a new value to a key.  Setting a `nil` value removes the key.
+---@param self PLMultiMap
 ---@param key any -- the key
 ---@param val any -- the value
 function MultiMap:set(key, val) end
