@@ -376,7 +376,7 @@ function tablex.map(fun, t, ...) end
 ---```
 function tablex.imap(fun, t, ...) end
 
----@alias ObjectWithMethod<S, A..., R> { [S]: fun(self: ObjectWithMethod<S, A..., R>, ...: A...): R }
+---@alias PLObjectWithMethod<S, A..., R> { [S]: fun(self: PLObjectWithMethod<S, A..., R>, ...: A...): R }
 
 ---apply a named method to values from a table.
 ---@param name string -- the method name
