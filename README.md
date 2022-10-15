@@ -57,3 +57,5 @@ The types provided by this library are, exhaustively:
   * `PLObjectWithMethodAndTwoArguments`, `PLObjectWithMethodAndOneArgument`, `PLObjectWithMethodAndNoArguments` (from `pl.seq`) which I should probably simplify,
   * `PLSipOptions` (from `pl.sip`),
   * `PLObjectWithMethod` (from `pl.tablex`)
+
+Most classes have documentation of their constructor in the form of their `_init` method. The only easy way to view this would be to type `[CLASS NAME]:_init` in your editor, or doing the same with an instance. This might be changed so it is attached to the class itself, although that is undecided.
