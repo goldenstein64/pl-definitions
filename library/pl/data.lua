@@ -65,7 +65,7 @@ function prototype_Data:write_row(f, row) end
 ---@param f file* -- file-like object
 function prototype_Data:write(f) end
 
----@class DataReadConfig
+---@class PLDataReadConfig
 ---@field delim string -- a string pattern to split fields
 ---@field fieldnames string[] -- (i.e. don't read from first line)
 ---@field no_convert boolean -- (default is to try conversion on first data line)
@@ -76,7 +76,7 @@ function prototype_Data:write(f) end
 ---@field csv boolean -- fields may be double-quoted and contain commas; Also, empty fields are considered to be equivalent to zero.
 
 ---@param file string|file* -- a filename or a file-like object
----@param cnfg DataReadConfig -- parsing options. See `DataReadConfig` type for more info
+---@param cnfg PLDataReadConfig -- parsing options. See `DataReadConfig` type for more info
 ---@return PLData? -- data object, or `nil`
 ---@return string? -- error message. May be a file error, 'not a file-like object' or a conversion error
 ---@nodiscard
