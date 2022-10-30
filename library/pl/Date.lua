@@ -50,7 +50,6 @@ function Date:_init(year, month, day, hour, min, sec) end
 function Date:set(t) end
 
 ---get the time zone offset from UTC.
----@param self pl.Date
 ---@param ts integer -- seconds ahead of UTC
 ---@return integer
 ---@nodiscard
