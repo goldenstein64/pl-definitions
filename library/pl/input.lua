@@ -54,7 +54,7 @@ function input.numbers(f) end
 ---@nodiscard
 function input.words(f) end
 
----@class PLInputFieldsOptions
+---@class pl.InputFieldsOptions
 ---@field no_fail boolean -- default `true`
 ---@field no_convert boolean -- default `false`
 
@@ -63,7 +63,7 @@ function input.words(f) end
 ---@param ids integer[]|integer -- a list of field indices, or a maximum field index
 ---@param delim? string -- delimiter to parse fields (default space)
 ---@param f? string|file* -- a source (default stdin)
----@param opts? PLInputFieldsOptions -- an option table, (default `{no_fail=true, no_convert=false}`)
+---@param opts? pl.InputFieldsOptions -- an option table, (default `{no_fail=true, no_convert=false}`)
 ---@return fun(): ...: string -- an iterator with the field values
 ---@nodiscard
 ---

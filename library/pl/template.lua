@@ -57,7 +57,7 @@ local template = {}
 ---@nodiscard
 function template.substitute(str, env) end
 
----@class PLCompiledTemplate
+---@class pl.CompiledTemplate
 local CompiledTemplate = {}
 
 ---executes the previously compiled template and renders it.
@@ -70,7 +70,7 @@ local CompiledTemplate = {}
 ---@nodiscard
 function CompiledTemplate:render(env, parent, db) end
 
----@class PLCompileTemplateOptions
+---@class pl.CompiledTemplate.Options
 ---chunk name for loaded templates, used if there is an error in Lua code. 
 ---Default is `TMP`.
 ---@field chunk_name? string
@@ -98,8 +98,8 @@ function CompiledTemplate:render(env, parent, db) end
 ---* `debug`: if truthy, the generated source code will be retained within the compiled template object, default is `nil`.
 ---
 ---@param str string -- the template string
----@param opts? PLCompileTemplateOptions -- the compilation options to use
----@return PLCompiledTemplate? ct -- `nil` on error
+---@param opts? pl.CompiledTemplate.Options -- the compilation options to use
+---@return pl.CompiledTemplate? ct -- `nil` on error
 ---@return string? error -- `nil` on success
 ---@return string? source_code -- only returned if the debug option is used
 ---

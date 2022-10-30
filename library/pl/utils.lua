@@ -281,7 +281,7 @@ function utils.enum(...) end
 function utils.function_arg(idx, f, msg) end
 
 ---@param idx integer
----@param f PLOpString
+---@param f pl.OpString
 ---@param msg? string
 ---@return function
 ---@diagnostic disable-next-line:duplicate-set-field
@@ -469,7 +469,7 @@ function utils.string_lambda(lf) end
 function utils.bind1(fn, p) end
 
 ---bind the first argument of the function to a value.
----@param fn PLBinOpString -- a function of at least two values (may be an operator string)
+---@param fn pl.BinOpString -- a function of at least two values (may be an operator string)
 ---@param p any -- a value
 ---@return fun(x: any, ...: any) f -- a function such that `f(x) == fn(p, x)`
 ---@nodiscard
@@ -500,7 +500,7 @@ function utils.bind1(fn, p) end
 function utils.bind2(fn, p) end
 
 ---bind the second argument of the function to a value.
----@param fn PLBinOpString -- a function of at least two values (may be an operator string)
+---@param fn pl.BinOpString -- a function of at least two values (may be an operator string)
 ---@param p any -- a value
 ---@return fun(x: any, ...: any) f
 ---
@@ -531,7 +531,7 @@ function utils.bind2(fn, p) end
 ---```
 function utils.set_deprecation_func(func) end
 
----@class PLDeprecationOptions : table
+---@class pl.DeprecationOptions : table
 ---@field source? string
 ---@field message string
 ---@field version_removed? string
@@ -544,7 +544,7 @@ function utils.set_deprecation_func(func) end
 ---feature or option was NOT YET deprecated! Because when writing the code it 
 ---is quite often not known in what version the code will land. But the last 
 ---released version is usually known.
----@param opts PLDeprecationOptions -- options table
+---@param opts pl.DeprecationOptions -- options table
 ---
 ---Usage:
 ---

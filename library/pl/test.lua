@@ -67,11 +67,11 @@ function test.assertraise(fn, e, where) end
 ---@param where? integer -- extra level offset
 function test.asserteq2(x1, x2, y1, y2, where) end
 
----@class PLTuple
+---@class pl.Tuple
 ---@operator len: integer
-local PLTuple = {}
+local Tuple = {}
 
-PLTuple.unpack = utils.unpack
+Tuple.unpack = utils.unpack
 
 ---encode an arbitrary argument list as a tuple. This can be used to compare 
 ---to other argument lists, which is very useful for testing functions which 
@@ -80,7 +80,7 @@ PLTuple.unpack = utils.unpack
 ---themselves out. The `#` operator is defined to be the size, irrespective of 
 ---any nils, and there is an `unpack` method.
 ---@param ... any
----@return PLTuple
+---@return pl.Tuple
 ---
 ---Usage:
 ---

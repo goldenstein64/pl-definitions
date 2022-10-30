@@ -84,7 +84,7 @@ function tablex.index_map(t) end
 ---values become keys, and the associated values are all true.
 ---@generic T
 ---@param t T[] -- a list-like table
----@return PLSet<T> -- a set (a map-like table)
+---@return pl.Set<T> -- a set (a map-like table)
 ---@nodiscard
 function tablex.makeset(t) end
 
@@ -219,7 +219,7 @@ function tablex.compare(t1, t2, cmp) end
 ---compare two arrays using a predicate.
 ---@param t1 any[] -- an array
 ---@param t2 any[] -- an array
----@param cmp PLBoolBinOpString -- A comparison function; `bool = cmp(t1_value, t2_value)`
+---@param cmp pl.BoolBinOpString -- A comparison function; `bool = cmp(t1_value, t2_value)`
 ---@return boolean
 ---@nodiscard
 ---
@@ -247,7 +247,7 @@ function tablex.compare_no_order(t1, t2, cmp) end
 ---for element order.
 ---@param t1 any[] -- a list-like table
 ---@param t2 any[] -- a list-like table
----@param cmp? PLBoolBinOpString -- A comparison function (may be nil)
+---@param cmp? pl.BoolBinOpString -- A comparison function (may be nil)
 ---@return boolean
 ---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
@@ -300,7 +300,7 @@ function tablex.find_if(t, cmp, arg) end
 ---is, then it indicates the comparison failed, and the function will continue
 ---the search. See examples.
 ---@param t table -- A table
----@param cmp PLBoolBinOpString -- A comparison function
+---@param cmp pl.BoolBinOpString -- A comparison function
 ---@param arg? any -- an optional second argument to the function
 ---@return any? -- index of value, or nil if not found
 ---@return boolean? -- value returned by comparison function (cannot be `false`!)
@@ -366,7 +366,7 @@ function tablex.map(fun, t, ...) end
 ---@param fun fun(val: T, ...: A...): U -- A function that takes at least one argument
 ---@param t T[] -- a table (applies to array part)
 ---@param ... A... -- optional arguments
----@return PLList -- a list-like table
+---@return pl.List -- a list-like table
 ---@nodiscard
 ---
 ---Usage:
@@ -376,13 +376,13 @@ function tablex.map(fun, t, ...) end
 ---```
 function tablex.imap(fun, t, ...) end
 
----@alias PLObjectWithMethod<S, A..., R> { [S]: fun(self: PLObjectWithMethod<S, A..., R>, ...: A...): R }
+---@alias pl.ObjectWithMethod<S, A..., R> { [S]: fun(self: pl.ObjectWithMethod<S, A..., R>, ...: A...): R }
 
 ---apply a named method to values from a table.
 ---@param name string -- the method name
 ---@param t table[] -- a list-like table
 ---@param ... any -- extra arguments to the method
----@return PLList -- a List with the results of the method (1st result only)
+---@return pl.List -- a List with the results of the method (1st result only)
 ---@nodiscard
 ---
 ---Usage:
@@ -518,7 +518,7 @@ function tablex.sort(t, f) end
 ---return an iterator to a table sorted by its keys
 ---@generic K, V
 ---@param t { [K]: V } -- the table
----@param f? PLBoolOrderedBinOpString -- an optional comparison function (`f(x, y)` is true if `x < y`)
+---@param f? pl.BoolOrderedBinOpString -- an optional comparison function (`f(x, y)` is true if `x < y`)
 ---@return fun(): (K, V) -- an iterator to traverse elements sorted by the values
 ---@nodiscard
 ---
@@ -541,7 +541,7 @@ function tablex.sortv(t, f) end
 ---return an iterator to a table sorted by its values
 ---@generic K, V
 ---@param t { [K]: V } -- the table
----@param f? PLBoolOrderedBinOpString -- an optional comparison function (`f(x, y)` is true if `x < y`)
+---@param f? pl.BoolOrderedBinOpString -- an optional comparison function (`f(x, y)` is true if `x < y`)
 ---@return fun(): (K, V) -- an iterator to traverse elements sorted by the values
 ---@nodiscard
 ---
@@ -574,7 +574,7 @@ function tablex.values(t) end
 ---@param t T[] -- a list-like table
 ---@param first integer -- An index
 ---@param last integer -- An index
----@return PLList -- a new List
+---@return pl.List -- a new List
 ---@nodiscard
 function tablex.sub(t, first, last) end
 

@@ -18,73 +18,73 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
 --- [`pl.pretty`](https://lunarmodules.github.io/Penlight/libraries/pl.pretty.html#)
----@class PLMap : PLClass
----@overload fun(t?: PLMap|PLSet): PLMap
+---@class pl.Map : pl.Class
+---@overload fun(t?: pl.Map|pl.Set): pl.Map
 local Map = class()
 
 ---list of keys.
----@param self PLMap
+---@param self pl.Map
 ---@return any[]
 function Map:keys() end
 
 ---list of values.
----@param self PLMap
+---@param self pl.Map
 ---@return any[]
 function Map:values() end
 
 ---return an iterator over all key-value pairs.
----@param self PLMap
+---@param self pl.Map
 ---@return fun(): (any, any)
 function Map:iter() end
 
 ---return a List of all key-value pairs, sorted by the keys.
----@param self PLMap
----@return PLList
+---@param self pl.Map
+---@return pl.List
 function Map:items() end
 
 ---set a value in the map if it doesn't exist yet.
----@param self PLMap
+---@param self pl.Map
 ---@param key any -- the key
 ---@param default any -- value to set
 ---@return any -- the value stored in the map (existing value, or the new value)
 function Map:setdefault(key, default) end
 
 ---size of map. note: this is a relatively expensive operation!
----@param self PLMap
+---@param self pl.Map
 ---@return integer
 function Map:len() end
 
 ---put a value into the map. This will remove the key if the value is nil
----@param self PLMap
+---@param self pl.Map
 ---@param key any -- the key
 ---@param val any -- the value
 function Map:set(key, val) end
 
 ---get a value from the map.
----@param self PLMap
+---@param self pl.Map
 ---@param key any -- the key
 ---@return any val -- the value, or `nil` if not found.
 function Map:get(key) end
 
 ---get a list of values indexed by a list of keys.
----@param self PLMap
----@param keys PLList -- a list-like table of keys
----@return PLList values -- a new list
+---@param self pl.Map
+---@param keys pl.List -- a list-like table of keys
+---@return pl.List values -- a new list
 function Map:getvalues(keys) end
 
 ---update the map using key/value pairs from another table.
----@param self PLMap
----@param table PLMap|table
+---@param self pl.Map
+---@param table pl.Map|table
 function Map:update(table) end
 
 ---equality between maps.
----@param self PLMap
----@param m PLMap -- another map.
+---@param self pl.Map
+---@param m pl.Map -- another map.
 ---@return boolean
 function Map:__eq(m) end
 
 ---string representation of a map.
----@param self PLMap
+---@param self pl.Map
 ---@return string
 function Map:__tostring() end
 

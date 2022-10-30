@@ -92,7 +92,7 @@ function stringx.splitlines(s, keep_ends) end
 ---@param s string -- the string
 ---@param re? string -- a delimiter (defaults to whitespace)
 ---@param n? integer -- maximum number of results
----@return PLList -- List
+---@return pl.List -- List
 ---@nodiscard
 ---
 ---Usage:
@@ -330,7 +330,7 @@ function stringx.dedent(s) end
 ---@param s string -- the string to format
 ---@param width? integer -- the margin width (default `70`)
 ---@param breaklong? boolean -- if truthy, words longer than the width given will be forced split. (default `false`)
----@return PLList -- a list of lines (`List` object), use `stringx.fill` to return a string instead of a `List`.
+---@return pl.List -- a list of lines (`List` object), use `stringx.fill` to return a string instead of a `List`.
 ---@nodiscard
 function stringx.wrap(s, width, breaklong) end
 
@@ -341,16 +341,16 @@ function stringx.wrap(s, width, breaklong) end
 ---@return string -- a string, use `stringx.wrap` to return a list of lines instead of a string.
 function stringx.fill(s, width, breaklong) end
 
----@class PLTemplate
+---@class pl.Template
 ---Creates a new `Template` class. This is a shortcut to `Template.new(tmpl)`.
----@operator call(string): PLTemplate
+---@operator call(string): pl.Template
 local prototype_Template = {}
 
 stringx.Template = prototype_Template
 
 ---Creates a new Template class.
 ---@param tmpl string -- the template string
----@return PLTemplate
+---@return pl.Template
 ---@nodiscard
 function prototype_Template.new(tmpl) end
 

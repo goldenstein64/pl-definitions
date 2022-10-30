@@ -35,7 +35,7 @@
 --- [`pl.luabalanced`](https://lunarmodules.github.io/Penlight/libraries/pl.luabalanced.html#)
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/07-functional.md.html#List_Comprehensions)
----@class PLComprehension
+---@class pl.Comprehension
 ---@operator call(string): any
 local comprehension = {}
 

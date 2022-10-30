@@ -166,7 +166,7 @@ function operator.match(a, b) end
 ---@return any ... -- the arguments
 function operator.nop(...) end
 
----@alias PLBoolBinOpString
+---@alias pl.BoolBinOpString
 ---| "<"
 ---| "<="
 ---| ">"
@@ -179,7 +179,7 @@ function operator.nop(...) end
 ---| "~"
 
 --- Stores all the non-commutative boolean operators for sorting functions
----@alias PLBoolOrderedBinOpString
+---@alias pl.BoolOrderedBinOpString
 ---| "<"
 ---| "<="
 ---| ">"
@@ -187,7 +187,7 @@ function operator.nop(...) end
 ---| "()"
 ---| "~"
 
----@alias PLBinOpString 
+---@alias pl.BinOpString 
 ---| "+"
 ---| "-"
 ---| "*"
@@ -211,18 +211,18 @@ function operator.nop(...) end
 
 -- apparently "# renders currently when compared to "#"
 
----@alias PLUnOpString
+---@alias pl.UnOpString
 ---| "#
 ---| "()"
 ---| "{}"
 ---| ""
 
----@alias PLMultiOpString
+---@alias pl.MultiOpString
 ---| "()"
 ---| "{}"
 ---| ""
 
----@alias PLOpString PLBinOpString|PLUnOpString|PLMultiOpString
+---@alias pl.OpString pl.BinOpString|pl.UnOpString|pl.MultiOpString
 
 ---Map from operator symbol to function. Most of these map directly from 
 ---operators; But note these extras

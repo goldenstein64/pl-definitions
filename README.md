@@ -4,7 +4,7 @@ Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Pen
 
 Some features are missing from the library simply because the LSP doesn't support them. The most pressing features are currently:
 
-* Generic classes. Being able to create e.g. a `PLList<string>` would be wonderful. One thing thing that is missing is annotating "function units" (as in `fun(...): ...`) and operator annotations with generic parameters.
+* Generic classes. Being able to create e.g. a `pl.List<string>` would be wonderful. One thing thing that is missing is annotating "function units" (as in `fun(...): ...`) and operator annotations with generic parameters.
 * Setting outdated modules like `text` and `xml` as deprecated when requiring them directly.
 * More robust generic function support. Variadic type packs are not very strict, and generic types often leak into the return type.
 
@@ -32,30 +32,31 @@ By default, this library imports everything into the global namespace. If you do
 
 The types provided by this library are, exhaustively:
 
-* Classes, given as `PL[CLASS NAME]`. Every class is listed below: 
-  * `PLDate`, `PLDateInterval`, `PLDateFormat` (from `pl.Date`) although deprecated, 
-  * `PLList` (from `pl.List`), 
-  * `PLMap` (from `pl.Map`), 
-  * `PLMultiMap` (from `pl.MultiMap`), 
-  * `PLOrderedMap` (from `pl.OrderedMap`), 
-  * `PLSet` (from `pl.Set`), 
-  * `PLClass`, `PLInstance` (from `pl.class`),
-  * `PLComprehension` (from `pl.comprehension`)
-  * `PLData`, `PLDataReadConfig`, `PLDataNewArg`, `PLDataQueryArg` (from `pl.data`)
-  * `PLPlaceholderExpression` (from `pl.func`),
-  * `PLInputFieldsOptions` (from `pl.input`),
-  * `PLSequence` (from `pl.seq`),
-  * `PLStringIOWriter`, `PLStringIOReader` (from `pl.stringio`),
-  * `PLTemplate` (from `pl.stringx`), 
-  * `PLCompiledTemplate`, `PLCompileTemplateOptions` (from `pl.template`), 
-  * `PLTuple` (from `pl.test`),
-  * `PLDeprecationOptions` (from `pl.utils`),
-  * `PLXMLNode` (from `pl.xml`)
-* Aliases, given as `PL[ALIAS NAME]`. Every alias is listed below:
-  * `PLTokenStream`, `PLLexerFilter`, `PLLexerOptions` (from `pl.lexer`),
-  * `PLBoolBinOpString`, `PLBoolOrderedBinOpString`, `PLBinOpString`, `PLUnOpString`, `PLMultiOpString`, `PLOpString` (from `pl.operator`)
-  * `PLObjectWithMethodAndTwoArguments`, `PLObjectWithMethodAndOneArgument`, `PLObjectWithMethodAndNoArguments` (from `pl.seq`) which I should probably simplify,
-  * `PLSipOptions` (from `pl.sip`),
-  * `PLObjectWithMethod` (from `pl.tablex`)
+* Classes, given as `pl.[CLASS NAME]`. Every class is listed below: 
+  * `pl.Date`, `pl.Date.Interval`, `pl.Date.Format` (from `pl.Date`) although deprecated, 
+  * `pl.List` (from `pl.List`), 
+  * `pl.Map` (from `pl.Map`), 
+  * `pl.MultiMap` (from `pl.MultiMap`), 
+  * `pl.OrderedMap` (from `pl.OrderedMap`), 
+  * `pl.Set` (from `pl.Set`), 
+  * `pl.Class`, `pl.Instance` (from `pl.class`),
+  * `pl.Comprehension` (from `pl.comprehension`)
+  * `pl.ConfigReadConfig` (from `pl.config`)
+  * `pl.Data`, `pl.Data.ReadConfig`, `pl.Data.Options`, `pl.Data.QueryArg` (from `pl.data`)
+  * `pl.PlaceholderExpression` (from `pl.func`),
+  * `pl.InputFieldsOptions` (from `pl.input`),
+  * `pl.Sequence` (from `pl.seq`),
+  * `pl.StringIOWriter`, `pl.StringIOReader` (from `pl.stringio`),
+  * `pl.Template` (from `pl.stringx`), 
+  * `pl.CompiledTemplate`, `pl.CompiledTemplate.Options` (from `pl.template`), 
+  * `pl.Tuple` (from `pl.test`),
+  * `pl.DeprecationOptions` (from `pl.utils`),
+  * `pl.XMLNode` (from `pl.xml`)
+* Aliases, given as `pl.[ALIAS NAME]`. Every alias is listed below:
+  * `pl.TokenStream`, `pl.LexerFilter`, `pl.LexerOptions` (from `pl.lexer`),
+  * `pl.BoolBinOpString`, `pl.BoolOrderedBinOpString`, `pl.BinOpString`, `pl.UnOpString`, `pl.MultiOpString`, `pl.OpString` (from `pl.operator`)
+  * `pl.ObjectWithMethodAndTwoArguments`, `pl.ObjectWithMethodAndOneArgument`, `pl.ObjectWithMethodAndNoArguments` (from `pl.seq`) which I should probably simplify,
+  * `pl.SipOptions` (from `pl.sip`),
+  * `pl.ObjectWithMethod` (from `pl.tablex`)
 
 Most classes have documentation of their constructor in the form of their `_init` method. The only easy way to view this would be to type `[CLASS NAME]:_init` in your editor, or doing the same with an instance. This might be changed so it is attached to the class itself, although that is undecided.

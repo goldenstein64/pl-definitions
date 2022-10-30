@@ -16,19 +16,19 @@
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/03-strings.md.html#File_style_I_O_on_Strings).
 local stringio = {}
 
----@class PLStringIOWriter
+---@class pl.StringIOWriter
 local stringIOWriter = {}
 
----@param self PLStringIOWriter
+---@param self pl.StringIOWriter
 ---@param ... string
 function stringIOWriter:write(...) end
 
----@param self PLStringIOWriter
+---@param self pl.StringIOWriter
 ---@param fmt string
 ---@param ... any
 function stringIOWriter:writef(fmt, ...) end
 
----@param self PLStringIOWriter
+---@param self pl.StringIOWriter
 ---@return string
 ---@nodiscard
 function stringIOWriter:value() end
@@ -39,14 +39,14 @@ function stringIOWriter:close() end
 ---for compatibility only
 function stringIOWriter:seek() end
 
----@class PLStringIOReader
+---@class pl.StringIOReader
 local stringIOReader = {}
 
 ---@param ... "*l"|"*L"|"*a"|"*n"|integer
 ---@return string|integer ...
 function stringIOReader:read(...) end
 
----@param self PLStringIOReader
+---@param self pl.StringIOReader
 ---@param whence "set"|"cur"|"end"
 ---@param offset? integer
 function stringIOReader:seek(whence, offset) end
@@ -63,7 +63,7 @@ function stringIOReader:close() end
 ---resulting object has an extra `value()` method for retrieving the string 
 ---value. Implements `file:write`, `file:seek`, `file:lines`, plus an extra 
 ---`writef` method which works like `utils.printf`.
----@return PLStringIOWriter
+---@return pl.StringIOWriter
 ---@nodiscard
 ---
 ---Usage:
@@ -78,7 +78,7 @@ function stringio.create() end
 ---create a file-like object for reading from a given string. Implements 
 ---`file:read`.
 ---@param s string -- The input string.
----@return PLStringIOReader
+---@return pl.StringIOReader
 ---@nodiscard
 ---
 ---Usage:

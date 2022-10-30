@@ -13,17 +13,17 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
 --- [`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#), 
 --- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#)
----@class PLMultiMap : { [any]: any[] }, PLMap
----@overload fun(t?: PLMultiMap): PLMultiMap
+---@class pl.MultiMap : { [any]: any[] }, pl.Map
+---@overload fun(t?: pl.MultiMap): pl.MultiMap
 local MultiMap = class()
 
 ---update a MultiMap using a table.
----@param self PLMultiMap
----@param t PLMultiMap|PLMap|{ [any]: any[] } -- either a Multimap or a map-like table.
+---@param self pl.MultiMap
+---@param t pl.MultiMap|pl.Map|{ [any]: any[] } -- either a Multimap or a map-like table.
 function MultiMap:update(t) end
 
 ---add a new value to a key.  Setting a `nil` value removes the key.
----@param self PLMultiMap
+---@param self pl.MultiMap
 ---@param key any -- the key
 ---@param val any -- the value
 function MultiMap:set(key, val) end

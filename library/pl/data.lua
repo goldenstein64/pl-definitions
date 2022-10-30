@@ -25,7 +25,7 @@
 --- [`pl.array2d`](https://lunarmodules.github.io/Penlight/libraries/pl.array2d.html) (fallback methods)
 local data = {}
 
----@class PLData
+---@class pl.Data
 local prototype_Data = {}
 
 ---return a particular column as a list of values (method).
@@ -47,7 +47,7 @@ function prototype_Data:select_row(condn) end
 
 ---return a new data object based on this query (method).
 ---@param condn string -- the query expression
----@return PLData
+---@return pl.Data
 ---@nodiscard
 function prototype_Data:copy_select(condn) end
 
@@ -65,7 +65,7 @@ function prototype_Data:write_row(f, row) end
 ---@param f file* -- file-like object
 function prototype_Data:write(f) end
 
----@class PLDataReadConfig
+---@class pl.Data.ReadConfig
 ---@field delim string -- a string pattern to split fields
 ---@field fieldnames string[] -- (i.e. don't read from first line)
 ---@field no_convert boolean -- (default is to try conversion on first data line)
@@ -76,8 +76,8 @@ function prototype_Data:write(f) end
 ---@field csv boolean -- fields may be double-quoted and contain commas; Also, empty fields are considered to be equivalent to zero.
 
 ---@param file string|file* -- a filename or a file-like object
----@param cnfg PLDataReadConfig -- parsing options. See `DataReadConfig` type for more info
----@return PLData? -- data object, or `nil`
+---@param cnfg pl.Data.ReadConfig -- parsing options. See `DataReadConfig` type for more info
+---@return pl.Data? -- data object, or `nil`
 ---@return string? -- error message. May be a file error, 'not a file-like object' or a conversion error
 ---@nodiscard
 function data.read(file, cnfg) end
@@ -92,7 +92,7 @@ function data.read(file, cnfg) end
 ---@return string? -- error
 function data.write(d, file, fieldnames, delim) end
 
----@class PLDataNewArg
+---@class pl.Data.Options
 ---@field [integer] any[]
 ---@field fieldnames string|string[]? -- a string of delimiter-separated names, or a table of names
 ---@field delim string? -- delimiter (default `fieldnames`'s delimiter' or '\t')
@@ -102,12 +102,12 @@ function data.write(d, file, fieldnames, delim) end
 ---of delimiter-separated names, or a table of names.
 ---If the table does not have a field called 'delim', then an attempt will be 
 ---made to guess it from the fieldnames string, defaults otherwise to tab.
----@param d PLDataNewArg -- the table.
+---@param d pl.Data.Options -- the table.
 ---@param fieldnames? string[] -- fieldnames (default `d.fieldnames`)
 ---@nodiscard
 function data.new(d, fieldnames) end
 
----@class PLDataQueryArg
+---@class pl.Data.QueryArg
 ---@field fields string|string[]
 ---@field sort_by string
 ---@field where string|(fun(v: any): boolean)
@@ -119,7 +119,7 @@ function data.new(d, fieldnames) end
 ---FIELDLIST is a comma-separated list of valid fields, or '*'.
 ---```
 ---
----@param d PLData -- table produced by `data.read`
+---@param d pl.Data -- table produced by `data.read`
 ---@param condn string|string[] -- select string or table
 ---@param context? {[string]: any}[] -- a list of tables to be searched when resolving functions
 ---@param return_row? boolean -- if true, wrap the results in a row table

@@ -27,7 +27,7 @@
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#)
 local func = {}
 
----@class PLPlaceholderExpression
+---@class pl.PlaceholderExpression
 
 ---wrap a table of functions. This makes them available for use in placeholder expressions.
 ---@param tname string -- a table name
@@ -37,7 +37,7 @@ function func.import(tname, context) end
 ---register a function for use in placeholder expressions.
 ---@param fun function -- a function
 ---@param name? string -- a name (optional)
----@return PLPlaceholderExpression -- a placeholder function
+---@return pl.PlaceholderExpression -- a placeholder function
 function func.register(fun, name) end
 
 ---all elements of a table except the first.
@@ -48,7 +48,7 @@ function func.register(fun, name) end
 function func.tail(ls) end
 
 ---create a string representation of a placeholder expression.
----@param e PLPlaceholderExpression|any -- a placeholder expression
+---@param e pl.PlaceholderExpression|any -- a placeholder expression
 ---@return string
 ---@nodiscard
 function func.repr(e) end
@@ -58,12 +58,12 @@ function func.repr(e) end
 ---parameters can be build. Then we collect and replace any non-PE values from 
 ---the PE, and build up a constant binding list. Finally, the expression can be 
 ---compiled, and `e.PEfunction` is set.
----@param e PLPlaceholderExpression -- a placeholder expression
+---@param e pl.PlaceholderExpression -- a placeholder expression
 ---@return function -- a function
 function func.instantiate(e) end
 
 ---instantiate a placeholder expression unless it has already been done.
----@param e PLPlaceholderExpression -- a placeholder expression
+---@param e pl.PlaceholderExpression -- a placeholder expression
 ---@return function -- the function
 function func.I(e) end
 
