@@ -30,6 +30,8 @@ For a more detailed description of how to install a library of definition files,
 
 By default, this library imports everything into the global namespace. If you don't want this, delete (or move) `library/pl.lua`. In the long term, it may be useful to split this library in two: one with injected globals and one without.
 
+## Types
+
 The types provided by this library are, exhaustively:
 
 * Classes, given as `pl.[CLASS NAME]`. Every class is listed below: 
