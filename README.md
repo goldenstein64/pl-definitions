@@ -34,31 +34,57 @@ By default, this library imports everything into the global namespace. If you do
 
 The types provided by this library are, exhaustively:
 
-* Classes, given as `pl.[CLASS NAME]`. Every class is listed below: 
-  * `pl.Date`, `pl.Date.Interval`, `pl.Date.Format` (from `pl.Date`) although deprecated, 
-  * `pl.List` (from `pl.List`), 
-  * `pl.Map` (from `pl.Map`), 
-  * `pl.MultiMap` (from `pl.MultiMap`), 
-  * `pl.OrderedMap` (from `pl.OrderedMap`), 
-  * `pl.Set` (from `pl.Set`), 
-  * `pl.Class`, `pl.Instance` (from `pl.class`),
-  * `pl.Comprehension` (from `pl.comprehension`)
-  * `pl.ConfigReadConfig` (from `pl.config`)
-  * `pl.Data`, `pl.Data.ReadConfig`, `pl.Data.Options`, `pl.Data.QueryArg` (from `pl.data`)
-  * `pl.PlaceholderExpression` (from `pl.func`),
-  * `pl.InputFieldsOptions` (from `pl.input`),
-  * `pl.Sequence` (from `pl.seq`),
-  * `pl.StringIOWriter`, `pl.StringIOReader` (from `pl.stringio`),
-  * `pl.Template` (from `pl.stringx`), 
-  * `pl.CompiledTemplate`, `pl.CompiledTemplate.Options` (from `pl.template`), 
-  * `pl.Tuple` (from `pl.test`),
-  * `pl.DeprecationOptions` (from `pl.utils`),
-  * `pl.XMLNode` (from `pl.xml`)
+* Classes, given as `pl.[CLASS NAME]`. Every class is listed below:
+
+| Name                          | Module Source      |
+| ----------------------------- | ------------------ |
+| `pl.Date`                     | `pl.Date`          |
+| `pl.Date.Interval`            | `pl.Date`          |
+| `pl.Date.Format`              | `pl.Date`          |
+| `pl.List`                     | `pl.List`          |
+| `pl.Map`                      | `pl.Map`           |
+| `pl.MultiMap`                 | `pl.MultiMap`      |
+| `pl.OrderedMap`               | `pl.OrderedMap`    |
+| `pl.Set`                      | `pl.Set`           |
+| `pl.Class`                    | `pl.class`         |
+| `pl.Instance`                 | `pl.class`         |
+| `pl.Comprehension`            | `pl.comprehension` |
+| `pl.ConfigReadConfig`         | `pl.config`        |
+| `pl.Data`                     | `pl.data`          |
+| `pl.Data.ReadConfig`          | `pl.data`          |
+| `pl.Data.Options`             | `pl.data`          |
+| `pl.Data.QueryArg`            | `pl.data`          |
+| `pl.PlaceholderExpression`    | `pl.func`          |
+| `pl.InputFieldsOptions`       | `pl.input`         |
+| `pl.Sequence`                 | `pl.seq`           |
+| `pl.StringIOWriter`           | `pl.stringio`      |
+| `pl.StringIOReader`           | `pl.stringio`      |
+| `pl.Template`                 | `pl.stringx`       |
+| `pl.CompiledTemplate`         | `pl.template`      |
+| `pl.CompiledTemplate.Options` | `pl.template`      |
+| `pl.Tuple`                    | `pl.test`          |
+| `pl.DeprecationOptions`       | `pl.utils`         |
+| `pl.XMLNode`                  | `pl.xml`           |
+
 * Aliases, given as `pl.[ALIAS NAME]`. Every alias is listed below:
-  * `pl.TokenStream`, `pl.LexerFilter`, `pl.LexerOptions` (from `pl.lexer`),
-  * `pl.BoolBinOpString`, `pl.BoolOrderedBinOpString`, `pl.BinOpString`, `pl.UnOpString`, `pl.MultiOpString`, `pl.OpString` (from `pl.operator`)
-  * `pl.ObjectWithMethodAndTwoArguments`, `pl.ObjectWithMethodAndOneArgument`, `pl.ObjectWithMethodAndNoArguments` (from `pl.seq`) which I should probably simplify,
-  * `pl.SipOptions` (from `pl.sip`),
-  * `pl.ObjectWithMethod` (from `pl.tablex`)
+
+| Name                                 | Module Source |
+| ------------------------------------ | ------------- |
+| `pl.TokenStream`                     | `pl.lexer`    |
+| `pl.LexerFilter`                     | `pl.lexer`    |
+| `pl.LexerOptions`                    | `pl.lexer`    |
+| `pl.BoolBinOpString`                 | `pl.operator` |
+| `pl.BoolOrderedBinOpString`          | `pl.operator` |
+| `pl.BinOpString`                     | `pl.operator` |
+| `pl.UnOpString`                      | `pl.operator` |
+| `pl.MultiOpString`                   | `pl.operator` |
+| `pl.OpString`                        | `pl.operator` |
+| `pl.ObjectWithMethodAndTwoArguments` | `pl.seq`      |
+| `pl.ObjectWithMethodAndOneArgument`  | `pl.seq`      |
+| `pl.ObjectWithMethodAndNoArguments`  | `pl.seq`      |
+| `pl.SipOptions`                      | `pl.sip`      |
+| `pl.ObjectWithMethod`                | `pl.tablex`   |
+
+I should probably simplify the `pl.seq` aliases...
 
 Most classes have documentation of their constructor in the form of their `_init` method. The only easy way to view this would be to type `[CLASS NAME]:_init` in your editor, or doing the same with an instance. This might be changed so it is attached to the class itself, although that is undecided.
