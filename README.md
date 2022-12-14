@@ -4,7 +4,7 @@ Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Pen
 
 Some features are missing from the library simply because the LSP doesn't support them. The most pressing features are currently:
 
-* Generic classes. Being able to create e.g. a `pl.List<string>` would be wonderful. One thing thing that is missing is annotating "function units" (as in `fun(...): ...`) and operator annotations with generic parameters.
+* Generic classes. Being able to create e.g. a `pl.List<string>` would be wonderful. One thing that is missing is annotating "function units" (as in `fun(...): ...`) and operator annotations with generic parameters.
 * Setting outdated modules like `text` and `xml` as deprecated when requiring them directly.
 * More robust generic function support. Variadic type packs are not very strict, and generic types often leak into the return type.
 
