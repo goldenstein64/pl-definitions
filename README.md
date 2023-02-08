@@ -1,6 +1,6 @@
 # Penlight Definitions
 
-Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Penlight) 1.13.1 to use with [sumneko/lua-language-server](https://github.com/sumneko/lua-language-server). The annotations have been manually re-written directly from the [docs](https://lunarmodules.github.io/Penlight/index.html) and [source code](https://github.com/lunarmodules/Penlight) to be parsable by the LSP.
+Definition files for [lunarmodules/Penlight](https://github.com/lunarmodules/Penlight) 1.13.1 to use with [LuaLS/lua-language-server](https://github.com/LuaLS/lua-language-server). The annotations have been manually re-written directly from the [docs](https://lunarmodules.github.io/Penlight/index.html) and [source code](https://github.com/lunarmodules/Penlight) to be parsable by the LSP.
 
 Some features are missing from the library simply because the LSP doesn't support them. The most pressing features are currently:
 
