@@ -11,9 +11,11 @@
 			"other": "on",
 			"strings": "on"
 		},
-		"editor.defaultFormatter": "sumneko.lua"
+		"editor.defaultFormatter": "JohnnyMorganz.stylua"
 	},
 	"cSpell.words": [
 		"metamethods"
-	]
+	],
+	"Lua.misc.parameters": ["--develop=true"],
+	"Lua.runtime.plugin": "plugin.lua",
 }
