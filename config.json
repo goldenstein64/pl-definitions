@@ -1,0 +1,23 @@
+{
+	"$schema": "https://raw.githubusercontent.com/LuaLS/LLS-Addons/main/schemas/addon_config.schema.json",
+	"name": "Penlight",
+	"words": [
+		// requiring "pl"
+		"require%s*%(%s*\"pl\"%s*%)",
+		"require%s*\"pl\"",
+		"require%s*%(%s*'pl'%s*%)",
+		"require%s*'pl'",
+		// requiring local modules
+		"require%s*%(%s*\"pl%.%w+\"%s*%)",
+		"require%s*\"pl%.%w+\"",
+		"require%s*%(%s*'pl%.%w+'%s*%)",
+		"require%s*'pl%.%w+'"
+	],
+	"configs": [
+		{
+			"key": "Lua.workspace.library",
+			"action": "add",
+			"value": "${3rd}/lfs/library" // `pl.path` uses this module
+		}
+	]
+}
