@@ -60,10 +60,11 @@ local requireTokens = {
 ---@param  text string # The content of file
 ---@return nil|diff[]
 function OnSetText(uri, text)
-	-- comment this out when it's ready
+	--[[ comment this out when it's ready
 	if not uri:match("penlight/test%.lua$") then
 		return
 	end
+	--]]
 
 	local requireState = 0
 	for valueType, value in lexer.lua(text, {}, { string = true }) do

@@ -11,7 +11,5 @@
 	},
 	"cSpell.words": [
 		"metamethods"
-	],
-	"Lua.misc.parameters": ["--develop=true"],
-	"Lua.runtime.plugin": "plugin.lua",
+	]
 }
