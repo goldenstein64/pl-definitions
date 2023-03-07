@@ -1,47 +1,49 @@
 local lexer = require("lexer")
 
-local childrenProc = io.popen('dir "library/pl" /B', "r")
-if not childrenProc then
-	return
-end
-
----@type string?
-local childrenString = childrenProc:read("*a")
-if not childrenString then
-	return
-end
-
-local deprecatedMap = {
-	["text"] = "use pl.stringx",
-	["xml"] = "use a more specialized library instead",
-}
-
----@type string[]
-local importsTable = {}
-for child in childrenString:gmatch("[^\n]+") do
-	local childName = child:match("(.+)%.lua$")
-
-	local importStatement
-	local deprecated = deprecatedMap[childName]
-	if deprecated then
-		importStatement =
-			string.format('_G.%s = require("pl.%s") ---@deprecated -- %s', childName, childName, deprecated)
-	else
-		importStatement = string.format('_G.%s = require("pl.%s")', childName, childName)
+local importDiff ---@type diff[]
+do
+	local childrenProc = io.popen('dir "library/pl" /B', "r")
+	if not childrenProc then
+		return
 	end
-	table.insert(importsTable, importStatement)
+
+	---@type string?
+	local childrenString = childrenProc:read("*a")
+	if not childrenString then
+		return
+	end
+
+	local deprecatedMap = {
+		["text"] = "use pl.stringx",
+		["xml"] = "use a more specialized library instead",
+	}
+
+	---@type string[]
+	local importsTable = {}
+	for child in childrenString:gmatch("[^\n]+") do
+		local childName = child:match("(.+)%.lua$")
+
+		local importStatement
+		local deprecated = deprecatedMap[childName]
+		if deprecated then
+			importStatement =
+				string.format('_G.%s = require("pl.%s") ---@deprecated -- %s', childName, childName, deprecated)
+		else
+			importStatement = string.format('_G.%s = require("pl.%s")', childName, childName)
+		end
+		table.insert(importsTable, importStatement)
+	end
+
+	local imports = string.format("%s\n", table.concat(importsTable, "\n"))
+
+	importDiff = {
+		{
+			start = 1,
+			finish = 0,
+			text = imports,
+		},
+	}
 end
-
-local imports = string.format("%s\n", table.concat(importsTable, "\n"))
-
----@type diff[]
-local importResult = {
-	{
-		start = 1,
-		finish = 0,
-		text = imports,
-	},
-}
 
 ---@class diff
 ---@field start  integer # The number of bytes at the beginning of the replacement
@@ -57,9 +59,6 @@ function OnSetText(uri, text)
 		return
 	end
 
-	---@type diff[]
-	local diffs = {}
-
 	local isRequire = false
 	local nextToken = nil
 	for valueType, value in lexer.lua(text, {}, { string = true }) do
@@ -70,7 +69,7 @@ function OnSetText(uri, text)
 				nextToken = ")"
 			elseif nextToken == ")" and valueType == nextToken then
 				-- require completed!
-				return importResult
+				return importDiff
 			elseif valueType ~= "space" and valueType ~= "comment" then
 				isRequire = false
 			end
@@ -83,7 +82,7 @@ function OnSetText(uri, text)
 				value:find("^%-%-%[(=*)%[@module[ \t]*(['\"])pl%2.-%]%1%]")
 				or value:find("^%-%-%-@module[ \t]*(['\"])pl%1")
 			then
-				return importResult
+				return importDiff
 			end
 		end
 	end
