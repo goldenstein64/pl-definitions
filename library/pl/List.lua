@@ -24,7 +24,8 @@ local class = require("pl.class")
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#)
----@class pl.List: { [integer]: any }, pl.Class
+---@class pl.List: pl.Class
+---@field [integer] any
 ---@operator concat(pl.List): pl.List
 ---@overload fun(t?: any[]|pl.List): pl.List
 local List = class()
