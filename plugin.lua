@@ -45,6 +45,12 @@ do
 	}
 end
 
+local requireTokens = {
+	{ "(", "(" },
+	{ "string", "pl" },
+	{ ")", ")" }
+}
+
 ---@class diff
 ---@field start  integer # The number of bytes at the beginning of the replacement
 ---@field finish integer # The number of bytes at the end of the replacement
@@ -54,33 +60,32 @@ end
 ---@param  text string # The content of file
 ---@return nil|diff[]
 function OnSetText(uri, text)
-	-- comment this out when it's ready
+	--[[ comment this out when it's ready
 	if not uri:match("penlight/test%.lua$") then
 		return
 	end
+	--]]
 
-	local isRequire = false
-	local nextToken = nil
+	local requireState = 0
 	for valueType, value in lexer.lua(text, {}, { string = true }) do
-		if isRequire then
-			if nextToken == "(" and valueType == nextToken then
-				nextToken = "string"
-			elseif nextToken == "string" and valueType == nextToken and value == "pl" then
-				nextToken = ")"
-			elseif nextToken == ")" and valueType == nextToken then
-				-- require completed!
-				return importDiff
+		if requireState >= 1 then
+			local nextType, nextValue = table.unpack(requireTokens[requireState])
+			if nextType == valueType and nextValue == value then
+				requireState = requireState + 1
+				if requireState > #requireTokens then
+					return importDiff
+				end
 			elseif valueType ~= "space" and valueType ~= "comment" then
-				isRequire = false
+				requireState = 0
 			end
 		elseif valueType == "iden" and value == "require" then
-			isRequire = true
-			nextToken = "("
-			-- check if its argument is a form of 'pl'
+			requireState = requireState + 1
 		elseif valueType == "comment" then
 			if
 				value:find("^%-%-%[(=*)%[@module[ \t]*(['\"])pl%2.-%]%1%]")
+				or value:find("^%-%-%[(=+)%[@module[ \t]*%[%[pl%]%].-%]%1%]")
 				or value:find("^%-%-%-@module[ \t]*(['\"])pl%1")
+				or value:find("^%-%-%-@module[ \t]*%[%[pl%]%]")
 			then
 				return importDiff
 			end
