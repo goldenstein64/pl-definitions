@@ -1,9 +1,5 @@
 {
-	"Lua.workspace.library": [
-		"lua_modules/share/lua/5.1",
-		"${3rd}/lfs"
-	],
-	"Lua.runtime.version": "LuaJIT",
+	"Lua.runtime.version": "Lua 5.4",
 	"Lua.workspace.checkThirdParty": false,
 	"[lua]": {
 		"editor.quickSuggestions": {
