@@ -22,9 +22,12 @@ Some features are missing simply because I don't know how to lint them. The most
 
     // this library uses luafilesystem as a dependency
     "${3rd}/lfs"
-  ]
+  ],
+  "Lua.runtime.plugin": "path/to/this/repo/plugin.lua"
 }
 ```
+
+The plugin is used to generate global imports when it finds `---@module "pl"` or `require("pl")` in any file. This works for most outlandish representations of the syntax with one exception: any `--[[@module 'pl']]` comments will be ignored between a `require` call and its closing parenthesis.
 
 For a more detailed description of how to install a library of definition files, see the LSP's [wiki](https://github.com/sumneko/lua-language-server/wiki/Libraries).
 
