@@ -1,3 +1,5 @@
+local lexer = require("lexer")
+
 local childrenProc = io.popen('dir "library/pl" /B', "r")
 if not childrenProc then
 	return
@@ -14,21 +16,32 @@ local deprecatedMap = {
 	["xml"] = "use a more specialized library instead",
 }
 
-local statements = {}
+---@type string[]
+local importsTable = {}
 for child in childrenString:gmatch("[^\n]+") do
 	local childName = child:match("(.+)%.lua$")
 
-	local statement
+	local importStatement
 	local deprecated = deprecatedMap[childName]
 	if deprecated then
-		statement = string.format('_G.%s = require("pl.%s") ---@deprecated -- %s', childName, childName, deprecated)
+		importStatement =
+			string.format('_G.%s = require("pl.%s") ---@deprecated -- %s', childName, childName, deprecated)
 	else
-		statement = string.format('_G.%s = require("pl.%s")', childName, childName)
+		importStatement = string.format('_G.%s = require("pl.%s")', childName, childName)
 	end
-	table.insert(statements, statement)
+	table.insert(importsTable, importStatement)
 end
 
-local statementString = string.format("\n%s", table.concat(statements, "\n"))
+local imports = string.format("%s\n", table.concat(importsTable, "\n"))
+
+---@type diff[]
+local importResult = {
+	{
+		start = 1,
+		finish = 0,
+		text = imports,
+	},
+}
 
 ---@class diff
 ---@field start  integer # The number of bytes at the beginning of the replacement
@@ -39,25 +52,39 @@ local statementString = string.format("\n%s", table.concat(statements, "\n"))
 ---@param  text string # The content of file
 ---@return nil|diff[]
 function OnSetText(uri, text)
-	if uri:match("plugin%.lua$") or uri:match("diffed%.lua$") or uri:match("diff%.lua$") then
+	-- comment this out when it's ready
+	if not uri:match("penlight/test%.lua$") then
 		return
 	end
 
-	-- TODO: detect comments and don't count them
-	local endPos = text:match('require%s*%(%s*"pl"%s*%)()')
-		or text:match("require%s*%(%s*'pl'%s*%)()")
-		or text:match('require%s*"pl"()')
-		or text:match("require%s*'pl'()")
+	---@type diff[]
+	local diffs = {}
 
-	if not endPos then
-		return
+	local isRequire = false
+	local nextToken = nil
+	for valueType, value in lexer.lua(text, {}, { string = true }) do
+		if isRequire then
+			if nextToken == "(" and valueType == nextToken then
+				nextToken = "string"
+			elseif nextToken == "string" and valueType == nextToken and value == "pl" then
+				nextToken = ")"
+			elseif nextToken == ")" and valueType == nextToken then
+				-- require completed!
+				return importResult
+			elseif valueType ~= "space" and valueType ~= "comment" then
+				isRequire = false
+			end
+		elseif valueType == "iden" and value == "require" then
+			isRequire = true
+			nextToken = "("
+			-- check if its argument is a form of 'pl'
+		elseif valueType == "comment" then
+			if
+				value:find("^%-%-%[(=*)%[@module[ \t]*(['\"])pl%2.-%]%1%]")
+				or value:find("^%-%-%-@module[ \t]*(['\"])pl%1")
+			then
+				return importResult
+			end
+		end
 	end
-
-	return {
-		{
-			start = endPos,
-			finish = endPos,
-			text = statementString
-		}
-	}
 end
