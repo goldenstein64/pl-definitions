@@ -634,32 +634,39 @@ local requireTokens = {
 ---@param  text string # The content of file
 ---@return nil|diff[]
 function OnSetText(uri, text)
-	--[[ comment this out when it's ready
+	---[[ comment this out when it's ready
 	if not uri:match("penlight/test%.lua$") then
 		return
 	end
 	--]]
 
 	local requireState = 0
-	for valueType, value in lexer.lua(text, {}, { string = true }) do
+	for tokenType, tokenValue in lexer.lua(text, {}, { string = true }) do
 		if requireState >= 1 then
 			local nextType, nextValue = table.unpack(requireTokens[requireState])
-			if nextType == valueType and nextValue == value then
+			if nextType == tokenType and nextValue == tokenValue then
 				requireState = requireState + 1
 				if requireState > #requireTokens then
 					return importDiff
 				end
-			elseif valueType ~= "space" and valueType ~= "comment" then
+			elseif tokenType == "comment" then
+				if
+					tokenValue:find("^%-%-%[(=*)%[@module[ \t]*(['\"])pl%2.-%]%1%]")
+					or tokenValue:find("^%-%-%[(=+)%[@module[ \t]*%[%[pl%]%].-%]%1%]")
+				then
+					return importDiff
+				end
+			elseif tokenType ~= "space" then
 				requireState = 0
 			end
-		elseif valueType == "iden" and value == "require" then
-			requireState = requireState + 1
-		elseif valueType == "comment" then
+		elseif tokenType == "iden" and tokenValue == "require" then
+			requireState = 1
+		elseif tokenType == "comment" then
 			if
-				value:find("^%-%-%[(=*)%[@module[ \t]*(['\"])pl%2.-%]%1%]")
-				or value:find("^%-%-%[(=+)%[@module[ \t]*%[%[pl%]%].-%]%1%]")
-				or value:find("^%-%-%-@module[ \t]*(['\"])pl%1")
-				or value:find("^%-%-%-@module[ \t]*%[%[pl%]%]")
+				tokenValue:find("^%-%-%[(=*)%[@module[ \t]*(['\"])pl%2.-%]%1%]")
+				or tokenValue:find("^%-%-%[(=+)%[@module[ \t]*%[%[pl%]%].-%]%1%]")
+				or tokenValue:find("^%-%-%-@module[ \t]*(['\"])pl%1")
+				or tokenValue:find("^%-%-%-@module[ \t]*%[%[pl%]%]")
 			then
 				return importDiff
 			end
