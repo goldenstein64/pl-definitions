@@ -13,7 +13,8 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
 --- [`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#), 
 --- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#)
----@class pl.MultiMap : { [any]: any[] }, pl.Map
+---@class pl.MultiMap : pl.Map
+---@field [any] any[]
 ---@overload fun(t?: pl.MultiMap): pl.MultiMap
 local MultiMap = class()
 

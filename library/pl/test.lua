@@ -81,6 +81,7 @@ Tuple.unpack = utils.unpack
 ---any nils, and there is an `unpack` method.
 ---@param ... any
 ---@return pl.Tuple
+---@nodiscard
 ---
 ---Usage:
 ---

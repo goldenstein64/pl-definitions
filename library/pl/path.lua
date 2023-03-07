@@ -110,6 +110,7 @@ function path.splitpath(P) end
 ---@param P string -- A file path
 ---@param pwd? string -- start path to use (default is current dir)
 ---@return string
+---@nodiscard
 function path.abspath(P, pwd) end
 
 ---given a path, return the root part and the extension part. if there's no 

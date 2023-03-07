@@ -79,26 +79,38 @@ function seq.iter(iter) end
 ---@nodiscard
 function seq.range(start, finish) end
 
----count the number of elements in the sequence which satisfy the predicate
----@generic T, A
----@param iter T[]|fun(): T|pl.Sequence -- a sequence
----@param condn pl.BoolBinOpString|fun(val: T, arg: A): boolean -- a predicate function (must return either true or false)
----@param arg T -- optional argument to be passed to predicate as second argument.
----@return integer -- count
----@diagnostic disable-next-line:duplicate-set-field
-function seq.count(iter, condn, arg) end
 
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence
 ---@param condn fun(val: T): boolean
 ---@return integer
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.count(iter, condn) end
+
+---@generic T, A
+---@param iter T[]|fun(): T|pl.Sequence
+---@param condn fun(val: T, arg: A): boolean
+---@return integer
+---@nodiscard
+---@diagnostic disable-next-line:duplicate-set-field
+function seq.count(iter, condn) end
+
+---count the number of elements in the sequence which satisfy the predicate
+---@generic T, A
+---@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@param condn pl.BoolBinOpString -- a predicate function (must return either true or false)
+---@param arg T -- optional argument to be passed to predicate as second argument.
+---@return integer -- count
+---@nodiscard
+---@diagnostic disable-next-line:duplicate-set-field
+function seq.count(iter, condn, arg) end
 
 ---return the minimum and the maximum value of the sequence.
 ---@param iter number[]|fun(): number|pl.Sequence -- a sequence
 ---@return number -- minimum value
 ---@return number -- maximum value
+---@nodiscard
 function seq.minmax(iter) end
 
 ---return the sum and element count of the sequence.
@@ -106,12 +118,14 @@ function seq.minmax(iter) end
 ---@param fn? fun(val: number): number -- an optional function to apply to the values
 ---@return number -- the sum
 ---@return integer -- the element count
+---@nodiscard
 function seq.sum(iter, fn) end
 
 ---create a table from the sequence. (This will make the result in a `List`.)
 ---@generic T
 ---@param iter T[]|fun(): T -- a sequence
----@return pl.List -- a List\
+---@return pl.List -- a List
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -128,6 +142,7 @@ function seq.copy(iter) end
 ---@param i1? I1 -- used to capture extra iterator values as with `pairs` & `ipairs`
 ---@param i2? I2 -- used to capture extra iterator values as with `pairs` & `ipairs`
 ---@return { [1]: K, [2]: V }[] -- a list-like table
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -141,7 +156,19 @@ function seq.copy2(iter, i1, i2) end
 ---@generic T...
 ---@param iter T...[]|fun(): (...: T...)|pl.Sequence -- a multiple-valued sequence
 ---@return T...[] -- a list-like table
+---@nodiscard
 function seq.copy_tuples(iter) end
+
+---@param n integer
+---@return fun(): number
+---@nodiscard
+function seq.random(n) end
+
+---@param n integer
+---@param l integer
+---@return fun(): integer
+---@nodiscard
+function seq.random(n, l) end
 
 ---return an iterator of random numbers.
 ---@param n integer -- the length of the sequence
@@ -149,8 +176,6 @@ function seq.copy_tuples(iter) end
 ---@param u integer -- same as the second optional argument to `math.random`
 ---@return fun(): integer -- a sequence
 ---@nodiscard
----@overload fun(n: integer): (fun(): number)
----@overload fun(n: integer, l: integer): (fun(): integer)
 function seq.random(n, l, u) end
 
 ---return an iterator to the sorted elements of a sequence.
@@ -158,6 +183,7 @@ function seq.random(n, l, u) end
 ---@param iter fun(): T|pl.Sequence -- a sequence
 ---@param comp fun(a: T, b: T): boolean -- an optional comparison function (comp(x,y) is true if x < y)
 ---@return fun(): T
+---@nodiscard
 function seq.sort(iter, comp) end
 
 ---return an iterator which returns elements of two sequences.
@@ -165,6 +191,7 @@ function seq.sort(iter, comp) end
 ---@param iter1 T[]|fun(): T|pl.Sequence -- a sequence
 ---@param iter2 U[]|fun(): U|pl.Sequence -- a sequence
 ---@return fun(): (T, U)
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -181,7 +208,15 @@ function seq.zip(iter1, iter2) end
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence
 ---@return pl.Map<T, integer> -- a map-like table
+---@nodiscard
 function seq.count_map(iter) end
+
+---@generic T
+---@param iter T[]|fun(): T|pl.Sequence
+---@return fun(): T
+---@diagnostic disable-next-line:duplicate-set-field
+---@nodiscard
+function seq.unique(iter) end
 
 ---given a sequence, return all the unique values in that sequence.
 ---@generic T
@@ -189,13 +224,8 @@ function seq.count_map(iter) end
 ---@param returns_table true -- true if we return a table, not a sequence
 ---@return T[] -- a sequence or a table; defaults to a sequence.
 ---@diagnostic disable-next-line:duplicate-set-field
+---@nodiscard
 function seq.unique(iter, returns_table) end
-
----@generic T
----@param iter T[]|fun(): T|pl.Sequence
----@return fun(): T
----@diagnostic disable-next-line:duplicate-set-field
-function seq.unique(iter) end
 
 ---print out a sequence iter with a separator.
 ---@generic T
@@ -210,7 +240,16 @@ function seq.printall(iter, sep, nfields, fmt) end
 ---@param iter1 fun(): T1|pl.Sequence -- a sequence
 ---@param iter2 fun(): T2|pl.Sequence -- a sequence
 ---@return fun(): T1|T2 
+---@nodiscard
 function seq.splice(iter1, iter2) end
+
+---@generic K, A, R
+---@param fn fun(value1: K, value2: A): R
+---@param iter fun(): (K, A)|pl.Sequence
+---@return fun(): R
+---@nodiscard
+---@diagnostic disable-next-line:duplicate-set-field
+function seq.map(fn, iter) end
 
 ---return a sequence where every element of a sequence has been transformed by
 ---a function. If you don't supply an argument, then the function will receive
@@ -221,15 +260,34 @@ function seq.splice(iter1, iter2) end
 ---@param iter K[]|fun(): K|pl.Sequence -- a sequence of one or two values
 ---@param arg A -- optional argument to pass to function.
 ---@return fun(): R
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.map(fn, iter, arg) end
 
----@generic K, A, R
----@param fn fun(value1: K, value2: A): R
+---@generic K, A
 ---@param iter fun(): (K, A)|pl.Sequence
----@return fun(): R
+---@param pred fun(value1: K, value2: A): boolean
+---@return fun(): (K, A)
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
-function seq.map(fn, iter) end
+function seq.filter(iter, pred) end
+
+---@generic K, A
+---@param iter fun(): (K, A)|pl.Sequence
+---@param pred pl.BoolBinOpString
+---@return fun(): (K, A)
+---@nodiscard
+---@diagnostic disable-next-line:duplicate-set-field
+function seq.filter(iter, pred) end
+
+---@generic K, A
+---@param iter fun(): K|pl.Sequence
+---@param pred fun(value1: K, value2: A): boolean
+---@param arg A
+---@return fun(): K
+---@nodiscard
+---@diagnostic disable-next-line:duplicate-set-field
+function seq.filter(iter, pred, arg) end
 
 ---filter a sequence using a predicate function.
 ---@generic K, A
@@ -237,37 +295,26 @@ function seq.map(fn, iter) end
 ---@param pred pl.BoolBinOpString -- a boolean function; may take two arguments
 ---@param arg A -- optional argument to pass to function.
 ---@return fun(): K
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.filter(iter, pred, arg) end
 
----@generic K, A
----@param iter fun(): K|pl.Sequence
----@param pred fun(value1: K, value2: A): boolean
----@param arg A
----@return fun(): K
+---@generic L, T
+---@param fn fun(last: L, current: T): L
+---@param iter fun(): T|pl.Sequence
+---@param initval L
+---@return L
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
-function seq.filter(iter, pred, arg) end
-
----@generic K, A
----@param iter fun(): (K, A)|pl.Sequence
----@param pred pl.BoolBinOpString
----@return fun(): (K, A)
----@diagnostic disable-next-line:duplicate-set-field
-function seq.filter(iter, pred) end
-
----@generic K, A
----@param iter fun(): (K, A)|pl.Sequence
----@param pred fun(value1: K, value2: A): boolean
----@return fun(): (K, A)
----@diagnostic disable-next-line:duplicate-set-field
-function seq.filter(iter, pred) end
+function seq.reduce(fn, iter, initval) end
 
 ---'reduce' a sequence using a binary function.
 ---@generic L, T
----@param fn pl.BinOpString|fun(last: L, current: T): L -- a function of two arguments
+---@param fn pl.BinOpString -- a function of two arguments
 ---@param iter fun(): T|pl.Sequence -- a sequence
 ---@param initval L -- optional initial value
 ---@return L
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -280,9 +327,18 @@ function seq.filter(iter, pred) end
 function seq.reduce(fn, iter, initval) end
 
 ---@generic T
----@param fn pl.BinOpString|fun(last: T, current: T): T
+---@param fn fun(last: T, current: T): T
 ---@param iter fun(): T|pl.Sequence
 ---@return T
+---@nodiscard
+---@diagnostic disable-next-line:duplicate-set-field
+function seq.reduce(fn, iter) end
+
+---@generic T
+---@param fn pl.BinOpString
+---@param iter fun(): T|pl.Sequence
+---@return T
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.reduce(fn, iter) end
 
@@ -290,7 +346,8 @@ function seq.reduce(fn, iter) end
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence of one or two values
 ---@param n integer -- number of items to take
----@return fun(): T -- a sequence of at most n items
+---@return fun(): T -- a sequence of at most `n` items
+---@nodiscard
 function seq.take(iter, n) end
 
 ---skip the first `n` values of a sequence
@@ -298,6 +355,7 @@ function seq.take(iter, n) end
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence of one or more values
 ---@param n integer -- number of items to skip
 ---@return fun(): T
+---@nodiscard
 function seq.skip(iter, n) end
 
 --- a sequence with a sequence count and the original value.
@@ -305,12 +363,12 @@ function seq.skip(iter, n) end
 ---@generic T1, T2
 ---@param iter T1[]|fun(): (T1, T2)|pl.Sequence -- a single or double valued sequence
 ---@return fun(): (integer, T1, T2) -- sequence of (i,v), i = 1..n and v is from iter.
+---@nodiscard
 function seq.enum(iter) end
 
 ---@alias pl.ObjectWithMethodAndTwoArguments<S, A1, A2, R...> { [S]: fun(self: pl.ObjectWithMethodAndTwoArguments<S, A1, A2, R...>, arg1: A1, arg2: A2, ...: any): (...: R...) }
 ---@alias pl.ObjectWithMethodAndOneArgument<S, A, R...> { [S]: fun(self: pl.ObjectWithMethodAndOneArgument<S, A, R...>, arg1: A): (...: R...) }
 ---@alias pl.ObjectWithMethodAndNoArguments<S, R...> { [S]: fun(self: pl.ObjectWithMethodAndNoArguments<S, R...>): (...: R...) }
-
 
 ---map using a named method over a sequence.
 ---@generic S, A1, A2, R...
@@ -319,6 +377,7 @@ function seq.enum(iter) end
 ---@param arg1 A1 -- optional first extra argument
 ---@param arg2 A2 -- optional second extra argument
 ---@return fun(): R...
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.mapmethod(iter, name, arg1, arg2) end
 
@@ -327,6 +386,7 @@ function seq.mapmethod(iter, name, arg1, arg2) end
 ---@param name S
 ---@param arg1 A
 ---@return fun(): R...
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.mapmethod(iter, name, arg1) end
 
@@ -334,6 +394,7 @@ function seq.mapmethod(iter, name, arg1) end
 ---@param iter pl.ObjectWithMethodAndNoArguments<S, R...>[]|fun(): pl.ObjectWithMethodAndNoArguments<S, R...>|pl.Sequence
 ---@param name S
 ---@return fun(): R...
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function seq.mapmethod(iter, name) end
 
@@ -341,6 +402,7 @@ function seq.mapmethod(iter, name) end
 ---This will return S(i-1),S(i) if given S(i)
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@nodiscard
 ---@return fun(): (T, T)
 function seq.last(iter) end
 
@@ -369,6 +431,7 @@ local Sequence = {}
 ---@param condn pl.BoolBinOpString|fun(val: T, arg: A): boolean -- a predicate function (must return either true or false)
 ---@param arg A -- optional argument to be passed to predicate as second argument.
 ---@return integer -- count
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:count(condn, arg) end
 
@@ -376,6 +439,7 @@ function Sequence:count(condn, arg) end
 ---@param self pl.Sequence
 ---@param condn fun(val: T): boolean
 ---@return integer
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:count(condn) end
 
@@ -384,6 +448,7 @@ function Sequence:count(condn) end
 ---@param self pl.Sequence
 ---@return number -- minimum value
 ---@return number -- maximum value
+---@nodiscard
 function Sequence:minmax() end
 
 ---return the sum and element count of the sequence.
@@ -392,12 +457,14 @@ function Sequence:minmax() end
 ---@param fn? fun(val: number): number -- an optional function to apply to the values
 ---@return number -- the sum
 ---@return integer -- the element count
+---@nodiscard
 function Sequence:sum(fn) end
 
 --- create a table from the sequence. (This will make the result in a `List`.)
 ---@generic T
 ---@param self pl.Sequence
 ---@return pl.List -- a List
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -414,6 +481,7 @@ function Sequence:copy() end
 ---@param i1? I1 -- used to capture extra iterator values as with `pairs` & `ipairs`
 ---@param i2? I2 -- used to capture extra iterator values as with `pairs` & `ipairs`
 ---@return { [1]: K, [2]: V }[] -- a list-like table
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -427,6 +495,7 @@ function Sequence:copy2(i1, i2) end
 ---@generic T...
 ---@param self pl.Sequence
 ---@return T...[] -- a list-like table
+---@nodiscard
 function Sequence:copy_tuples() end
 
 ---return an iterator to the sorted elements of a sequence.
@@ -434,6 +503,7 @@ function Sequence:copy_tuples() end
 ---@param self pl.Sequence
 ---@param comp fun(a: T, b: T): boolean -- an optional comparison function (comp(x,y) is true if x < y)
 ---@return pl.Sequence
+---@nodiscard
 function Sequence:sort(comp) end
 
 ---return an iterator which returns elements of two sequences.
@@ -441,6 +511,7 @@ function Sequence:sort(comp) end
 ---@param self pl.Sequence
 ---@param iter2 U[]|fun(): U|pl.Sequence -- a sequence
 ---@return pl.Sequence
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -457,6 +528,7 @@ function Sequence:zip(iter2) end
 ---@generic T
 ---@param self pl.Sequence -- a sequence
 ---@return pl.Map<T, integer> -- a map-like table
+---@nodiscard
 function Sequence:count_map() end
 
 ---given a sequence, return all the unique values in that sequence.
@@ -464,12 +536,14 @@ function Sequence:count_map() end
 ---@param self pl.Sequence -- a sequence
 ---@param returns_table true -- true if we return a table, not a sequence
 ---@return T[] -- a sequence or a table; defaults to a sequence.
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:unique(returns_table) end
 
 ---@generic T
 ---@param self pl.Sequence
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:unique() end
 
@@ -486,6 +560,7 @@ function Sequence:printall(sep, nfields, fmt) end
 ---@param self pl.Sequence
 ---@param iter2 fun(): T2|pl.Sequence -- a sequence
 ---@return pl.Sequence
+---@nodiscard
 function Sequence:splice(iter2) end
 
 ---return a sequence where every element of a sequence has been transformed by
@@ -497,6 +572,7 @@ function Sequence:splice(iter2) end
 ---@param fn fun(value1: K, value2: A): R -- a function to apply to elements; may take two arguments
 ---@param arg A -- optional argument to pass to function.
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn, arg) end
 
@@ -505,6 +581,7 @@ function Sequence:map(fn, arg) end
 ---@param fn pl.BinOpString|pl.UnOpString
 ---@param arg A
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn, arg) end
 
@@ -512,12 +589,14 @@ function Sequence:map(fn, arg) end
 ---@param self pl.Sequence
 ---@param fn fun(value1: K, value2: A): R
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn) end
 
 ---@param self pl.Sequence
 ---@param fn pl.BinOpString|pl.UnOpString
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn) end
 
@@ -527,6 +606,7 @@ function Sequence:map(fn) end
 ---@param pred fun(value1: K, value2: A): boolean -- a boolean function; may take two arguments
 ---@param arg A -- optional argument to pass to function.
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred, arg) end
 
@@ -536,6 +616,7 @@ function Sequence:filter(pred, arg) end
 ---@param pred pl.BoolBinOpString
 ---@param arg A
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred, arg) end
 
@@ -543,6 +624,7 @@ function Sequence:filter(pred, arg) end
 ---@param self pl.Sequence
 ---@param pred fun(value1: K, value2: A): boolean
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred) end
 
@@ -550,6 +632,7 @@ function Sequence:filter(pred) end
 ---@param self pl.Sequence
 ---@param pred pl.BoolBinOpString
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred) end
 
@@ -559,6 +642,7 @@ function Sequence:filter(pred) end
 ---@param fn fun(last: L, current: T): L -- a function of two arguments
 ---@param initval L -- optional initial value
 ---@return L
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -575,6 +659,7 @@ function Sequence:reduce(fn, initval) end
 ---@param fn pl.BinOpString
 ---@param initval L 
 ---@return L
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn, initval) end
 
@@ -582,6 +667,7 @@ function Sequence:reduce(fn, initval) end
 ---@param self pl.Sequence
 ---@param fn fun(last: T, current: T): T
 ---@return T
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn) end
 
@@ -589,6 +675,7 @@ function Sequence:reduce(fn) end
 ---@param self pl.Sequence
 ---@param fn pl.BinOpString
 ---@return T
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn) end
 
@@ -596,18 +683,21 @@ function Sequence:reduce(fn) end
 ---@param self pl.Sequence
 ---@param n integer -- number of items to take
 ---@return pl.Sequence
+---@nodiscard
 function Sequence:take(n) end
 
 ---skip the first `n` values of a sequence
 ---@param self pl.Sequence
 ---@param n integer -- number of items to skip
 ---@return pl.Sequence
+---@nodiscard
 function Sequence:skip(n) end
 
 --- a sequence with a sequence count and the original value.
 ---`enum(copy(ls))` is a roundabout way of saying `ipairs(ls)`.
 ---@param self pl.Sequence
 ---@return pl.Sequence
+---@nodiscard
 function Sequence:enum() end
 
 
@@ -617,6 +707,7 @@ function Sequence:enum() end
 ---@param arg1 any -- optional first extra argument
 ---@param arg2 any -- optional second extra argument
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:mapmethod(name, arg1, arg2) end
 
@@ -624,12 +715,14 @@ function Sequence:mapmethod(name, arg1, arg2) end
 ---@param name string
 ---@param arg1 any
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:mapmethod(name, arg1) end
 
 ---@param self pl.Sequence
 ---@param name string
 ---@return pl.Sequence
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Sequence:mapmethod(name) end
 
@@ -638,6 +731,7 @@ function Sequence:mapmethod(name) end
 ---@generic T
 ---@param self pl.Sequence
 ---@return pl.Sequence
+---@nodiscard
 function Sequence:last() end
 
 ---call the function on each element of the sequence.

@@ -1,3 +1,4 @@
+---@meta
 ---# Module [`pl.stringx`](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html)
 ---
 ---Python-style extended string library.
@@ -365,6 +366,7 @@ function prototype_Template:substitute(tbl) end
 ---through.
 ---@param tbl {[string]: string|number|false} -- a table of name-value pairs.
 ---@return string -- string with place holders substituted
+---@nodiscard
 function prototype_Template:safe_substitute(tbl) end
 
 ---substitute values into a template, preserving indentation. 
@@ -376,11 +378,13 @@ function prototype_Template:safe_substitute(tbl) end
 ---the same table.
 ---@param tbl {[string]: string|number|false} -- a table of name-value pairs.
 ---@return string -- string with place holders substituted
+---@nodiscard
 function prototype_Template:indent_substitute(tbl) end
 
 ---return an iterator over all lines in a string
 ---@param s string -- the string
 ---@return fun(): string -- an iterator
+---@nodiscard
 ---
 ---Usage:
 ---

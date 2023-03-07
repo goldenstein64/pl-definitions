@@ -102,6 +102,7 @@ function CompiledTemplate:render(env, parent, db) end
 ---@return pl.CompiledTemplate? ct -- `nil` on error
 ---@return string? error -- `nil` on success
 ---@return string? source_code -- only returned if the debug option is used
+---@nodiscard
 ---
 ---Usage:
 ---

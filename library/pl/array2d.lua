@@ -296,6 +296,7 @@ function array2d.rows(a) end
 ---@param cols integer -- number of cols
 ---@param val (fun(i: integer, j: integer): T)|T -- initial value; if it's a function then use `val(i,j)`
 ---@return T[][] -- new 2d array
+---@nodiscard
 function array2d.new(rows, cols, val) end
 
 return array2d

@@ -42,6 +42,7 @@ local xml = {}
 ---@param tag string -- the tag name
 ---@param attr? { [string]: string } -- attributes (table of name-value pairs) (default `{}`)
 ---@return pl.XMLNode -- the Node object
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -58,12 +59,14 @@ function xml.new(tag, attr) end
 ---@param use_basic? boolean -- do a basic parse (default `false`)
 ---@return pl.XMLNode? -- a parsed LOM document with the document metatatables set, `nil` on error
 ---@return string? error -- the error can either be a file error or a parse error
+---@nodiscard
 function xml.parse(text_or_filename, is_file, use_basic) end
 
 ---Create a Node with a set of children (text or Nodes) and attributes.
 ---@param tag string -- a tag name
 ---@param items? pl.XMLNode|string|{ [string]: string, [integer]: pl.XMLNode|string} -- either a single child (text or Node), or a table where the hash part is the attributes and the list part is the children (text or Nodes).
 ---@return pl.XMLNode -- the new Node
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -92,6 +95,7 @@ function xml.elem(tag, items) end
 ---longer provide the tag-name, but only the items table.
 ---@param list string|string[] -- a list of names, or a comma-separated string.
 ---@return (fun(items: pl.XMLNode|string|{ [string]: string, [integer]: pl.XMLNode|string}): pl.XMLNode) ... -- (multiple) constructor functions; `function(items)`. For the `items` parameter see `xml.elem`.
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -264,6 +268,7 @@ function xml.xml_unescape(str) end
 ---@param t_ind string|integer? -- an tag-indent for each level (required when `a_ind` is set)
 ---@param a_ind string|integer? -- if given, indent each attribute pair and put on a separate line
 ---@param xml_preface string|boolean? -- force prefacing with default or custom , if truthy then `&lt;?xml version='1.0'?&gt;` will be used as default.
+---@return string -- a string representation
 ---@nodiscard
 function xml.tostring(doc, b_ind, t_ind, a_ind, xml_preface) end
 

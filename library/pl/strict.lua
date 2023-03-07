@@ -1,3 +1,4 @@
+---@meta
 ---# Module [`pl.strict`](https://lunarmodules.github.io/Penlight/libraries/pl.strict.html)
 ---
 ---Checks uses of undeclared global variables.
@@ -16,11 +17,18 @@
 ---table strictness.
 local strict = {}
 
+---@param name? string
+---@param mod nil
+---@param predeclared? { [any]: true }
+---@return table
+---@nodiscard
+function strict.module(name, mod, predeclared) end
+
 ---make an existing table strict.
 ---@param name? string -- name of table
----@param mod? table -- the table to protect - if nil then we'll return a new table
+---@param mod table -- the table to protect - if nil then we'll return a new table
 ---@param predeclared? { [any]: true } -- table of variables that are to be considered predeclared.
----@return table -- the given table, or a new table
+---@return table mod -- the given table, or a new table
 ---
 ---Usage:
 ---
@@ -46,6 +54,8 @@ function strict.make_all_strict(T) end
 ---make a new module table which is closed to further changes.
 ---@param mod table -- module table
 ---@param name string -- module name
+---@return table
+---@nodiscard
 function strict.closed_module(mod, name) end
 
 return strict
