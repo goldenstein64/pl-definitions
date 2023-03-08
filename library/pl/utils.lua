@@ -13,6 +13,7 @@ local utils = {}
 ---pack an argument list into a table.
 ---@param ... any -- any arguments
 ---@return { n: integer, [integer]: any } -- a table with field `n` set to the length
+---@nodiscard
 function utils.pack(...) end
 
 ---unpack a table and return its contents.
@@ -23,6 +24,7 @@ function utils.pack(...) end
 ---@param i? integer -- index from which to start unpacking, defaults to `1`
 ---@param j? integer -- index of the last element to unpack, defaults to `t.n` or else `#t`
 ---@return any ... -- multiple return values from the table
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -63,6 +65,7 @@ function utils.choose(cond, value1, value2) end
 ---@param temp? table -- buffer to use, otherwise allocate
 ---@param tostr? fun(value: any, index: integer): string -- custom `tostring` function, called with `(value, index)`. Defaults to [`tostring`](https://www.lua.org/manual/5.1/manual.html#pdf-tostring).
 ---@return string
+---@nodiscard
 ---@nodiscard
 function utils.array_tostring(t, temp, tostr) end
 
@@ -348,6 +351,7 @@ function utils.writefile(filename, str, is_bin) end
 ---return the contents of a file as a list of lines
 ---@param filename string -- The file path
 ---@return string[] -- file contents as a table
+---@nodiscard
 ---
 ---Raises: error if `filename` is not a string
 function utils.readlines(filename) end
@@ -503,6 +507,7 @@ function utils.bind2(fn, p) end
 ---@param fn pl.BinOpString -- a function of at least two values (may be an operator string)
 ---@param p any -- a value
 ---@return fun(x: any, ...: any) f
+---@nodiscard
 ---
 ---Raises: if `f` is not callable
 ---@diagnostic disable-next-line:duplicate-set-field

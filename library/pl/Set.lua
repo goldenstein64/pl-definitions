@@ -50,12 +50,14 @@ function Set:_init(t) end
 ---get a list of the values in a set.
 ---@param self pl.Set
 ---@return pl.List -- a list
+---@nodiscard
 function Set:values() end
 
 ---@param self pl.Set
 ---@param fn fun(val: any, ...: any): any
 ---@param ... any
 ---@return pl.Set
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Set:map(fn, ...) end
 
@@ -64,6 +66,7 @@ function Set:map(fn, ...) end
 ---@param fn pl.OpString -- a function
 ---@param ... any -- extra arguments to pass to the function.
 ---@return pl.Set -- a new set
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Set:map(fn, ...) end
 
@@ -71,12 +74,14 @@ function Set:map(fn, ...) end
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return pl.Set -- a new set
+---@nodiscard
 function Set:union(set) end
 
 ---intersection of two sets (also `*`).
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return pl.Set -- a new set
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -96,17 +101,20 @@ function Set:intersection(set) end
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return pl.Set -- a new set
+---@nodiscard
 function Set:difference(set) end
 
 ---is the first set a subset of the second (also `<`)?
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return boolean
+---@nodiscard
 function Set:issubset(set) end
 
 ---is the set empty?
 ---@param self pl.Set
 ---@return boolean
+---@nodiscard
 function Set:isempty() end
 
 ---are the sets disjoint (no elements in common)? Uses naive definition, i.e. 
@@ -114,57 +122,67 @@ function Set:isempty() end
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return boolean
+---@nodiscard
 function Set:isdisjoint(set) end
 
 ---size of this set (also `#` for 5.2).
 ---@param self pl.Set
 ---@return integer size
+---@nodiscard
 function Set:len() end
 
 ---string representation of a set.
 ---@param self pl.Set
 ---@return string
+---@nodiscard
 function Set:__tostring() end
 
 ---union of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
+---@nodiscard
 function Set:__add(set) end
 
 ---intersection of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
+---@nodiscard
 function Set:__mul(set) end
 
 ---difference of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
+---@nodiscard
 function Set:__sub(set) end
 
 ---symmetric difference of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
+---@nodiscard
 function Set:__pow(set) end
 
 ---first set subset of second?
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return boolean
+---@nodiscard
 function Set:__lt(set) end
 
 ---cardinality of set (5.2).
 ---@param self pl.Set
 ---@return integer
+---@nodiscard
 function Set:__len(set) end
 
 ---equality between sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return boolean
+---@nodiscard
 function Set:__eq(set) end
 
 return Set

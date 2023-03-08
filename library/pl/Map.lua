@@ -25,21 +25,25 @@ local Map = class()
 ---list of keys.
 ---@param self pl.Map
 ---@return any[]
+---@nodiscard
 function Map:keys() end
 
 ---list of values.
 ---@param self pl.Map
 ---@return any[]
+---@nodiscard
 function Map:values() end
 
 ---return an iterator over all key-value pairs.
 ---@param self pl.Map
 ---@return fun(): (any, any)
+---@nodiscard
 function Map:iter() end
 
 ---return a List of all key-value pairs, sorted by the keys.
 ---@param self pl.Map
 ---@return pl.List
+---@nodiscard
 function Map:items() end
 
 ---set a value in the map if it doesn't exist yet.
@@ -52,6 +56,7 @@ function Map:setdefault(key, default) end
 ---size of map. note: this is a relatively expensive operation!
 ---@param self pl.Map
 ---@return integer
+---@nodiscard
 function Map:len() end
 
 ---put a value into the map. This will remove the key if the value is nil
@@ -64,12 +69,14 @@ function Map:set(key, val) end
 ---@param self pl.Map
 ---@param key any -- the key
 ---@return any val -- the value, or `nil` if not found.
+---@nodiscard
 function Map:get(key) end
 
 ---get a list of values indexed by a list of keys.
 ---@param self pl.Map
 ---@param keys pl.List -- a list-like table of keys
 ---@return pl.List values -- a new list
+---@nodiscard
 function Map:getvalues(keys) end
 
 ---update the map using key/value pairs from another table.
@@ -81,11 +88,13 @@ function Map:update(table) end
 ---@param self pl.Map
 ---@param m pl.Map -- another map.
 ---@return boolean
+---@nodiscard
 function Map:__eq(m) end
 
 ---string representation of a map.
 ---@param self pl.Map
 ---@return string
+---@nodiscard
 function Map:__tostring() end
 
 return Map

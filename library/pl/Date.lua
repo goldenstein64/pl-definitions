@@ -118,12 +118,14 @@ function Date:yday(yday) end
 ---get the year.
 ---@param self pl.Date
 ---@return integer
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Date:year() end
 
 ---get the month.
 ---@param self pl.Date
 ---@return integer
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function Date:month() end
 
@@ -225,12 +227,14 @@ function Date:__lt(other) end
 ---@param self pl.Date
 ---@param other pl.Date
 ---@return pl.Date.Interval
+---@nodiscard
 function Date:__sub(other) end
 
 ---add a date and an interval.
 ---@param self pl.Date
 ---@param other pl.Date.Interval|osdate -- either a `pl.Date.Interval` object or a table such as passed to `Date:add`
 ---@return pl.Date
+---@nodiscard
 function Date:__add(other) end
 
 ---@class pl.Date.Interval : pl.Class
@@ -245,6 +249,7 @@ function DateInterval:_init(t) end
 ---If it's an interval then the format is '2 hours 29 sec' etc.
 ---@param self pl.Date.Interval
 ---@return string
+---@nodiscard
 function DateInterval:__tostring() end
 
 Date.Interval = DateInterval
@@ -285,12 +290,14 @@ function DateFormat:_init(fmt) end
 ---@param self pl.Date.Format
 ---@param str string -- a date string
 ---@return pl.Date -- date object
+---@nodiscard
 function DateFormat:parse(str) end
 
 ---convert a Date object into a string.
 ---@param self pl.Date.Format
 ---@param d pl.Date|integer -- a date object, or a time value as returned by os.time
 ---@return string
+---@nodiscard
 function DateFormat:tostring(d) end
 
 ---force US order in dates like 9/11/2001

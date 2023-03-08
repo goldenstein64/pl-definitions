@@ -63,6 +63,4 @@ function compat.getfenv(f) end
 ---@return function?
 function compat.setfenv(f, env) end
 
--- Not sure what to do about the global functions here...
-
 return compat

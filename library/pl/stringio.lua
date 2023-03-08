@@ -1,3 +1,4 @@
+---@meta
 ---# Module [`pl.stringio`](https://lunarmodules.github.io/Penlight/libraries/pl.stringio.html)
 ---
 ---Reading and writing strings using file-like objects.

@@ -57,11 +57,13 @@ function OrderedMap:insert(pos, key, val) end
 ---return the keys in order. (Not a copy!)
 ---@param self pl.OrderedMap
 ---@return pl.List
+---@nodiscard
 function OrderedMap:keys() end
 
 ---return the values in order. this is relatively expensive.
 ---@param self pl.OrderedMap
 ---@return pl.List
+---@nodiscard
 function OrderedMap:values() end
 
 ---sort the keys.
@@ -73,6 +75,7 @@ function OrderedMap:sort(cmp) end
 ---iterate over key-value pairs in order.
 ---@param self pl.OrderedMap
 ---@return fun(): (any, any)
+---@nodiscard
 function OrderedMap:iter() end
 
 ---iterate over an ordered map (5.2).
@@ -81,6 +84,7 @@ OrderedMap.__pairs = OrderedMap.iter
 ---string representation of an ordered map.
 ---@param self pl.OrderedMap
 ---@return string
+---@nodiscard
 function OrderedMap:__tostring() end
 
 return OrderedMap

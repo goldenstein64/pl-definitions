@@ -16,6 +16,7 @@ local tablex = {}
 ---for practical purposes. Works for any object with a `__pairs` metamethod.
 ---@param t table -- a table
 ---@return integer -- the size
+---@nodiscard
 function tablex.size(t) end
 
 ---return a list of all values in a table indexed by another list.
@@ -23,6 +24,7 @@ function tablex.size(t) end
 ---@param tbl { [K]: V } -- a table
 ---@param idx K[] -- an index table (a list of keys)
 ---@return V[] -- a list-like table
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -195,7 +197,7 @@ function tablex.move(dest, src, idest, isrc, nsrc) end
 ---@param t any[] -- the list
 ---@param pos? integer -- (default is at end)
 ---@param values any[]
----@return any[] -- table argument
+---@return any[] t -- table argument
 function tablex.insertvalues(t, pos, values) end
 
 ---compare two values. if they are tables, then compare their keys and fields
@@ -338,6 +340,7 @@ function tablex.find_if(t, cmp, arg) end
 ---@param value any -- the value
 ---@param exclude? table[] -- any tables to avoid searching
 ---@return string -- a fieldspec, e.g. `'a.b'` or `'math.sin'`
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -352,6 +355,7 @@ function tablex.search(t, value, exclude) end
 ---@param t table -- A table
 ---@param ... any -- optional arguments
 ---@return table
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -367,6 +371,7 @@ function tablex.map(fun, t, ...) end
 ---@param t T[] -- a table (applies to array part)
 ---@param ... A... -- optional arguments
 ---@return pl.List -- a list-like table
+---@nodiscard
 ---@nodiscard
 ---
 ---Usage:
@@ -610,6 +615,7 @@ function tablex.difference(s1, s2, symm) end
 ---arbitrary number of tables. It is equivalent to a matrix transpose.
 ---@param ... any[] -- arrays to be zipped
 ---@return any[][]
+---@nodiscard
 ---
 ---Usage:
 ---

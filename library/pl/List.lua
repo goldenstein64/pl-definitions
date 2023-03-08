@@ -140,6 +140,7 @@ function List:sort(cmp) end
 ---@param self pl.List
 ---@param cmp? fun(a: any, b: any): boolean
 ---@return pl.List
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:sorted(cmp) end
 
@@ -147,6 +148,7 @@ function List:sorted(cmp) end
 ---@param self pl.List
 ---@param cmp? pl.BoolBinOpString -- an optional comparison function (default `'<'`)
 ---@return pl.List -- a new list
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:sorted(cmp) end
 
@@ -159,6 +161,7 @@ function List:reverse() end
 ---@param self pl.List
 ---@return any min -- minimum value
 ---@return any max -- maximum value
+---@nodiscard
 function List:minmax() end
 
 ---Emulate list slicing, like `list[first:last]` in Python. If `first` or 
@@ -169,6 +172,7 @@ function List:minmax() end
 ---@param first integer -- An index
 ---@param last integer -- An index
 ---@return pl.List -- a new List
+---@nodiscard
 function List:slice(first, last) end
 
 ---Empty the list.
@@ -181,6 +185,7 @@ function List:clear() end
 ---@param finish? integer -- A number greater than start; if absent, then start is 1 and finish is start
 ---@param incr? integer -- an increment (may be less than 1) (default `1`)
 ---@return pl.List -- a List from start .. finish
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -196,6 +201,7 @@ function List.range(start, finish, incr) end
 ---`list:len()` is the same as `#list`.
 ---@param self pl.List
 ---@return integer
+---@nodiscard
 function List:len() end
 
 ---Remove a subrange of elements. equivalent to `del s[i1:i2]` in Python.
@@ -233,6 +239,7 @@ function List:slice_assign(i1, i2, seq) end
 ---@param self pl.List
 ---@param delim? string -- a delimiter string, can be empty (default `""`)
 ---@return string -- a string
+---@nodiscard
 function List:join(delim) end
 
 ---Join a list of strings.
@@ -241,6 +248,7 @@ function List:join(delim) end
 ---@param self pl.List
 ---@param delim? string -- a delimiter (default `""`)
 ---@return string -- a string
+---@nodiscard
 function List:concat(delim) end
 
 ---@param self pl.List
@@ -266,6 +274,7 @@ function List:foreachm(name, ...) end
 ---@param fun fun(value: any, arg?: any): boolean
 ---@param arg? any
 ---@return pl.List
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:filter(fun, arg) end
 
@@ -274,6 +283,7 @@ function List:filter(fun, arg) end
 ---@param fun pl.BoolBinOpString -- a boolean function
 ---@param arg? any -- optional argument to be passed as second argument of the predicate
 ---@return pl.List -- a new filtered list.
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:filter(fun, arg) end
 
@@ -281,12 +291,14 @@ function List:filter(fun, arg) end
 ---@param s string -- the string
 ---@param delim? string -- the delimiter (default spaces)
 ---@return pl.List -- a List of strings
+---@nodiscard
 function List.split(s, delim) end
 
 ---@param self pl.List
 ---@param fun fun(value: any, ...: any): any
 ---@param ... any
 ---@return pl.List
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:map(fun, ...) end
 
@@ -296,6 +308,7 @@ function List:map(fun, ...) end
 ---@param fun pl.OpString -- a function of at least one argument
 ---@param ... any -- arbitrary extra arguments.
 ---@return pl.List -- a new list: {f(x) for x in self}
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -308,7 +321,7 @@ function List:map(fun, ...) end
 ---@param self pl.List
 ---@param fun fun(value: any, ...: any): any
 ---@param ... any
----@return pl.List self -- the list.
+---@return pl.List self
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:transform(fun, ...) end
 
@@ -326,6 +339,7 @@ function List:transform(fun, ...) end
 ---@param ls pl.List
 ---@param ... any
 ---@return pl.List
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:map2(fun, ls, ...) end
 
@@ -337,6 +351,7 @@ function List:map2(fun, ls, ...) end
 ---@param ls pl.List -- another list
 ---@param ... any -- arbitrary extra arguments.
 ---@return pl.List -- a new list: `{fun(x, y) for x, y in zip(self, ls)}`
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:map2(fun, ls, ...) end
 
@@ -345,11 +360,13 @@ function List:map2(fun, ls, ...) end
 ---@param name string -- name of method
 ---@param ... any -- extra arguments
 ---@return pl.List -- a new list of the results
+---@nodiscard
 function List:mapm(name, ...) end
 
 ---@param self pl.List
 ---@param fun fun(memo: any, val: any): any
 ---@return any
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:reduce(fun) end
 
@@ -357,6 +374,7 @@ function List:reduce(fun) end
 ---@param self pl.List
 ---@param fun pl.BinOpString -- a function of two arguments
 ---@return any -- result of the function
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:reduce(fun) end
 
@@ -364,6 +382,7 @@ function List:reduce(fun) end
 ---@param fun fun(val: any, ...: any): any
 ---@param ... any
 ---@return pl.MultiMap
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:partition(fun, ...) end
 
@@ -373,18 +392,21 @@ function List:partition(fun, ...) end
 ---@param fun pl.OpString -- a function of at least one argument
 ---@param ... any -- will also be passed to the function
 ---@return pl.MultiMap -- a table where the keys are the returned values, and the values are Lists of values where the function returned that key.
+---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:partition(fun, ...) end
 
 ---return an iterator over all values.
 ---@param self pl.List
 ---@return fun(): any
+---@nodiscard
 function List:iter() end
 
 ---Create an iterator over a seqence. This captures the Python concept of 
 ---'sequence'. For tables, iterates over all values with integer indices.
 ---@param seq pl.Sequence|string|table|file*|(fun(): any) -- a sequence; a string (over characters), a table, a file object (over lines) or an iterator function
 ---@return fun(): any
+---@nodiscard
 ---
 ---Usage:
 ---
@@ -399,17 +421,20 @@ function List.iterate(seq) end
 ---@param self pl.List
 ---@param L pl.List -- another List
 ---@return pl.List -- a new list consisting of the list with the elements of the new list appended
+---@nodiscard
 function List:__concat(L) end
 
 ---Equality operator `==`. True iff all elements of two lists are equal.
 ---@param self pl.List
 ---@param L pl.List -- another List
 ---@return boolean
+---@nodiscard
 function List:__eq(L) end
 
 ---How our list should be rendered as a string. Uses `List:join()`.
 ---@param self pl.List
 ---@return string
+---@nodiscard
 function List:__tostring() end
 
 return List

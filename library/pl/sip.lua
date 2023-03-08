@@ -51,6 +51,7 @@ function sip.compile(spec, options) end
 ---@param res table -- a table to receive values
 ---@param options pl.SipOptions -- option table
 ---@return boolean
+---@nodiscard
 function sip.match(spec, line, res, options) end
 
 ---match a SIP pattern against the start of a string.
@@ -58,6 +59,7 @@ function sip.match(spec, line, res, options) end
 ---@param line string -- a string
 ---@param res table -- a table to receive values
 ---@return boolean
+---@nodiscard
 function sip.match_at_start(spec, line, res) end
 
 ---given a pattern and a file object, return an iterator over the results
