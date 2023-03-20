@@ -27,7 +27,20 @@ Some features are missing simply because I don't know how to lint them. The most
 }
 ```
 
-The plugin is used to generate global imports when it finds `---@module "pl"` or `require("pl")` in any file. This works for most if not all outlandish representations of the syntax.
+The plugin is used to generate global imports when it finds `---@module "pl"` or `require("pl")` in any file. This works for most if not all outlandish representations of the syntax like `--[=[@module [[pl]]]=]`. 
+
+The plugin doesn't do anything special for requires that execute conditionally, e.g.
+
+```lua
+-- this injects globals
+if false then
+  require("pl")
+end
+
+-- this doesn't inject globals
+local plString = "pl"
+require(plString)
+```
 
 For a more detailed description of how to install a library of definition files, see the LSP's [wiki](https://github.com/sumneko/lua-language-server/wiki/Libraries).
 
