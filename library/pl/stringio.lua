@@ -60,9 +60,9 @@ function stringIOReader:lines(...) end
 ---for compatibility only
 function stringIOReader:close() end
 
----create a file-like object which can be used to construct a string. The 
----resulting object has an extra `value()` method for retrieving the string 
----value. Implements `file:write`, `file:seek`, `file:lines`, plus an extra 
+---create a file-like object which can be used to construct a string. The
+---resulting object has an extra `value()` method for retrieving the string
+---value. Implements `file:write`, `file:seek`, `file:lines`, plus an extra
 ---`writef` method which works like `utils.printf`.
 ---@return pl.StringIOWriter
 ---@nodiscard
@@ -76,7 +76,7 @@ function stringIOReader:close() end
 ---```
 function stringio.create() end
 
----create a file-like object for reading from a given string. Implements 
+---create a file-like object for reading from a given string. Implements
 ---`file:read`.
 ---@param s string -- The input string.
 ---@return pl.StringIOReader
