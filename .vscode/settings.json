@@ -9,6 +9,7 @@
 		},
 		"editor.defaultFormatter": "JohnnyMorganz.stylua"
 	},
+	"editor.formatOnSave": true,
 	"cSpell.words": [
 		"metamethods"
 	],

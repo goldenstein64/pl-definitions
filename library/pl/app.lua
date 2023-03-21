@@ -5,22 +5,22 @@
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/01-introduction.md.html#Application_Support).
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html),
 --- [`pl.path`](https://lunarmodules.github.io/Penlight/libraries/pl.path.html)
 local app = {}
 
----Return the name of the current script running. 
+---Return the name of the current script running.
 ---The name will be the name as passed on the command line
 ---@return string -- filename
 ---@nodiscard
 function app.script_name() end
 
----Prefixes the current script's path to the Lua module path. Applies to both 
----the source and the binary module paths. It makes it easy for the main file 
----of a multi-file program to access its modules in the same directory. base 
----allows these modules to be put in a specified subdirectory, to allow for 
----cleaner deployment and resolve potential conflicts between a script name 
+---Prefixes the current script's path to the Lua module path. Applies to both
+---the source and the binary module paths. It makes it easy for the main file
+---of a multi-file program to access its modules in the same directory. base
+---allows these modules to be put in a specified subdirectory, to allow for
+---cleaner deployment and resolve potential conflicts between a script name
 ---and its library directory.
 ---
 ---Note: the path is prefixed, so it is searched first when requiring modules.
@@ -29,9 +29,9 @@ function app.script_name() end
 ---@return string -- the current script's path with a trailing slash
 function app.require_here(base, nofollow) end
 
----Return a suitable path for files private to this application. These will 
----look like '\~/.SNAME/file', with '\~' as with expanduser and SNAME is the 
----name of the script without .lua extension. If the directory does not exist, 
+---Return a suitable path for files private to this application. These will
+---look like '\~/.SNAME/file', with '\~' as with expanduser and SNAME is the
+---name of the script without .lua extension. If the directory does not exist,
 ---it will be created.
 ---@param file string -- a filename (w/out path)
 ---@return string? -- a full pathname, or nil
@@ -53,7 +53,7 @@ function app.appfile(file) end
 ---@nodiscard
 function app.platform() end
 
----Return the full command-line used to invoke this script. It will not 
+---Return the full command-line used to invoke this script. It will not
 ---include the scriptname itself.
 ---@see app.script_name
 ---@return string -- command-line
@@ -70,18 +70,18 @@ function app.platform() end
 ---```
 function app.lua() end
 
----parse command-line arguments into flags and parameters. Understands 
+---parse command-line arguments into flags and parameters. Understands
 ---GNU-style command-line flags; short (-f) and long (--flag).
 ---
----These may be given a value with either '=' or ':' (-k:2,--alpha=3.2,-n2), a 
----number value can be given without a space. If the flag is marked as having 
----a value, then a space-separated value is also accepted (-i hello), see the 
+---These may be given a value with either '=' or ':' (-k:2,--alpha=3.2,-n2), a
+---number value can be given without a space. If the flag is marked as having
+---a value, then a space-separated value is also accepted (-i hello), see the
 ---flags_with_values argument.
 ---
 ---Multiple short args can be combined like so: ( -abcd).
 ---
----When specifying the flags_valid parameter, its contents can also contain 
----aliasses, to convert short/long flags to the same output name. See the 
+---When specifying the flags_valid parameter, its contents can also contain
+---aliasses, to convert short/long flags to the same output name. See the
 ---example below.
 ---
 ---Note: if a flag is repeated, the last value wins.

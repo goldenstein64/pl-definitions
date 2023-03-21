@@ -20,8 +20,8 @@
 ---```
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/06-data.md.html#Reading_Columnar_Data)
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.array2d`](https://lunarmodules.github.io/Penlight/libraries/pl.array2d.html) (fallback methods)
 local data = {}
 
@@ -58,7 +58,7 @@ function prototype_Data:column_names() end
 
 ---write out a row (method).
 ---@param f file* -- file-like object
----@param row any[] 
+---@param row any[]
 function prototype_Data:write_row(f, row) end
 
 ---write data out to file (method).
@@ -82,7 +82,7 @@ function prototype_Data:write(f) end
 ---@nodiscard
 function data.read(file, cnfg) end
 
----write 2D data to a file. Does not assume that the data has actually been 
+---write 2D data to a file. Does not assume that the data has actually been
 ---generated with `data.new` or `data.read`.
 ---@param d any[][] -- 2D array
 ---@param file string|file* -- filename or file-like object
@@ -97,10 +97,10 @@ function data.write(d, file, fieldnames, delim) end
 ---@field fieldnames string|string[]? -- a string of delimiter-separated names, or a table of names
 ---@field delim string? -- delimiter (default `fieldnames`'s delimiter' or '\t')
 
----create a new dataset from a table of rows. Can specify the fieldnames, else 
----the table must have a field called 'fieldnames', which is either a string 
+---create a new dataset from a table of rows. Can specify the fieldnames, else
+---the table must have a field called 'fieldnames', which is either a string
 ---of delimiter-separated names, or a table of names.
----If the table does not have a field called 'delim', then an attempt will be 
+---If the table does not have a field called 'delim', then an attempt will be
 ---made to guess it from the fieldnames string, defaults otherwise to tab.
 ---@param d pl.Data.Options -- the table.
 ---@param fieldnames? string[] -- fieldnames (default `d.fieldnames`)

@@ -22,7 +22,7 @@
 ---3 Hello, Word!
 ---```
 ---
----Other escape characters can be used, when the defaults conflict with the 
+---Other escape characters can be used, when the defaults conflict with the
 ---output language.
 ---
 ---```lua
@@ -37,9 +37,9 @@
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
 local template = {}
 
----expand the template using the specified environment. This function will 
----compile and render the template. For more performant recurring usage use the 
----two step approach by using `template.compile` and `ct:render`. There are six 
+---expand the template using the specified environment. This function will
+---compile and render the template. For more performant recurring usage use the
+---two step approach by using `template.compile` and `ct:render`. There are six
 ---special fields in the environment table `env`
 ---
 ---* `_parent`: continue looking up in this table (e.g. `_parent=_G`).
@@ -71,7 +71,7 @@ local CompiledTemplate = {}
 function CompiledTemplate:render(env, parent, db) end
 
 ---@class pl.CompiledTemplate.Options
----chunk name for loaded templates, used if there is an error in Lua code. 
+---chunk name for loaded templates, used if there is an error in Lua code.
 ---Default is `TMP`.
 ---@field chunk_name? string
 ---character marking Lua lines, default is `#`.
@@ -85,8 +85,8 @@ function CompiledTemplate:render(env, parent, db) end
 ---if truthy, the generated source code will be retained within the compiled template object, default is `nil`.
 ---@field debug? any
 
----compiles the template. Returns an object that can repeatedly be rendered 
----without parsing/compiling the template again. The options passed in the opts 
+---compiles the template. Returns an object that can repeatedly be rendered
+---without parsing/compiling the template again. The options passed in the opts
 ---table support the following options:
 ---
 ---

@@ -3,17 +3,17 @@
 ---
 ---Checks uses of undeclared global variables.
 ---
----All global variables must be 'declared' through a regular assignment (even 
----assigning nil will do) in a main chunk before being used anywhere or 
----assigned to inside a function. Existing metatables `__newindex` and `__index` 
+---All global variables must be 'declared' through a regular assignment (even
+---assigning nil will do) in a main chunk before being used anywhere or
+---assigned to inside a function. Existing metatables `__newindex` and `__index`
 ---metamethods are respected.
 ---
----You can set any table to have strict behaviour using `strict.module`. Creating 
----a new module with `strict.closed_module` makes the module immune to 
+---You can set any table to have strict behaviour using `strict.module`. Creating
+---a new module with `strict.closed_module` makes the module immune to
 ---monkey-patching, if you don't wish to encourage monkey business.
 ---
----If the global `PENLIGHT_NO_GLOBAL_STRICT` is defined, then this module won't 
----make the global environment strict - if you just want to explicitly set 
+---If the global `PENLIGHT_NO_GLOBAL_STRICT` is defined, then this module won't
+---make the global environment strict - if you just want to explicitly set
 ---table strictness.
 local strict = {}
 
@@ -46,7 +46,7 @@ function strict.module(name, mod, predeclared) end
 ---```
 function strict.module(name, mod, predeclared) end
 
----make all tables in a table strict. So `strict.make_all_strict(_G)` prevents 
+---make all tables in a table strict. So `strict.make_all_strict(_G)` prevents
 ---monkey-patching of any global table
 ---@param T table -- the table containing the tables to protect. Table `T` itself will NOT be protected.
 function strict.make_all_strict(T) end

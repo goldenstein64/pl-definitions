@@ -8,11 +8,11 @@ local class = require("pl.class")
 ---
 ---Derived from [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#).
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
---- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
---- [`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
+--- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
+--- [`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#),
 --- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#)
 ---@class pl.OrderedMap : pl.Map
 ---@overload fun(t?: {[any]: any}|{[any]: any}[]|pl.OrderedMap): pl.OrderedMap
@@ -23,8 +23,8 @@ local OrderedMap = class()
 ---@param t? {[any]: any}|{[any]: any}[]|pl.OrderedMap -- optional initialization table, same as for `OrderedMap:update`
 function OrderedMap:_init(t) end
 
----update an `OrderedMap` using a table. If the table is itself an 
----`OrderedMap`, then its entries will be appended. if it is a table of the 
+---update an `OrderedMap` using a table. If the table is itself an
+---`OrderedMap`, then its entries will be appended. if it is a table of the
 ---form `{{key1 = val1}, {key2 = val2}, ...}` these will be appended.
 ---@param self pl.OrderedMap
 ---@param t {[any]: any}|{[any]: any}[]|pl.OrderedMap
@@ -43,9 +43,9 @@ function OrderedMap:set(key, val) end
 
 OrderedMap.__newindex = OrderedMap.set
 
----insert a key/value pair before a given position. Note: if the map already 
----contains the key, then this effectively moves the item to the new position 
----by first removing at the old position. Has no effect if the key does not 
+---insert a key/value pair before a given position. Note: if the map already
+---contains the key, then this effectively moves the item to the new position
+---by first removing at the old position. Has no effect if the key does not
 ---exist and val is `nil`
 ---@param self pl.OrderedMap
 ---@param pos integer -- a position starting at 1

@@ -17,9 +17,9 @@ function types.is_callable(obj) end
 
 types.is_type = utils.is_type
 
----a string representation of a type. For tables and userdata with metatables, 
----we assume that the metatable has a `_name` field. If the field is not 
----present it will return 'unknown table' or 'unknown userdata'. Lua file 
+---a string representation of a type. For tables and userdata with metatables,
+---we assume that the metatable has a `_name` field. If the field is not
+---present it will return 'unknown table' or 'unknown userdata'. Lua file
 ---objects return the type 'file'.
 ---@param obj any -- an object
 ---@return string -- a string like 'number', 'table', 'file' or 'List'
@@ -42,7 +42,7 @@ function types.is_integer(x) end
 --- * not a nil/table/string
 ---@param o any -- The object to check if it is empty.
 ---@param ignore_spaces? boolean -- If the object is a string and this is `true`, the string is considered empty if it only contains spaces.
----@return boolean? -- `true` if the object is empty, otherwise a falsy value. 
+---@return boolean? -- `true` if the object is empty, otherwise a falsy value.
 ---@nodiscard
 function types.is_empty(o, ignore_spaces) end
 

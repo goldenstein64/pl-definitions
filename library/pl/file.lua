@@ -1,9 +1,9 @@
 ---@meta
 
 local os = os
-local utils = require('pl.utils')
-local dir = require('pl.dir')
-local path = require('pl.path')
+local utils = require("pl.utils")
+local dir = require("pl.dir")
+local path = require("pl.path")
 
 ---# Module [`pl.file`](https://lunarmodules.github.io/Penlight/libraries/pl.file.html)
 ---
@@ -11,9 +11,9 @@ local path = require('pl.path')
 ---
 ---This module wraps a number of functions from other modules into a file related module for convenience.
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.dir`](https://lunarmodules.github.io/Penlight/libraries/pl.dir.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.dir`](https://lunarmodules.github.io/Penlight/libraries/pl.dir.html#),
 --- [`pl.path`](https://lunarmodules.github.io/Penlight/libraries/pl.path.html#)
 local file = {
 	read = utils.readfile,

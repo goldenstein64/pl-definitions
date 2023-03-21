@@ -30,8 +30,8 @@
 ---
 ---(c) 2008 David Manura. Licensed under the same terms as Lua (MIT license).
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.luabalanced`](https://lunarmodules.github.io/Penlight/libraries/pl.luabalanced.html#)
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/07-functional.md.html#List_Comprehensions)

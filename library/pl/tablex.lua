@@ -572,8 +572,8 @@ function tablex.keys(t) end
 ---@nodiscard
 function tablex.values(t) end
 
----Extract a range from a table, like `string.sub`. If first or last are 
----negative then they are relative to the end of the list eg. `sub(t,-2)` gives 
+---Extract a range from a table, like `string.sub`. If first or last are
+---negative then they are relative to the end of the list eg. `sub(t,-2)` gives
 ---last 2 entries in a list, and `sub(t,-4,-2)` gives from -4th to -2nd
 ---@generic T
 ---@param t T[] -- a list-like table
@@ -583,8 +583,8 @@ function tablex.values(t) end
 ---@nodiscard
 function tablex.sub(t, first, last) end
 
----combine two tables, either as union or intersection. Corresponds to set 
----operations for sets but more general. Not particularly useful for list-like 
+---combine two tables, either as union or intersection. Corresponds to set
+---operations for sets but more general. Not particularly useful for list-like
 ---tables.
 ---@param t1 table -- a table
 ---@param t2 table -- a table
@@ -601,8 +601,8 @@ function tablex.sub(t, first, last) end
 ---```
 function tablex.merge(t1, t2, dup) end
 
----a new table which is the difference of two tables. With sets (where the 
----values are all true) this is set difference and symmetric difference 
+---a new table which is the difference of two tables. With sets (where the
+---values are all true) this is set difference and symmetric difference
 ---depending on the third parameter.
 ---@param s1 table -- a map-like table or set
 ---@param s2 table -- a map-like table or set
@@ -611,7 +611,7 @@ function tablex.merge(t1, t2, dup) end
 ---@nodiscard
 function tablex.difference(s1, s2, symm) end
 
----return a table where each element is a table of the ith values of an 
+---return a table where each element is a table of the ith values of an
 ---arbitrary number of tables. It is equivalent to a matrix transpose.
 ---@param ... any[] -- arrays to be zipped
 ---@return any[][]

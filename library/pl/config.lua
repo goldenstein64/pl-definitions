@@ -3,7 +3,7 @@
 ---
 ---Reads configuration files into a Lua table.
 ---
----Understands INI files, classic Unix config files, and simple delimited 
+---Understands INI files, classic Unix config files, and simple delimited
 ---columns of values. See [the Guide](https://lunarmodules.github.io/Penlight/manual/06-data.md.html#Reading_Configuration_Files)
 ---
 ---`test.config`

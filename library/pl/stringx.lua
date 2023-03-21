@@ -3,8 +3,8 @@
 ---
 ---Python-style extended string library.
 ---
----see 3.6.1 of the Python reference. If you want to make these available as 
----string methods, then say `stringx.import()` to bring them into the standard 
+---see 3.6.1 of the Python reference. If you want to make these available as
+---string methods, then say `stringx.import()` to bring them into the standard
 ---[string](https://www.lua.org/manual/5.1/manual.html#5.4) table.
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/03-strings.md.html#)
@@ -32,7 +32,7 @@ function stringx.isdigit(s) end
 ---@nodiscard
 function stringx.isalnum(s) end
 
----does `s` only contain whitespace? Matches on pattern '%s' so matches space, 
+---does `s` only contain whitespace? Matches on pattern '%s' so matches space,
 ---newline, tabs, etc.
 ---@param s string -- a string
 ---@return boolean
@@ -65,7 +65,7 @@ function stringx.startswith(s, prefix) end
 ---@nodiscard
 function stringx.endswith(s, suffix) end
 
----concatenate the strings using this string as a delimiter. Note that the 
+---concatenate the strings using this string as a delimiter. Note that the
 ---arguments are reversed from `table.concat`.
 ---@param s string -- the string
 ---@param seq (string|number)[] -- a table of strings or numbers
@@ -79,9 +79,9 @@ function stringx.endswith(s, suffix) end
 ---```
 function stringx.join(s, seq) end
 
----Split a string into a list of lines. "\r", "\n", and "\r\n" are considered 
----line ends. They are not included in the lines unless keepends is passed. 
----Terminal line end does not produce an extra line. Splitting an empty string 
+---Split a string into a list of lines. "\r", "\n", and "\r\n" are considered
+---line ends. They are not included in the lines unless keepends is passed.
+---Terminal line end does not produce an extra line. Splitting an empty string
 ---results in an empty list.
 ---@param s string -- the string.
 ---@param keep_ends? boolean -- include line ends.
@@ -107,7 +107,7 @@ function stringx.splitlines(s, keep_ends) end
 ---```
 function stringx.split(s, re, n) end
 
----replace all tabs in `s` with `tabsize` spaces. If not specified, `tabsize` 
+---replace all tabs in `s` with `tabsize` spaces. If not specified, `tabsize`
 ---defaults to 8. Tab stops will be honored.
 ---@param s string -- the string
 ---@param tabsize? integer -- number of spaces to expand each tab (defaults to 8)
@@ -141,7 +141,7 @@ function stringx.lfind(s, sub, first, last) end
 ---@nodiscard
 function stringx.rfind(s, sub, first, last) end
 
----replace up to `n` instances of `old` by `new` in the string `s`. If `n` is 
+---replace up to `n` instances of `old` by `new` in the string `s`. If `n` is
 ---not present, replace all instances.
 ---@param s string -- the string
 ---@param old string -- the target substring
@@ -298,7 +298,7 @@ function stringx.at(s, idx) end
 ---@nodiscard
 function stringx.indent(s, n, ch) end
 
----dedent a multiline string by removing any initial indent. Useful when 
+---dedent a multiline string by removing any initial indent. Useful when
 ---working with `[[ ... ]]` strings. Empty lines are ignored.
 ---@param s string -- the (multiline) string
 ---@return string -- a string with initial indent zero.
@@ -325,8 +325,8 @@ function stringx.indent(s, n, ch) end
 ---```
 function stringx.dedent(s) end
 
----format a paragraph into lines so that they fit into a line width. It will 
----not break long words by default, so lines can be over the length to that 
+---format a paragraph into lines so that they fit into a line width. It will
+---not break long words by default, so lines can be over the length to that
 ---extent.
 ---@param s string -- the string to format
 ---@param width? integer -- the margin width (default `70`)
@@ -355,26 +355,26 @@ stringx.Template = prototype_Template
 ---@nodiscard
 function prototype_Template.new(tmpl) end
 
----substitute values into a template, throwing an error. This will throw an 
+---substitute values into a template, throwing an error. This will throw an
 ---error if no name is found.
 ---@param tbl {[string]: string|number|false} -- a table of name-value pairs.
 ---@return string -- string with place holders substituted
 ---@nodiscard
 function prototype_Template:substitute(tbl) end
 
----substitute values into a template. This version just passes unknown names 
+---substitute values into a template. This version just passes unknown names
 ---through.
 ---@param tbl {[string]: string|number|false} -- a table of name-value pairs.
 ---@return string -- string with place holders substituted
 ---@nodiscard
 function prototype_Template:safe_substitute(tbl) end
 
----substitute values into a template, preserving indentation. 
+---substitute values into a template, preserving indentation.
 ---
----If the value is a multiline string or a template, it will insert the lines 
+---If the value is a multiline string or a template, it will insert the lines
 ---at the correct indentation.
 ---
----Furthermore, if a template, then that template will be substituted using 
+---Furthermore, if a template, then that template will be substituted using
 ---the same table.
 ---@param tbl {[string]: string|number|false} -- a table of name-value pairs.
 ---@return string -- string with place holders substituted
@@ -397,7 +397,7 @@ function prototype_Template:indent_substitute(tbl) end
 ---```
 function stringx.lines(s) end
 
----inital word letters uppercase ('title case'). Here 'words' mean chunks of 
+---inital word letters uppercase ('title case'). Here 'words' mean chunks of
 ---non-space characters.
 ---@param s string -- the string
 ---@return string -- a string with each word's first letter uppercase
@@ -429,15 +429,15 @@ function stringx.title(s) end
 ---```
 function stringx.shorten(s, w, tail) end
 
----Quote the given string and preserve any control or escape characters, such 
+---Quote the given string and preserve any control or escape characters, such
 ---that reloading the string in Lua returns the same result.
 ---@param s string -- the string to be quoted
 ---@return string -- The quoted string.
 ---@nodiscard
 function stringx.quote_string(s) end
 
----Python-style formatting operator. Calling text.format_operator() overloads the 
----`%` operator for strings to give Python/Ruby style formated output. This is 
+---Python-style formatting operator. Calling text.format_operator() overloads the
+---`%` operator for strings to give Python/Ruby style formated output. This is
 ---extended to also do template-like substitution for map-like data.
 ---
 ---Note this goes further than the original, and will allow these cases:

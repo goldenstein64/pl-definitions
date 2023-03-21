@@ -18,7 +18,7 @@ function utils.pack(...) end
 
 ---unpack a table and return its contents.
 ---
----NOTE: this implementation differs from the Lua implementation in the way 
+---NOTE: this implementation differs from the Lua implementation in the way
 ---that this one DOES honor the `n` field in the table t, such that it is 'nil-safe'.
 ---@param t table -- table to unpack
 ---@param i? integer -- index from which to start unpacking, defaults to `1`
@@ -69,7 +69,7 @@ function utils.choose(cond, value1, value2) end
 ---@nodiscard
 function utils.array_tostring(t, temp, tostr) end
 
----is the object of the specified type? If the type is a string, then use type, 
+---is the object of the specified type? If the type is a string, then use type,
 ---otherwise compare with metatable
 ---@param obj any -- An object to check
 ---@param tp string|table -- String or metatable of what type it should be
@@ -88,9 +88,9 @@ function utils.array_tostring(t, temp, tostr) end
 ---```
 function utils.is_type(obj, tp) end
 
----an iterator with indices, similar to [`ipairs`](https://www.lua.org/manual/5.1/manual.html#pdf-ipairs), 
----but with a range. This is a nil-safe index based iterator that will return 
----`nil` when there is a hole in a list. To be safe ensure that table `t.n` 
+---an iterator with indices, similar to [`ipairs`](https://www.lua.org/manual/5.1/manual.html#pdf-ipairs),
+---but with a range. This is a nil-safe index based iterator that will return
+---`nil` when there is a hole in a list. To be safe ensure that table `t.n`
 ---contains the length.
 ---@param t table -- the table to iterate over
 ---@param i_start? integer -- start index (default `1`)
@@ -113,13 +113,13 @@ function utils.is_type(obj, tp) end
 function utils.npairs(t, i_start, i_end, step) end
 
 ---an iterator over all non-integer keys (inverse of [`ipairs`](https://www.lua.org/manual/5.1/manual.html#pdf-ipairs)
----). It will skip any key that is an integer number, so negative indices or an 
----array with holes will not return those either (so it returns slightly less 
+---). It will skip any key that is an integer number, so negative indices or an
+---array with holes will not return those either (so it returns slightly less
 ---than 'the inverse of [ipairs](https://www.lua.org/manual/5.1/manual.html#pdf-ipairs)'
 ---).
 ---
----This uses [`pairs`](https://www.lua.org/manual/5.1/manual.html#pdf-pairs) 
----under the hood, so any value that is iterable using [`pairs`](https://www.lua.org/manual/5.1/manual.html#pdf-pairs) 
+---This uses [`pairs`](https://www.lua.org/manual/5.1/manual.html#pdf-pairs)
+---under the hood, so any value that is iterable using [`pairs`](https://www.lua.org/manual/5.1/manual.html#pdf-pairs)
 ---will work with this function.
 ---@param t table -- the table to iterate over
 ---@return fun(): (key: any, value: any)
@@ -197,14 +197,14 @@ utils.stdmt = {
 ---```
 function utils.assert_arg(n, val, tp, verify, msg, lev) end
 
----creates an Enum or constants lookup table for improved error handling. This 
----helps prevent magic strings in code by throwing errors for accessing 
+---creates an Enum or constants lookup table for improved error handling. This
+---helps prevent magic strings in code by throwing errors for accessing
 ---non-existing values, and/or converting strings/identifiers to other values.
 ---
----Calling on the object does the same, but returns a soft error; `nil + err`, if 
+---Calling on the object does the same, but returns a soft error; `nil + err`, if
 ---the call is successful (the key exists), it will return the value.
 ---
----When calling with varargs or an array the values will be equal to the keys. 
+---When calling with varargs or an array the values will be equal to the keys.
 ---The enum object is read-only.
 ---@param ... any -- the input for the Enum. If `...` or an array then the values in the Enum will be equal to the names (must be strings), if a hash-table then values remain (any type), and the keys must be strings.
 ---@return table enum_object -- Enum object (read-only table/object)
@@ -269,9 +269,9 @@ function utils.assert_arg(n, val, tp, verify, msg, lev) end
 ---```
 function utils.enum(...) end
 
----process a function argument. This is used throughout Penlight and defines 
----what is meant by a function: Something that is callable, or an operator 
----string as defined by `pl.operator`, such as `'>'` or `'#'`. If a function factory 
+---process a function argument. This is used throughout Penlight and defines
+---what is meant by a function: Something that is callable, or an operator
+---string as defined by `pl.operator`, such as `'>'` or `'#'`. If a function factory
 ---has been registered for the type, it will be called to get the function.
 ---@param idx integer -- argument index
 ---@param f function|table|userdata -- a function, operator string, or callable object
@@ -305,7 +305,7 @@ function utils.function_arg(idx, f, msg) end
 ---```
 function utils.assert_string(n, val) end
 
----control the error strategy used by Penlight. This is a global setting that 
+---control the error strategy used by Penlight. This is a global setting that
 ---controls how `utils.raise` behaves:
 ---
 --- * `'default'`: return `nil + error` (this is the default)
@@ -315,8 +315,8 @@ function utils.assert_string(n, val) end
 ---@param mode "default"|"quit"|"error" -- either `'default'`, `'quit'` or `'error'`
 function utils.on_error(mode) end
 
----used by Penlight functions to return errors. Its global behaviour is 
----controlled by `utils.on_error`. To use this function you MUST use it in 
+---used by Penlight functions to return errors. Its global behaviour is
+---controlled by `utils.on_error`. To use this function you MUST use it in
 ---conjunction with `return`, since it might return `nil + error`.
 ---@param err string -- the error string.
 ---@return nil, string
@@ -356,7 +356,7 @@ function utils.writefile(filename, str, is_bin) end
 ---Raises: error if `filename` is not a string
 function utils.readlines(filename) end
 
----execute a shell command and return the output. This function redirects the 
+---execute a shell command and return the output. This function redirects the
 ---output to tempfiles and returns the content of those files.
 ---@param cmd string -- a shell command
 ---@param bin? boolean -- if `true`, read output as binary file
@@ -366,8 +366,8 @@ function utils.readlines(filename) end
 ---@return string stderr -- stderr output
 function utils.executeex(cmd, bin) end
 
----Quote and escape an argument of a command. Quotes a single (or list of) 
----argument(s) of a command to be passed to [`os.execute`](https://www.lua.org/manual/5.1/manual.html#pdf-os.execute), 
+---Quote and escape an argument of a command. Quotes a single (or list of)
+---argument(s) of a command to be passed to [`os.execute`](https://www.lua.org/manual/5.1/manual.html#pdf-os.execute),
 ---`pl.utils.execute` or `pl.utils.executeex`.
 ---@param argument string|string[] -- the argument to quote. If a list then all arguments in the list will be returned as a single string quoted.
 ---@return string -- quoted and escaped argument.
@@ -416,7 +416,7 @@ function utils.escape(s) end
 ---Raises: error if `s` is not a string
 function utils.split(s, re, plain, n) end
 
----split a string into a number of return values. Identical to `utils.split` 
+---split a string into a number of return values. Identical to `utils.split`
 ---but returns multiple sub-strings instead of a single list of sub-strings.
 ---@param s string -- the string
 ---@param re? string -- A Lua string pattern; defaults to '%s+'
@@ -434,9 +434,9 @@ function utils.split(s, re, plain, n) end
 ---```
 function utils.splitv(s, re, plain, n) end
 
----'memoize' a function (cache returned value for next call). This is useful if 
----you have a function which is relatively expensive, but you don't know in 
----advance what values will be required, so building a table upfront is 
+---'memoize' a function (cache returned value for next call). This is useful if
+---you have a function which is relatively expensive, but you don't know in
+---advance what values will be required, so building a table upfront is
 ---wasteful/impossible.
 ---@generic K, R
 ---@param func fun(val: K): R -- a function of at least one argument
@@ -444,13 +444,13 @@ function utils.splitv(s, re, plain, n) end
 ---@nodiscard
 function utils.memoize(func) end
 
----associate a function factory with a type. A function factory takes an object 
+---associate a function factory with a type. A function factory takes an object
 ---of the given type and returns a function for evaluating it
 ---@param mt table -- metatable
 ---@param fun function -- a callable that returns a function
 function utils.add_function_factory(mt, fun) end
 
----an anonymous function as a string. This string is either of the form 
+---an anonymous function as a string. This string is either of the form
 ---`'|args| expression'` or is a function of one argument, `'_'`
 ---@param lf string -- function as a string
 ---@return function -- a function
@@ -513,11 +513,11 @@ function utils.bind2(fn, p) end
 ---@diagnostic disable-next-line:duplicate-set-field
 function utils.bind2(fn, p) end
 
----Sets a deprecation warning function. An application can override this 
----function to support proper output of deprecation warnings. The warnings can 
----be generated from libraries or functions by calling 
----`utils.raise_deprecation`. The default function will write to the 'warn' 
----system (introduced in Lua 5.4, or the compatibility function from the 
+---Sets a deprecation warning function. An application can override this
+---function to support proper output of deprecation warnings. The warnings can
+---be generated from libraries or functions by calling
+---`utils.raise_deprecation`. The default function will write to the 'warn'
+---system (introduced in Lua 5.4, or the compatibility function from the
 ---compat module for earlier versions).
 ---
 ---Note: only applications should set/change this function, libraries should not.
@@ -545,9 +545,9 @@ function utils.set_deprecation_func(func) end
 
 ---raises a deprecation warning. For options see the usage example below.
 ---
----Note: the `opts.deprecated_after` field is the last version in which a 
----feature or option was NOT YET deprecated! Because when writing the code it 
----is quite often not known in what version the code will land. But the last 
+---Note: the `opts.deprecated_after` field is the last version in which a
+---feature or option was NOT YET deprecated! Because when writing the code it
+---is quite often not known in what version the code will land. But the last
 ---released version is usually known.
 ---@param opts pl.DeprecationOptions -- options table
 ---

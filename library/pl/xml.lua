@@ -3,9 +3,9 @@
 ---
 ---XML LOM Utilities.
 ---
----This implements some useful things on [LOM](http://matthewwild.co.uk/projects/luaexpat/lom.html) 
----documents, such as returned by lxp.lom.parse. In particular, it can convert 
----LOM back into XML text, with optional pretty-printing control. It is based 
+---This implements some useful things on [LOM](http://matthewwild.co.uk/projects/luaexpat/lom.html)
+---documents, such as returned by lxp.lom.parse. In particular, it can convert
+---LOM back into XML text, with optional pretty-printing control. It is based
 ---on `stanza.lua` from [Prosody](http://hg.prosody.im/trunk/file/4621c92d2368/util/stanza.lua)
 ---
 ---```lua
@@ -18,8 +18,8 @@
 -----> </nodes>
 ---```
 ---
----Can be used as a lightweight one-stop-shop for simple XML processing; a 
----simple XML parser is included but the default is to use `lxp.lom` if it can 
+---Can be used as a lightweight one-stop-shop for simple XML processing; a
+---simple XML parser is included but the default is to use `lxp.lom` if it can
 ---be found.
 ---
 ---```plain
@@ -33,7 +33,7 @@
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/06-data.md.html#XML)
 ---
----Soft Dependencies: 
+---Soft Dependencies:
 --- `lxp.lom` (fallback is to use basic Lua parser)
 ---@deprecated
 local xml = {}
@@ -52,7 +52,7 @@ local xml = {}
 ---```
 function xml.new(tag, attr) end
 
----parse an XML document. By default, this uses `lxp.lom.parse`, but falls back 
+---parse an XML document. By default, this uses `lxp.lom.parse`, but falls back
 ---to basic_parse, or if `use_basic` is truthy
 ---@param text_or_filename string -- file or string representation
 ---@param is_file? boolean -- whether `text_or_filename` is a file name or not (default `false`)
@@ -87,8 +87,8 @@ function xml.parse(text_or_filename, is_file, use_basic) end
 ---```
 function xml.elem(tag, items) end
 
----given a list of names, return a number of element constructors. If passing a 
----comma-separated string, then whitespace surrounding the values will be 
+---given a list of names, return a number of element constructors. If passing a
+---comma-separated string, then whitespace surrounding the values will be
 ---stripped.
 ---
 ---The returned constructor functions are a shortcut to `xml.elem` where you no
@@ -109,7 +109,7 @@ function xml.tags(list) end
 ---@class pl.XMLNode
 local XMLNode = {}
 
----Adds a document Node, at current position. This updates the last inserted 
+---Adds a document Node, at current position. This updates the last inserted
 ---position to the new Node.
 ---@param tag string -- the tag name
 ---@param attrs? { [string]: string } -- attributes (table of name-value pairs) (default `{}`)
@@ -167,21 +167,21 @@ function XMLNode:add_direct_child(child) end
 ---```
 function XMLNode:add_child(child) end
 
----Set attributes of a document node. Will add/overwite values, but will not 
----remove existing ones. Operates on the Node itself, will not take position 
+---Set attributes of a document node. Will add/overwite values, but will not
+---remove existing ones. Operates on the Node itself, will not take position
 ---into account.
 ---@param t { [string]: string } -- a table containing attribute/value pairs
 ---@return pl.XMLNode self -- the current node (`self`)
 function XMLNode:set_attribs(t) end
 
----Set a single attribute of a document node. Operates on the Node itself, will 
+---Set a single attribute of a document node. Operates on the Node itself, will
 ---not take position into account.
 ---@param a string -- attribute
 ---@param v? string -- its value, pass in `nil` to delete the attribute
 ---@return pl.XMLNode self -- the current node (`self`)
 function XMLNode:set_attrib(a, v) end
 
----Gets the attributes of a document node. Operates on the Node itself, will 
+---Gets the attributes of a document node. Operates on the Node itself, will
 ---not take position into account.
 ---@return { [string]: string } -- table with attributes (attribute/value pairs)
 ---@nodiscard
@@ -206,13 +206,13 @@ function XMLNode:child_with_name(tag) end
 ---@nodiscard
 function XMLNode:get_elements_with_name(tag, dont_recurse) end
 
----Iterator over all children of a document node, including text nodes. This 
+---Iterator over all children of a document node, including text nodes. This
 ---function is not recursive, so returns only direct child nodes.
 ---@return fun(): pl.XMLNode -- iterator that returns a single Node per iteration.
 ---@nodiscard
 function XMLNode:children() end
 
----Return the first child element of a node, if it exists. This will skip text 
+---Return the first child element of a node, if it exists. This will skip text
 ---nodes.
 ---@return pl.XMLNode child -- first child Node or `nil` if there is none.
 ---@nodiscard
@@ -230,13 +230,13 @@ function XMLNode:matching_tags(tag, xmlns) end
 ---@nodiscard
 function XMLNode:childtags() end
 
----Visit child Nodes of a node and call a function, possibly modifying the 
----document. Text elements will be skipped. This is not recursive, so only 
+---Visit child Nodes of a node and call a function, possibly modifying the
+---document. Text elements will be skipped. This is not recursive, so only
 ---direct children will be passed.
 ---@param callback fun(node: pl.XMLNode) -- a function with signature function(node), passed the node. The element will be updated with the returned value, or deleted if it returns nil.
 function XMLNode:maptags(callback) end
 
----Escapes a string for safe use in xml. Handles quotes(single+double), 
+---Escapes a string for safe use in xml. Handles quotes(single+double),
 ---less-than, greater-than, and ampersand.
 ---@param str string -- string value to escape
 ---@return string -- escaped string
@@ -249,7 +249,7 @@ function XMLNode:maptags(callback) end
 ---```
 function xml.xml_escape(str) end
 
----Unescapes a string from xml. Handles quotes(single+double), less-than, 
+---Unescapes a string from xml. Handles quotes(single+double), less-than,
 ---greater-than, and ampersand.
 ---@param str string -- string value to unescape
 ---@return string -- unescaped string
@@ -297,7 +297,7 @@ function XMLNode:tostring(b_ind, t_ind, a_ind, xml_preface) end
 ---@nodiscard
 function XMLNode:get_text() end
 
----Returns a copy of a document. The `strsubst` parameter is a callback with 
+---Returns a copy of a document. The `strsubst` parameter is a callback with
 ---signature `function(object, kind, parent)`.
 ---
 ---Param `kind` has the following values, and parameters:
@@ -317,8 +317,8 @@ function XMLNode:clone(doc, strsubst) end
 ---@nodiscard
 function XMLNode:filter(strsubst) end
 
----Compare two documents or elements. Equality is based on tag, child nodes 
----(text and tags), attributes and order of those (order only fails if both are 
+---Compare two documents or elements. Equality is based on tag, child nodes
+---(text and tags), attributes and order of those (order only fails if both are
 ---given, and not equal).
 ---@param t1 pl.XMLNode|string -- a Node object or string (text node)
 ---@param t2 pl.XMLNode|string -- a Node object or string (text node)
@@ -332,22 +332,22 @@ function xml.compare(t1, t2) end
 ---@nodiscard
 function xml.is_tag(d) end
 
----Calls a function recursively over Nodes in the document. Will only call on 
----tags, it will skip text nodes. The function signature for `operation` is 
+---Calls a function recursively over Nodes in the document. Will only call on
+---tags, it will skip text nodes. The function signature for `operation` is
 ---`function(tag_name, Node)`.
 ---@param doc pl.XMLNode|string -- a Node object or string (text node)
 ---@param depth_first boolean -- visit child nodes first, then the current node
 ---@param operation fun(tag_name: string, Node: pl.XMLNode) -- a function which will receive the current tag name and current node.
 function xml.walk(doc, depth_first, operation) end
 
----Parse a well-formed HTML file as a string. Tags are case-insenstive, DOCTYPE 
+---Parse a well-formed HTML file as a string. Tags are case-insenstive, DOCTYPE
 ---is ignored, and empty elements can be empty.
 ---@param s string -- the HTML
 ---@return pl.XMLNode
 ---@nodiscard
 function xml.parsehtml(s) end
 
----Parse a simple XML document using a pure Lua parser based on Robero 
+---Parse a simple XML document using a pure Lua parser based on Robero
 ---Ierusalimschy's original version.
 ---@param s string -- the XML document to be parsed
 ---@param all_text boolean -- if `true`, preserves all whitespace. Otherwise only text containing non-whitespace is included.

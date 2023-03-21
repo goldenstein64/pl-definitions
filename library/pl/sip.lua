@@ -34,9 +34,9 @@ local sip = {}
 ---@nodiscard
 function sip.create_pattern(spec, options) end
 
----convert a SIP pattern into a matching function. The returned function takes 
----two arguments, the line and an empty table. If the line matched the pattern, 
----then this function returns true and the table is filled with field-value 
+---convert a SIP pattern into a matching function. The returned function takes
+---two arguments, the line and an empty table. If the line matched the pattern,
+---then this function returns true and the table is filled with field-value
 ---pairs.
 ---@param spec string -- a SIP pattern
 ---@param options pl.SipOptions -- a table; only the `at_start` field is currently meaningful and ensures that the pattern is anchored at the start of the string.
