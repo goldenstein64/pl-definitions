@@ -5,9 +5,9 @@
 ---
 ---See [The Guide](https://lunarmodules.github.io/Penlight/manual/07-functional.md.html#Sequences)
 ---
----Dependencies: 
---- [pl.utils](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [pl.types](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#), 
+---Dependencies:
+--- [pl.utils](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [pl.types](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
 ---@overload fun(iter: any[]|fun(): any|pl.Sequence): pl.Sequence
 local seq = {}
@@ -43,7 +43,7 @@ function seq.equal_to(x) end
 ---```
 function seq.matching(pattern) end
 
----sequence adaptor for a table. Note that if any generic function is passed a 
+---sequence adaptor for a table. Note that if any generic function is passed a
 ---table, it will automatically use `seq.list()`
 ---@generic T
 ---@param t T[] -- a list-like table
@@ -78,7 +78,6 @@ function seq.iter(iter) end
 ---@param finish number -- a number greater than `start`
 ---@nodiscard
 function seq.range(start, finish) end
-
 
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence
@@ -239,7 +238,7 @@ function seq.printall(iter, sep, nfields, fmt) end
 ---@generic T1, T2
 ---@param iter1 fun(): T1|pl.Sequence -- a sequence
 ---@param iter2 fun(): T2|pl.Sequence -- a sequence
----@return fun(): T1|T2 
+---@return fun(): T1|T2
 ---@nodiscard
 function seq.splice(iter1, iter2) end
 
@@ -657,7 +656,7 @@ function Sequence:reduce(fn, initval) end
 ---@generic L, T
 ---@param self pl.Sequence
 ---@param fn pl.BinOpString
----@param initval L 
+---@param initval L
 ---@return L
 ---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
@@ -699,7 +698,6 @@ function Sequence:skip(n) end
 ---@return pl.Sequence
 ---@nodiscard
 function Sequence:enum() end
-
 
 ---map using a named method over a sequence.
 ---@param self pl.Sequence

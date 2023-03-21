@@ -7,24 +7,24 @@ local lfs = require("lfs")
 ---
 ---This is modelled after Python's os.path library (10.1); see [the Guide](https://lunarmodules.github.io/Penlight/manual/04-paths.md.html#).
 ---
----NOTE: the functions assume the paths being dealt with to originate from the 
----OS the application is running on. Windows drive letters are not to be used 
----when running on a Unix system for example. The one exception is Windows 
----paths to allow both forward and backward slashes (since Lua also accepts 
+---NOTE: the functions assume the paths being dealt with to originate from the
+---OS the application is running on. Windows drive letters are not to be used
+---when running on a Unix system for example. The one exception is Windows
+---paths to allow both forward and backward slashes (since Lua also accepts
 ---those)
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`lfs`](http://stevedonovan.github.io/lua-stdlibs/modules/lfs.html)
 local path = {
 	---are we running Windows?
-	is_windows = true or false --[[@as boolean]],
+	is_windows = true or false,--[[@as boolean]]
 
 	---path separator for this platform.
-	sep = "/" or "\\" --[[@as string]],
+	sep = "/" or "\\",--[[@as string]]
 
 	---separator for PATH for this platform
-	dirsep = ";" or ";;" --[[@as string]],
+	dirsep = ";" or ";;",--[[@as string]]
 }
 
 path.dir = lfs.dir
@@ -82,7 +82,7 @@ function path.getmtime(P) end
 ---@nodiscard
 function path.getctime(P) end
 
----given a path, return the directory part and a file part. if there's no 
+---given a path, return the directory part and a file part. if there's no
 ---directory part, the first value will be empty
 ---@param P string -- A file path
 ---@return string -- directory part
@@ -113,7 +113,7 @@ function path.splitpath(P) end
 ---@nodiscard
 function path.abspath(P, pwd) end
 
----given a path, return the root part and the extension part. if there's no 
+---given a path, return the root part and the extension part. if there's no
 ---extension part, the second value will be empty
 ---@param P string -- A file path
 ---@return string -- root part (everything up to the ".", maybe empty)
@@ -190,9 +190,9 @@ function path.extension(P) end
 ---```
 function path.isabs(P) end
 
----return the path resulting from combining the individual paths. if the second 
----(or later) path is absolute, we return the last absolute path (joined with 
----any non-absolute paths following). empty elements (except the last) will be 
+---return the path resulting from combining the individual paths. if the second
+---(or later) path is absolute, we return the last absolute path (joined with
+---any non-absolute paths following). empty elements (except the last) will be
 ---ignored.
 ---@param p1 string -- A file path
 ---@param p2 string -- A file path
@@ -242,16 +242,16 @@ function path.normpath(P) end
 ---@nodiscard
 function path.relpath(P, start) end
 
----Replace a starting `'~'` with the user's home directory. In windows, if HOME 
----isn't set, then `USERPROFILE` is used in preference to `HOMEDRIVE` `HOMEPATH`. 
+---Replace a starting `'~'` with the user's home directory. In windows, if HOME
+---isn't set, then `USERPROFILE` is used in preference to `HOMEDRIVE` `HOMEPATH`.
 ---This is guaranteed to be writeable on all versions of Windows.
 ---@param P string -- A file path
 ---@return string
 ---@nodiscard
 function path.expanduser(P) end
 
----Return a suitable full path to a new temporary file name. unlike 
----`os.tmpname()`, it always gives you a writeable path (uses `TEMP` environment 
+---Return a suitable full path to a new temporary file name. unlike
+---`os.tmpname()`, it always gives you a writeable path (uses `TEMP` environment
 ---variable on Windows)
 ---@return string
 ---@nodiscard
@@ -264,8 +264,8 @@ function path.tmpname() end
 ---@nodiscard
 function path.common_prefix(path1, path2) end
 
----return the full path where a particular Lua module would be found. Both 
----package.path and package.cpath is searched, so the result may either be a 
+---return the full path where a particular Lua module would be found. Both
+---package.path and package.cpath is searched, so the result may either be a
 ---Lua file or a shared library.
 ---@param mod string -- name of the module
 ---@return string? -- path of module (`nil` on fail)

@@ -1,4 +1,3 @@
-
 local class = require("pl.class")
 
 ---@meta
@@ -9,9 +8,9 @@ local class = require("pl.class")
 ---Derived from [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#).
 ---
 ---Dependencies:
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
---- [`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#), 
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
+--- [`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#),
 --- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#)
 ---@class pl.MultiMap : pl.Map
 ---@field [any] any[]

@@ -6,18 +6,18 @@
 ---
 ---See [The Guide](https://lunarmodules.github.io/Penlight/manual/02-arrays.md.html#Operations_on_two_dimensional_tables)
 ---
----The size of the arrays is determined by using the length operator # hence the 
+---The size of the arrays is determined by using the length operator # hence the
 ---module is not nil safe, and the usual precautions apply.
 ---
 ---Note: all functions taking i1,j1,i2,j2 as arguments will normalize the arguments using `array2d.default_range`.
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
 --- [`pl.types`](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#)
 local array2d = {}
 
----return the row and column size. Size is calculated using the Lua length 
+---return the row and column size. Size is calculated using the Lua length
 ---operator #, so usual precautions regarding nil values apply.
 ---@param a any[][] -- a 2d array
 ---@return integer -- number of rows (`#a`)
@@ -33,7 +33,7 @@ function array2d.size(a) end
 ---@nodiscard
 function array2d.column(a, j) end
 
----extract a row from the 2D array. Added in line with column, for read-only 
+---extract a row from the 2D array. Added in line with column, for read-only
 ---purposes directly accessing `a[i]` is more performant.
 ---@generic T
 ---@param a T[][] -- 2d array
@@ -176,7 +176,7 @@ function array2d.remove_row(t, i) end
 ---@param j integer -- a column index
 function array2d.remove_col(t, j) end
 
----parse a spreadsheet range or cell. The range/cell can be specified either 
+---parse a spreadsheet range or cell. The range/cell can be specified either
 ---as 'A1:B2' or 'R1C1:R2C2' or for single cells as 'A1' or 'R1C1'.
 ---@param s string -- a range (case insensitive).
 ---@return integer -- start row
@@ -197,7 +197,7 @@ function array2d.parse_range(s) end
 ---@nodiscard
 function array2d.range(t, i1, j1, i2, j2) end
 
----normalizes coordinates to valid positive entries and defaults. Negative indices 
+---normalizes coordinates to valid positive entries and defaults. Negative indices
 ---will be counted from the end, too low, or too high will be limited by the array sizes.
 ---@param t any[][] -- a 2D array
 ---@param i1? integer|string -- start row or spreadsheet range passed to `array2d.parse_range` (default 1)
@@ -208,7 +208,7 @@ function array2d.range(t, i1, j1, i2, j2) end
 ---@nodiscard
 function array2d.default_range(t, i1, j1, i2, j2) end
 
----get a slice of a 2D array. Note that if the specified range has a 1D result, 
+---get a slice of a 2D array. Note that if the specified range has a 1D result,
 ---the rank of the result will be 1.
 ---@generic T
 ---@param t T[][] -- a 2D array
@@ -282,7 +282,7 @@ function array2d.iter(a, indices, i1, j1, i2, j2) end
 ---@nodiscard
 function array2d.columns(a) end
 
----iterate over all rows. Returns a copy of the row, for read-only purposes 
+---iterate over all rows. Returns a copy of the row, for read-only purposes
 ---directly iterating is more performant; `ipairs(a)`
 ---@generic T
 ---@param a T[][] -- a 2D array

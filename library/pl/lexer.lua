@@ -3,11 +3,11 @@
 ---
 ---Lexical scanner for creating a sequence of tokens from text.
 ---
----`lexer.scan(s)` returns an iterator over all tokens found in the string s. 
----This iterator returns two values, a token type string (such as 'string' for 
+---`lexer.scan(s)` returns an iterator over all tokens found in the string s.
+---This iterator returns two values, a token type string (such as 'string' for
 ---quoted string, 'iden' for identifier) and the value of the token.
 ---
----Versions specialized for Lua and C are available; these also handle block 
+---Versions specialized for Lua and C are available; these also handle block
 ---comments and classify keywords as 'keyword' tokens. For example:
 ---
 ---```lua
@@ -48,7 +48,7 @@ function lexer.scan(s, matches, filter, options) end
 ---@overload fun(tok: pl.TokenStream, a1: {[1]: string, [2]: string}[])
 function lexer.insert(tok, a1, a2) end
 
-lexer.insert(lexer.scan(""), {{"e", "r"}})
+lexer.insert(lexer.scan(""), { { "e", "r" } })
 
 ---get current line number.
 ---@param tok pl.TokenStream -- a token stream
@@ -68,7 +68,7 @@ function lexer.getrest(tok) end
 ---@nodiscard
 function lexer.get_keywords() end
 
----create a Lua token iterator from a string or file-like object. Will return 
+---create a Lua token iterator from a string or file-like object. Will return
 ---the token type and value.
 ---@param s string -- the string
 ---@param filter? pl.LexerFilter -- a table of token types to exclude, by default `{ space = true, comments = true }` (optional)
@@ -99,7 +99,7 @@ function lexer.get_separated_list(tok, endtoken, delim) end
 ---@nodiscard
 function lexer.skipws(tok) end
 
----get the next token, which must be of the expected type. Throws an error if 
+---get the next token, which must be of the expected type. Throws an error if
 ---this type does not match!
 ---@param tok pl.TokenStream -- the token stream
 ---@param expected_type string -- the token type

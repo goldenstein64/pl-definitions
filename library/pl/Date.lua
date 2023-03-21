@@ -35,7 +35,7 @@ local Date = class()
 function Date:_init(t, is_utc) end
 
 ---@param self pl.Date
----@param year integer 
+---@param year integer
 ---@param month integer
 ---@param day integer
 ---@param hour? integer
@@ -269,7 +269,7 @@ local DateFormat = class()
 --- * `M`: minute (either M or MM)
 --- * `S`: second (either S or SS)
 ---
----Alternatively, if `fmt` is nil then this returns a flexible date parser that 
+---Alternatively, if `fmt` is nil then this returns a flexible date parser that
 ---tries various date/time schemes in turn:
 ---
 --- * ISO 8601, like `2010-05-10 12:35:23Z` or `2008-10-03T14:30+02`

@@ -6,23 +6,23 @@ local class = require("pl.class")
 ---
 ---Python-style list class.
 ---
----**Please Note:** methods that change the list will return the list. This is 
----to allow for method chaining, but please note that `ls = ls:sort()` does not 
----mean that a new copy of the list is made. In-place (mutable) methods are 
+---**Please Note:** methods that change the list will return the list. This is
+---to allow for method chaining, but please note that `ls = ls:sort()` does not
+---mean that a new copy of the list is made. In-place (mutable) methods are
 ---marked as returning 'the list' in this documentation.
 ---
 ---See the Guide for further [discussion](https://lunarmodules.github.io/Penlight/manual/02-arrays.md.html#Python_style_Lists)
 ---
 ---See http://www.python.org/doc/current/tut/tut.html, section 5.1
 ---
----**Note**: The comments before some of the functions are from the Python docs 
+---**Note**: The comments before some of the functions are from the Python docs
 ---and contain Python code.
 ---
 ---Written for Lua version Nick Trout 4.0; Redone for Lua 5.1, Steve Donovan.
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#)
 ---@class pl.List: pl.Class
 ---@field [integer] any
@@ -30,24 +30,24 @@ local class = require("pl.class")
 ---@overload fun(t?: any[]|pl.List): pl.List
 local List = class()
 
----Create a new list. Can optionally pass a table; passing another instance of 
----`List` will cause a copy to be created; this will return a plain table with 
----an appropriate metatable. we pass anything which isn't a simple table to 
+---Create a new list. Can optionally pass a table; passing another instance of
+---`List` will cause a copy to be created; this will return a plain table with
+---an appropriate metatable. we pass anything which isn't a simple table to
 ---`iterate()` to work out an appropriate iterator
 ---@param self pl.List
 ---@param t? any[]|pl.List -- An optional list-like table
 function List:_init(t) end
 
----Create a new list. Can optionally pass a table; passing another instance of 
----`List` will cause a copy to be created; this will return a plain table with 
----an appropriate metatable. we pass anything which isn't a simple table to 
+---Create a new list. Can optionally pass a table; passing another instance of
+---`List` will cause a copy to be created; this will return a plain table with
+---an appropriate metatable. we pass anything which isn't a simple table to
 ---`iterate()` to work out an appropriate iterator
 ---@param t? any[]|pl.List -- An optional list-like table
 ---@return pl.List -- a new List
 ---@nodiscard
 function List.new(t) end
 
----Make a copy of an existing list. The difference from a plain 'copy 
+---Make a copy of an existing list. The difference from a plain 'copy
 ---constructor' is that this returns the actual `List` subtype.
 ---@param self pl.List
 ---@return pl.List
@@ -85,23 +85,23 @@ function List:put(x) end
 ---@return pl.List self -- the list
 function List:remove(i) end
 
----Remove the first item from the list whose value is given. (This is called 
----`remove` in Python; renamed to avoid confusion with `table.remove`) Return 
+---Remove the first item from the list whose value is given. (This is called
+---`remove` in Python; renamed to avoid confusion with `table.remove`) Return
 ---`nil` if there is no such item.
 ---@param self pl.List
 ---@param x any -- A data value
 ---@return pl.List? self -- the list
 function List:remove_value(x) end
 
----Remove the item at the given position in the list, and return it. If no 
----index is specified, `a:pop()` returns the last item in the list. The item is 
+---Remove the item at the given position in the list, and return it. If no
+---index is specified, `a:pop()` returns the last item in the list. The item is
 ---also removed from the list.
 ---@param self pl.List
 ---@param i? integer -- An index
 ---@return any -- the item
 function List:pop(i) end
 
----Return the index in the list of the first item whose value is given. Return 
+---Return the index in the list of the first item whose value is given. Return
 ---`nil` if there is no such item.
 ---@param self pl.List
 ---@param x any -- A data value
@@ -164,9 +164,9 @@ function List:reverse() end
 ---@nodiscard
 function List:minmax() end
 
----Emulate list slicing, like `list[first:last]` in Python. If `first` or 
----`last` are negative then they are relative to the end of the list eg. 
----`slice(-2)` gives last 2 entries in a list, and `slice(-4,-2)` gives from 
+---Emulate list slicing, like `list[first:last]` in Python. If `first` or
+---`last` are negative then they are relative to the end of the list eg.
+---`slice(-2)` gives last 2 entries in a list, and `slice(-4,-2)` gives from
 ----4th to -2nd
 ---@param self pl.List
 ---@param first integer -- An index
@@ -234,7 +234,7 @@ function List:splice(idx, list) end
 ---@return pl.List self -- the list
 function List:slice_assign(i1, i2, seq) end
 
----Join the elements of a list using a delimiter. This method uses `tostring` 
+---Join the elements of a list using a delimiter. This method uses `tostring`
 ---on all elements.
 ---@param self pl.List
 ---@param delim? string -- a delimiter string, can be empty (default `""`)
@@ -302,7 +302,7 @@ function List.split(s, delim) end
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:map(fun, ...) end
 
----Apply a function to all elements. Any extra arguments will be passed to the 
+---Apply a function to all elements. Any extra arguments will be passed to the
 ---function.
 ---@param self pl.List
 ---@param fun pl.OpString -- a function of at least one argument
@@ -325,7 +325,7 @@ function List:map(fun, ...) end
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:transform(fun, ...) end
 
----Apply a function to all elements, in-place. Any extra arguments are passed 
+---Apply a function to all elements, in-place. Any extra arguments are passed
 ---to the function.
 ---@param self pl.List
 ---@param fun pl.OpString -- A function that takes at least one argument
@@ -343,8 +343,7 @@ function List:transform(fun, ...) end
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:map2(fun, ls, ...) end
 
-
----Apply a function to elements of two lists. Any extra arguments will be 
+---Apply a function to elements of two lists. Any extra arguments will be
 ---passed to the function
 ---@param self pl.List
 ---@param fun pl.BinOpString -- a function of at least two arguments
@@ -386,7 +385,7 @@ function List:reduce(fun) end
 ---@diagnostic disable-next-line:duplicate-set-field
 function List:partition(fun, ...) end
 
----Partition a list using a classifier function. The function may return nil, 
+---Partition a list using a classifier function. The function may return nil,
 ---but this will be converted to the string key `"<nil>"`.
 ---@param self pl.List
 ---@param fun pl.OpString -- a function of at least one argument
@@ -402,7 +401,7 @@ function List:partition(fun, ...) end
 ---@nodiscard
 function List:iter() end
 
----Create an iterator over a seqence. This captures the Python concept of 
+---Create an iterator over a seqence. This captures the Python concept of
 ---'sequence'. For tables, iterates over all values with integer indices.
 ---@param seq pl.Sequence|string|table|file*|(fun(): any) -- a sequence; a string (over characters), a table, a file object (over lines) or an iterator function
 ---@return fun(): any

@@ -26,12 +26,12 @@ local class = require("pl.class")
 ---banana,apricot,apple,orange]    [banana,apple,orange]
 ---```
 ---
----Dependencies: 
---- 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
---- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
---- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#), 
+---Dependencies:
+---
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
+--- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
+--- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#),
 --- ([`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#) if `__tostring` is used)
 ---@class pl.Set : pl.Map
 ---@operator add(pl.Set): pl.Set
@@ -117,7 +117,7 @@ function Set:issubset(set) end
 ---@nodiscard
 function Set:isempty() end
 
----are the sets disjoint (no elements in common)? Uses naive definition, i.e. 
+---are the sets disjoint (no elements in common)? Uses naive definition, i.e.
 ---that intersection is empty
 ---@param self pl.Set
 ---@param set pl.Set -- another set

@@ -3,7 +3,7 @@
 ---
 ---Functional helpers like composition, binding and placeholder expressions.
 ---
----Placeholder expressions are useful for short anonymous functions, and were 
+---Placeholder expressions are useful for short anonymous functions, and were
 ---inspired by the Boost Lambda library.
 ---
 ---```lua
@@ -22,8 +22,8 @@
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/07-functional.md.html#Creating_Functions_from_Functions)
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#)
 local func = {}
 
@@ -53,10 +53,10 @@ function func.tail(ls) end
 ---@nodiscard
 function func.repr(e) end
 
----instantiate a placeholder expression into an actual function. First we find 
----the largest placeholder used, e.g. 2; from this a list of the formal 
----parameters can be build. Then we collect and replace any non-PE values from 
----the PE, and build up a constant binding list. Finally, the expression can be 
+---instantiate a placeholder expression into an actual function. First we find
+---the largest placeholder used, e.g. 2; from this a list of the formal
+---parameters can be build. Then we collect and replace any non-PE values from
+---the PE, and build up a constant binding list. Finally, the expression can be
 ---compiled, and `e.PEfunction` is set.
 ---@param e pl.PlaceholderExpression -- a placeholder expression
 ---@return function -- a function
@@ -132,6 +132,5 @@ function func.compose(f, g) end
 ---(bind(f, func._2, func._1))(a,b) == f(b,a)
 ---```
 function func.bind(fn, ...) end
-
 
 return func

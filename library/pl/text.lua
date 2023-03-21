@@ -3,12 +3,12 @@
 ---
 ---Text processing utilities.
 ---
----This provides a `Template` class (modeled after the same from the Python 
----libraries, see `string.Template`). It also provides similar functions to 
+---This provides a `Template` class (modeled after the same from the Python
+---libraries, see `string.Template`). It also provides similar functions to
 ---those found in the `textwrap` module.
 ---
----IMPORTANT: this module has been deprecated and will be removed in a future 
----version (2.0). The contents of this module have moved to the `pl.stringx` 
+---IMPORTANT: this module has been deprecated and will be removed in a future
+---version (2.0). The contents of this module have moved to the `pl.stringx`
 ---module.
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/03-strings.md.html#String_Templates).

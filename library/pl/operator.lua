@@ -5,7 +5,7 @@
 ---
 ---(similar to the Python module of the same name)
 ---
----There is a module field `optable` which maps the operator strings onto 
+---There is a module field `optable` which maps the operator strings onto
 ---these functions, e.g. `operator.optable['()'] = =operator.call`
 ---
 ---Operator strings like `'>'` and `'{}'` can be passed to most Penlight functions
@@ -187,7 +187,7 @@ function operator.nop(...) end
 ---| "()"
 ---| "~"
 
----@alias pl.BinOpString 
+---@alias pl.BinOpString
 ---| "+"
 ---| "-"
 ---| "*"
@@ -202,7 +202,7 @@ function operator.nop(...) end
 ---| ">"
 ---| ">="
 ---| "=="
----| "~=" 
+---| "~="
 ---| "and"
 ---| "or"
 ---| "{}"
@@ -224,7 +224,7 @@ function operator.nop(...) end
 
 ---@alias pl.OpString pl.BinOpString|pl.UnOpString|pl.MultiOpString
 
----Map from operator symbol to function. Most of these map directly from 
+---Map from operator symbol to function. Most of these map directly from
 ---operators; But note these extras
 ---
 --- * `'()'` = call
@@ -232,27 +232,27 @@ function operator.nop(...) end
 --- * `'{}'` = table
 --- * `'~'` = match
 operator.optable = {
-	['+'] = operator.add,
-	['-'] = operator.sub,
-	['*'] = operator.mul,
-	['/'] = operator.div,
-	['%'] = operator.mod,
-	['^'] = operator.pow,
-	['..'] = operator.concat,
-	['()'] = operator.call,
-	['[]'] = operator.index,
-	['<'] = operator.lt,
-	['<='] = operator.le,
-	['>'] = operator.gt,
-	['>='] = operator.ge,
-	['=='] = operator.eq,
-	['~='] = operator.neq,
-	['#'] = operator.len,
-	['and'] = operator.land,
-	['or'] = operator.lor,
-	['{}'] = operator.table,
-	['~'] = operator.match,
-	[''] = operator.nop,
+	["+"] = operator.add,
+	["-"] = operator.sub,
+	["*"] = operator.mul,
+	["/"] = operator.div,
+	["%"] = operator.mod,
+	["^"] = operator.pow,
+	[".."] = operator.concat,
+	["()"] = operator.call,
+	["[]"] = operator.index,
+	["<"] = operator.lt,
+	["<="] = operator.le,
+	[">"] = operator.gt,
+	[">="] = operator.ge,
+	["=="] = operator.eq,
+	["~="] = operator.neq,
+	["#"] = operator.len,
+	["and"] = operator.land,
+	["or"] = operator.lor,
+	["{}"] = operator.table,
+	["~"] = operator.match,
+	[""] = operator.nop,
 }
 
 return operator

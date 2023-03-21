@@ -17,18 +17,18 @@
 ---print(args.offset + args.scale * args.number)
 ---```
 ---
----Lines beginning with '-' are flags; there may be a short and a long name; 
----lines  beginning with '<var>' are arguments. Anything in parens after the 
+---Lines beginning with '-' are flags; there may be a short and a long name;
+---lines  beginning with '<var>' are arguments. Anything in parens after the
 ---flag/argument is either a default, a type name or a range constraint.
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/08-additional.md.html#Command_line_Programs_with_Lapp)
 ---
----Dependencies: 
+---Dependencies:
 --- [`pl.sip`](https://lunarmodules.github.io/Penlight/libraries/pl.sip.html#)
 ---@overload fun(str: string, args?: string[]): { [string]: string }
 local lapp = {
 	---controls whether to dump usage on error. Defaults to `true`
-	show_usage_error = true --[[@as boolean]]
+	show_usage_error = true,--[[@as boolean]]
 }
 
 ---quit this script immediately.
@@ -41,8 +41,7 @@ function lapp.quit(msg, no_usage) end
 ---@param no_usage? boolean|"throw" -- suppress 'usage' display
 function lapp.error(msg, no_usage) end
 
-
----open a file. This will quit on error, and keep a list of file objects for 
+---open a file. This will quit on error, and keep a list of file objects for
 ---later cleanup.
 ---@param file string -- filename
 ---@param opt? openmode -- same as second parameter of io.open
@@ -55,7 +54,7 @@ function lapp.open(file, opt) end
 ---@param msg string -- message text
 function lapp.assert(condn, msg) end
 
----add a new type to Lapp. These appear in parens after the value like a range 
+---add a new type to Lapp. These appear in parens after the value like a range
 ---constraint, e.g. ' (integer) Process PID'
 ---@param name string -- name of type
 ---@param converter (fun(val: string): string)|string -- either a function to convert values, or a Lua type name.

@@ -13,7 +13,7 @@
 ---
 ---See [here](https://lunarmodules.github.io/Penlight/manual/06-data.md.html#Reading_Unstructured_Text_Data)
 ---
----Dependencies: 
+---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
 local input = {}
 
@@ -33,8 +33,8 @@ local input = {}
 ---```
 function input.alltokens(getter, pattern, fn) end
 
----create a function which grabs the next value from a source. If the source 
----is a string, then the getter will return the string and thereafter return 
+---create a function which grabs the next value from a source. If the source
+---is a string, then the getter will return the string and thereafter return
 ---nil. If not specified then the source is assumed to be stdin.
 ---@generic T: string
 ---@param f string|file* -- string or a file-like object (i.e. has a read() method which returns the next line)
@@ -58,7 +58,7 @@ function input.words(f) end
 ---@field no_fail boolean -- default `true`
 ---@field no_convert boolean -- default `false`
 
----parse an input source into fields. By default, will fail if it cannot 
+---parse an input source into fields. By default, will fail if it cannot
 ---convert a field to a number.
 ---@param ids integer[]|integer -- a list of field indices, or a maximum field index
 ---@param delim? string -- delimiter to parse fields (default space)

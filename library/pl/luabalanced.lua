@@ -30,7 +30,7 @@ local luabalanced = {}
 ---@nodiscard
 function luabalanced.match_string(s, pos) end
 
----Match bracketed Lua expression, e.g. `"(...)"`, `"{...}"`, `"[...]"`, 
+---Match bracketed Lua expression, e.g. `"(...)"`, `"{...}"`, `"[...]"`,
 ---`"[[...]]"`, `[=[...]=]`, etc.
 ---
 ---Function interface is similar to match_string.
@@ -73,9 +73,9 @@ function luabalanced.match_explist(s, pos) end
 ---Replace snippets of code in Lua code string `s` using replacement function
 ---`f(u, sin) --> sout`.
 ---
----`u` is the type of snippet 
+---`u` is the type of snippet
 ---('c' = comment, 's' = string, 'e' = any other code).
----Snippet is replaced with `sout` (unless `sout` is nil or false, in which 
+---Snippet is replaced with `sout` (unless `sout` is nil or false, in which
 ---case the original snippet is kept).
 ---
 ---This is somewhat analogous to `string.gsub`.

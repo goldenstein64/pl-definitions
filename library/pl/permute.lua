@@ -3,12 +3,12 @@
 ---
 ---Permutation operations.
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#)
 local permute = {}
 
----an iterator over all order-permutations of the elements of a list. Please 
+---an iterator over all order-permutations of the elements of a list. Please
 ---note that the same list is returned each time, so do not keep references!
 ---@generic T
 ---@param a T[] -- a list-like table

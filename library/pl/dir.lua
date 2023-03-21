@@ -3,14 +3,14 @@
 ---
 ---Listing files in directories and creating/removing directory paths.
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html),
 --- [`pl.path`](https://lunarmodules.github.io/Penlight/libraries/pl.path.html)
 ---
 ---Soft Dependencies: `alien`, `ffi` (either are used on Windows for copying/moving files)
 local dir = {}
 
----Test whether a file name matches a shell pattern. Both parameters are 
+---Test whether a file name matches a shell pattern. Both parameters are
 ---case-normalized if operating system is case-insensitive.
 ---@param filename string -- A file name.
 ---@param pattern string -- A shell pattern. The only special characters are '*' and '?': '*' matches any sequence of characters and '?' matches any single character.
@@ -53,12 +53,12 @@ function dir.copyfile(src, dest, flag) end
 ---@return boolean -- operation succeeded
 function dir.movefile(src, dest) end
 
----return an iterator which walks through a directory tree starting at root. 
----The iterator returns (root,dirs,files) Note that dirs and files are lists 
----of names (i.e. you must say path.join(root,d) to get the actual full 
----path) If bottom_up is false (or not present), then the entries at the 
----current level are returned before we go deeper. This means that you can 
----modify the returned list of directories before continuing. This is a clone 
+---return an iterator which walks through a directory tree starting at root.
+---The iterator returns (root,dirs,files) Note that dirs and files are lists
+---of names (i.e. you must say path.join(root,d) to get the actual full
+---path) If bottom_up is false (or not present), then the entries at the
+---current level are returned before we go deeper. This means that you can
+---modify the returned list of directories before continuing. This is a clone
 ---of os.walk from the Python libraries.
 ---@param root string -- A starting directory
 ---@param bottom_up? boolean -- False if we start listing entries immediately.

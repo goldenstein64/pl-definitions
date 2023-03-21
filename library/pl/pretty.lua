@@ -3,19 +3,19 @@
 ---
 ---Pretty-printing Lua tables.
 ---
----Also provides a sandboxed Lua table reader and a function to present large 
+---Also provides a sandboxed Lua table reader and a function to present large
 ---numbers in human-friendly format.
 ---
----Dependencies: 
---- [pl.utils](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [pl.lexer](https://lunarmodules.github.io/Penlight/libraries/pl.lexer.html#), 
---- [pl.stringx](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#), 
+---Dependencies:
+--- [pl.utils](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [pl.lexer](https://lunarmodules.github.io/Penlight/libraries/pl.lexer.html#),
+--- [pl.stringx](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
 ---@overload fun(...)
 local pretty = {}
 
----Read a string representation of a Lua table. This function loads and runs the 
----string as Lua code, but bails out if it contains a function definition. 
+---Read a string representation of a Lua table. This function loads and runs the
+---string as Lua code, but bails out if it contains a function definition.
 ---Loaded string is executed in an empty environment.
 ---@param s string -- string to read in `{...}` format, possibly with some whitespace before or after the curly braces. A single line comment may be present at the beginning.
 ---@return table? -- a table in case of success, `nil` on fail.
@@ -31,12 +31,12 @@ function pretty.read(s) end
 ---@return string? -- syntax or runtime error if something went wrong.
 function pretty.load(s, env, paranoid) end
 
----Create a string representation of a Lua table. This function never fails, 
----but may complain by returning an extra value. Normally puts out one item per 
----line, using the provided indent; set the second parameter to an empty string 
+---Create a string representation of a Lua table. This function never fails,
+---but may complain by returning an extra value. Normally puts out one item per
+---line, using the provided indent; set the second parameter to an empty string
 ---if you want output on one line.
 ---
----NOTE: this is NOT a serialization function, not a full blown debug function. 
+---NOTE: this is NOT a serialization function, not a full blown debug function.
 ---Check out respectively the `serpent` or `inspect` Lua modules for that if you need them.
 ---@param tbl table -- Table to serialize to a string.
 ---@param space? string -- The indent to use. Defaults to two spaces; pass an empty string for no indentation.
@@ -51,8 +51,8 @@ function pretty.write(tbl, space, not_clever) end
 ---@param filename? string -- File name to write to. Defaults to writing to stdout.
 function pretty.dump(t, filename) end
 
----Dump a series of arguments to stdout for debug purposes. This function is 
----attached to the module table __call method, to make it extra easy to access. 
+---Dump a series of arguments to stdout for debug purposes. This function is
+---attached to the module table __call method, to make it extra easy to access.
 ---So the full:
 ---
 ---```lua

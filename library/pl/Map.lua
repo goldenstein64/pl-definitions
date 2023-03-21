@@ -13,10 +13,10 @@ local class = require("pl.class")
 ---true
 ---```
 ---
----Dependencies: 
---- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#), 
---- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#), 
---- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#), 
+---Dependencies:
+--- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
+--- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
+--- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
 --- [`pl.pretty`](https://lunarmodules.github.io/Penlight/libraries/pl.pretty.html#)
 ---@class pl.Map : pl.Class
 ---@overload fun(t?: pl.Map|pl.Set): pl.Map
