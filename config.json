@@ -9,11 +9,9 @@
 		"require%s*%(%s*(['\"])pl%.%w+%1%s*%)",
 		"require%s*(['\"])pl%.%w+%1"
 	],
-	"configs": [
-		{
-			"key": "Lua.workspace.library",
-			"action": "add",
-			"value": "${3rd}/lfs/library" // `pl.path` uses this module
-		}
-	]
+	"settings": {
+		"Lua.workspace.library": [
+			"${3rd}/lfs/library"
+		]
+	}
 }
