@@ -14,6 +14,8 @@ Some features are missing simply because I don't know how to lint them. The most
 
 The definition files can be installed using the [addon manager](https://github.com/LuaLS/lua-language-server/wiki/Addons#vs-code-addon-manager), under "Penlight".
 
+For manual installation, add these settings to your `settings.json` file.
+
 ```jsonc
 // settings.json
 {
