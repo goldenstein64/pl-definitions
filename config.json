@@ -2,10 +2,8 @@
 	"$schema": "https://raw.githubusercontent.com/LuaLS/LLS-Addons/main/schemas/addon_config.schema.json",
 	"name": "Penlight",
 	"words": [
-		// requiring "pl"
 		"require%s*%(%s*(['\"])pl%1%s*%)",
 		"require%s*(['\"])pl%1",
-		// requiring local modules
 		"require%s*%(%s*(['\"])pl%.%w+%1%s*%)",
 		"require%s*(['\"])pl%.%w+%1"
 	],
