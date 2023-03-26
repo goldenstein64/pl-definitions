@@ -12,6 +12,8 @@ Some features are missing simply because I don't know how to lint them. The most
 
 ## Usage
 
+The definition files can be installed using the [addon manager](https://github.com/LuaLS/lua-language-server/wiki/Addons#vs-code-addon-manager), under "Penlight".
+
 ```jsonc
 // settings.json
 {
@@ -43,8 +45,6 @@ require(plString)
 ```
 
 For a more detailed description of how to install a library of definition files, see the LSP's [wiki](https://github.com/sumneko/lua-language-server/wiki/Libraries).
-
-By default, this library imports everything into the global namespace. If you don't want this, delete (or move) `library/pl.lua`. In the long term, it may be useful to split this library in two: one with injected globals and one without.
 
 ## Types
 
