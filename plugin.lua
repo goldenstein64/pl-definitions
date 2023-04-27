@@ -1,8 +1,30 @@
 local uri = select(2, ...)
 
--- local inspect = require("inspect")
+---@alias parser.compile.mode
+---| 'Lua'
+---| 'Nil'
+---| 'Boolean'
+---| 'String'
+---| 'Number'
+---| 'Name'
+---| 'Exp'
+---| 'Action'
+
+---@alias parser.compile.version
+---| 'Lua 5.1'
+---| 'Lua 5.2'
+---| 'Lua 5.3'
+---| 'Lua 5.4'
+---| 'LuaJIT'
+
+---@class parser.compile.options
+---@field nonstandardSymbols? { [string]: true? }
+---@field special?            { [string]: string? }
+---@field unicodeName?        boolean
+
+---@type fun(lua: string, mode: parser.compile.mode, version: parser.compile.version, options: parser.compile.options): parser.state
 local compile = require("parser.compile")
-local luadoc = require("parser.luadoc")
+local luadoc = require("parser.luadoc") ---@type fun(state: parser.state)
 local config = require("config") ---@type config.api
 
 local SearchPLRequires = require("SearchPLRequires")

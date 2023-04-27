@@ -60,13 +60,17 @@ function SearchRequires:tryRequireName(requireName)
 end
 
 ---@private
+---@return boolean
 function SearchRequires:maybeSearchModuleDoc(doc)
 	if doc.type == "doc.module" then
 		return self:tryRequireName(doc.module)
+	else
+		return false
 	end
 end
 
 ---@private
+---@return boolean
 function SearchRequires:searchForModuleDoc(docs)
 	return breakFor(function(_, doc)
 		return self:maybeSearchModuleDoc(doc)
@@ -74,22 +78,29 @@ function SearchRequires:searchForModuleDoc(docs)
 end
 
 ---@private
+---@return boolean
 function SearchRequires:maybeSearchRequireCall(call)
 	local firstArg = call.args and call.args[1]
 	if firstArg and firstArg.type == "string" then
 		return self:tryRequireName(firstArg[1])
+	else
+		return false
 	end
 end
 
 ---@private
+---@return boolean
 function SearchRequires:maybeSearchRequireRef(ref)
 	local call = ref.parent
 	if call and call.type == "call" then
 		return self:maybeSearchRequireCall(call)
+	else
+		return false
 	end
 end
 
 ---@private
+---@return boolean
 function SearchRequires:searchRequireCalls(requireRefs)
 	return breakFor(function(_, ref)
 		return self:maybeSearchRequireRef(ref)
@@ -98,7 +109,7 @@ end
 
 ---Search this syntax tree state for a '---@module' annotation or a 'require'
 ---call
----@param state table -- the syntax tree state to check
+---@param state parser.state -- the syntax tree state to check
 function SearchRequires:searchParserState(state)
 	-- check doc comments
 	if state.ast.docs then
@@ -109,8 +120,9 @@ function SearchRequires:searchParserState(state)
 	end
 
 	-- check the require statements
-	if state.specials and state.specials.require then
-		local stop = self:searchRequireCalls(state.specials.require)
+	local specials = state.specials
+	if type(specials) == "table" and specials.require then
+		local stop = self:searchRequireCalls(specials.require)
 		if stop then
 			return self.diffs
 		end
