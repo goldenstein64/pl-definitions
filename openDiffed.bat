@@ -1,1 +1,1 @@
-code "%USERPROFILE%\.vscode\extensions\sumneko.lua-3.6.16-win32-x64\server\log\diffed.lua"
+code "%USERPROFILE%\.vscode\extensions\sumneko.lua-3.6.19-win32-x64\server\log\diffed.lua"
