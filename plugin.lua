@@ -5,7 +5,7 @@ local compile = require("parser.compile")
 local luadoc = require("parser.luadoc")
 local config = require("config") ---@type unknown
 
-local SearchRequires = require("SearchRequires")
+local SearchPLRequires = require("SearchPLRequires")
 
 local runtimeVersion = config.get(uri, "Lua.runtime.version")
 
@@ -26,7 +26,7 @@ function OnSetText(uri, text)
 	local state = compile(text, "Lua", runtimeVersion, {})
 	luadoc(state)
 
-	local search = SearchRequires.new()
+	local search = SearchPLRequires.new()
 
 	return search:searchParserState(state)
 end
