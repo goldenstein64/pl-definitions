@@ -3,7 +3,7 @@ local uri = select(2, ...)
 -- local inspect = require("inspect")
 local compile = require("parser.compile")
 local luadoc = require("parser.luadoc")
-local config = require("config") ---@type unknown
+local config = require("config") ---@type config.api
 
 local SearchPLRequires = require("SearchPLRequires")
 
