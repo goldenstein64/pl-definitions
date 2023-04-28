@@ -38,7 +38,6 @@ function OnSetText(uri, text)
 	local state = compileState(uri, text)
 
 	local search = SearchPLRequires.new()
-
 	search:searchParserState(state)
 
 	return search.diffs
