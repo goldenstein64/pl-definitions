@@ -1,23 +1,11 @@
----a for loop where the body is substituted with `fun`. If `fun` returns `true`
----it breaks the for loop and returns `true`, `false` otherwise
----@param fun fun(...: any): boolean
----@param ... ...any
----@return boolean
-local function breakFor(fun, ...)
-	for k, v in ... do
-		local stop = fun(k, v)
-		if stop then
-			return true
-		end
-	end
-
-	return false
-end
+local guide = require("parser.guide")
 
 ---A class for implementing
 ---@class plugin.util.SearchRequires
 ---@field diffs diff[]
 ---@field diffSet { [diff]: true? }
+---@field eachCallCallback fun(src: parser.object): true?
+---@field eachDocModuleCallback fun(src: parser.object): true?
 local SearchRequires = {}
 SearchRequires.__index = SearchRequires
 
@@ -32,6 +20,14 @@ function SearchRequires.new()
 		diffSet = {},
 	}
 
+	function self.eachCallCallback(src)
+		return self:eachCall(src)
+	end
+
+	function self.eachDocModuleCallback(src)
+		return self:eachDocModule(src)
+	end
+
 	return setmetatable(self, SearchRequires)
 end
 
@@ -39,7 +35,7 @@ end
 ---found. Use this as the default behavior in `tryRequireName`
 ---@protected
 ---@param requireName string
----@return boolean
+---@return true?
 function SearchRequires:writeFromRequireMap(requireName)
 	local newRequire = self.diffMap[requireName]
 	if newRequire and not self.diffSet[newRequire] then
@@ -47,86 +43,43 @@ function SearchRequires:writeFromRequireMap(requireName)
 		table.insert(self.diffs, newRequire)
 	end
 
-	return false
+	return nil
 end
 
 ---checks `requireName` and sets `self.diffs` if anything was found. Override
 ---this if you want different behavior.
 ---@protected
 ---@param requireName string
----@return boolean stop -- stop searching if `true`
+---@return true? stop -- stop searching if `true`
 function SearchRequires:tryRequireName(requireName)
 	return self:writeFromRequireMap(requireName)
 end
 
 ---@private
----@return boolean
-function SearchRequires:maybeSearchModuleDoc(doc)
-	if doc.type == "doc.module" then
-		return self:tryRequireName(doc.module)
-	else
-		return false
-	end
-end
+---@param src parser.object
+---@return true?
+function SearchRequires:eachCall(src)
+	local caller = src.node
+	local firstArg = src.args and src.args[1]
 
----@private
----@return boolean
-function SearchRequires:searchForModuleDoc(docs)
-	return breakFor(function(_, doc)
-		return self:maybeSearchModuleDoc(doc)
-	end, ipairs(docs))
-end
-
----@private
----@return boolean
-function SearchRequires:maybeSearchRequireCall(call)
-	local firstArg = call.args and call.args[1]
-	if firstArg and firstArg.type == "string" then
+	if caller.special == "require" and firstArg then
 		return self:tryRequireName(firstArg[1])
-	else
-		return false
 	end
 end
 
 ---@private
----@return boolean
-function SearchRequires:maybeSearchRequireRef(ref)
-	local call = ref.parent
-	if call and call.type == "call" then
-		return self:maybeSearchRequireCall(call)
-	else
-		return false
-	end
-end
-
----@private
----@return boolean
-function SearchRequires:searchRequireCalls(requireRefs)
-	return breakFor(function(_, ref)
-		return self:maybeSearchRequireRef(ref)
-	end, ipairs(requireRefs))
+---@param src parser.object
+---@return true?
+function SearchRequires:eachDocModule(src)
+	self:tryRequireName(src.module)
 end
 
 ---Search this syntax tree state for a '---@module' annotation or a 'require'
 ---call
 ---@param state parser.state -- the syntax tree state to check
 function SearchRequires:searchParserState(state)
-	-- check doc comments
-	if state.ast.docs then
-		local stop = self:searchForModuleDoc(state.ast.docs)
-		if stop then
-			return self.diffs
-		end
-	end
-
-	-- check the require statements
-	local specials = state.specials
-	if type(specials) == "table" and specials.require then
-		local stop = self:searchRequireCalls(specials.require)
-		if stop then
-			return self.diffs
-		end
-	end
+	guide.eachSourceType(state.ast, "call", self.eachCallCallback)
+	guide.eachSourceType(state.ast, "doc.module", self.eachDocModuleCallback)
 
 	return self.diffs
 end
