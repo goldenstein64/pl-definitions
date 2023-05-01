@@ -1,11 +1,11 @@
-local SearchRequires = require("SearchRequires")
+local SearchRequires = require("plugin.SearchRequires")
 
 ---diff for the imports for 'pl.compat'
 ---@type diff
 local importCompatDiff = {
 	start = 1,
 	finish = 0,
-	text = require("importCompatDiff"),
+	text = require("plugin.importCompatDiff"),
 }
 
 ---diff for the imports for 'pl', which is everything
@@ -13,7 +13,7 @@ local importCompatDiff = {
 local importDiff = {
 	start = 1,
 	finish = 0,
-	text = require("importDiff"),
+	text = require("plugin.importDiff"),
 }
 
 ---diff array for all imports, equivalent to requiring 'pl'

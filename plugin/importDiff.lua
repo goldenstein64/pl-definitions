@@ -37,4 +37,4 @@ _G.types = require("pl.types")
 _G.url = require("pl.url")
 _G.utils = require("pl.utils")
 _G.xml = require("pl.xml") ---@deprecated -- use a more specialized library instead
-]] .. require("importCompatDiff")
+]] .. require("plugin.importCompatDiff")

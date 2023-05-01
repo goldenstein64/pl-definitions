@@ -3,7 +3,7 @@ local luadoc = require("parser.luadoc")
 local config = require("config")
 local util = require("utility")
 
-local SearchPLRequires = require("SearchPLRequires")
+local SearchPLRequires = require("plugin.SearchPLRequires")
 
 local function compileState(uri, text)
 	local options = {
