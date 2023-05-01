@@ -1,35 +1,24 @@
-local uri = select(2, ...)
-
----@alias parser.compile.mode
----| 'Lua'
----| 'Nil'
----| 'Boolean'
----| 'String'
----| 'Number'
----| 'Name'
----| 'Exp'
----| 'Action'
-
----@alias parser.compile.version
----| 'Lua 5.1'
----| 'Lua 5.2'
----| 'Lua 5.3'
----| 'Lua 5.4'
----| 'LuaJIT'
-
----@class parser.compile.options
----@field nonstandardSymbols? { [string]: true? }
----@field special?            { [string]: string? }
----@field unicodeName?        boolean
-
----@type fun(lua: string, mode: parser.compile.mode, version: parser.compile.version, options: parser.compile.options): parser.state
 local compile = require("parser.compile")
-local luadoc = require("parser.luadoc") ---@type fun(state: parser.state)
-local config = require("config") ---@type config.api
+local luadoc = require("parser.luadoc")
+local config = require("config")
+local util = require("utility")
 
-local SearchPLRequires = require("SearchPLRequires")
+local SearchPLRequires = require("plugin.SearchPLRequires")
 
-local runtimeVersion = config.get(uri, "Lua.runtime.version")
+local function compileState(uri, text)
+	local options = {
+		special = config.get(uri, "Lua.runtime.special"),
+		unicodeName = config.get(uri, "Lua.runtime.unicodeName"),
+		nonstandardSymbol = util.arrayToHash(config.get(uri, "Lua.runtime.nonstandardSymbol")),
+	}
+
+	local version = config.get(uri, "Lua.runtime.version")
+
+	local state = compile(text, "Lua", version, options)
+	luadoc(state)
+
+	return state
+end
 
 ---@class diff
 ---@field start  integer # The number of bytes at the beginning of the replacement
@@ -45,12 +34,11 @@ function OnSetText(uri, text)
 		return
 	end
 	--]]
-	local state = compile(text, "Lua", runtimeVersion, {})
-	luadoc(state)
+
+	local state = compileState(uri, text)
 
 	local search = SearchPLRequires.new()
+	search:searchParserState(state)
 
-	return search:searchParserState(state)
+	return search.diffs
 end
-
-return "hello"
