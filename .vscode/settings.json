@@ -2,7 +2,8 @@
 	"Lua.runtime.version": "Lua 5.4",
 	"Lua.workspace.checkThirdParty": false,
 	"Lua.workspace.library": [
-		"$USERPROFILE/.vscode/extensions/sumneko.lua-3.6.19-win32-x64/server/script"
+		"$USERPROFILE/.vscode/extensions/sumneko.lua-3.6.19-win32-x64/server/script",
+		"$USERPROFILE/AppData/Roaming/Code/User/globalStorage/sumneko.lua/addonManager/addons/bee/module/library"
 	],
 	"[lua]": {
 		"editor.quickSuggestions": {
@@ -19,5 +20,25 @@
 	"Lua.misc.parameters": [
 		"--develop=true"
 	],
-	"Lua.runtime.plugin": "plugin.lua"
+	"Lua.runtime.plugin": "plugin.lua",
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#1a4427",
+		"activityBar.background": "#1a4427",
+		"activityBar.foreground": "#e7e7e7",
+		"activityBar.inactiveForeground": "#e7e7e799",
+		"activityBarBadge.background": "#7c5ec1",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"commandCenter.border": "#e7e7e799",
+		"sash.hoverBorder": "#1a4427",
+		"statusBar.background": "#0c1f12",
+		"statusBar.foreground": "#e7e7e7",
+		"statusBarItem.hoverBackground": "#1a4427",
+		"statusBarItem.remoteBackground": "#0c1f12",
+		"statusBarItem.remoteForeground": "#e7e7e7",
+		"titleBar.activeBackground": "#0c1f12",
+		"titleBar.activeForeground": "#e7e7e7",
+		"titleBar.inactiveBackground": "#0c1f1299",
+		"titleBar.inactiveForeground": "#e7e7e799"
+	},
+	"peacock.color": "#0c1f12"
 }
