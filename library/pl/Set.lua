@@ -33,14 +33,16 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
 --- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#),
 --- ([`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#) if `__tostring` is used)
----@class pl.Set : pl.Map
----@operator add(pl.Set): pl.Set
----@operator mul(pl.Set): pl.Set
----@operator sub(pl.Set): pl.Set
----@operator pow(pl.Set): pl.Set
----@operator len: integer
+---@class pl.Set.Class : pl.Map
 ---@overload fun(t?: any[]|pl.List|pl.Set|pl.Map): pl.Set
 local Set = class()
+
+---@class pl.Set
+---@operator add(any): pl.Set
+---@operator mul(pl.Set): pl.Set
+---@operator sub(any): pl.Set
+---@operator pow(pl.Set): pl.Set
+---@operator len: integer
 
 ---create a set.
 ---@param self pl.Set
@@ -51,7 +53,7 @@ function Set:_init(t) end
 ---@param self pl.Set
 ---@return pl.List -- a list
 ---@nodiscard
-function Set:values() end
+function Set.values(self) end
 
 ---@param self pl.Set
 ---@param fn fun(val: any, ...: any): any
@@ -59,7 +61,7 @@ function Set:values() end
 ---@return pl.Set
 ---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
-function Set:map(fn, ...) end
+function Set.map(self, fn, ...) end
 
 ---map a function over the values of a set.
 ---@param self pl.Set
@@ -68,14 +70,14 @@ function Set:map(fn, ...) end
 ---@return pl.Set -- a new set
 ---@nodiscard
 ---@diagnostic disable-next-line:duplicate-set-field
-function Set:map(fn, ...) end
+function Set.map(self, fn, ...) end
 
 ---union of two sets (also `+`).
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return pl.Set -- a new set
 ---@nodiscard
-function Set:union(set) end
+function Set.union(self, set) end
 
 ---intersection of two sets (also `*`).
 ---@param self pl.Set
@@ -95,27 +97,33 @@ function Set:union(set) end
 ---> = s*t
 ---[30,20]
 ---```
-function Set:intersection(set) end
+function Set.intersection(self, set) end
+
+---a new set with elements in *either* one set *or* other but not both (also `^`).
+---@param self pl.Set
+---@param set pl.Set -- another set
+---@return pl.Set -- a new set
+function Set.symmetric_difference(self, set) end
 
 ---new set with elements in the set that are not in the other (also `-`).
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return pl.Set -- a new set
 ---@nodiscard
-function Set:difference(set) end
+function Set.difference(self, set) end
 
 ---is the first set a subset of the second (also `<`)?
 ---@param self pl.Set
 ---@param set pl.Set -- another set
 ---@return boolean
 ---@nodiscard
-function Set:issubset(set) end
+function Set.issubset(self, set) end
 
 ---is the set empty?
 ---@param self pl.Set
 ---@return boolean
 ---@nodiscard
-function Set:isempty() end
+function Set.isempty(self) end
 
 ---are the sets disjoint (no elements in common)? Uses naive definition, i.e.
 ---that intersection is empty
@@ -123,66 +131,66 @@ function Set:isempty() end
 ---@param set pl.Set -- another set
 ---@return boolean
 ---@nodiscard
-function Set:isdisjoint(set) end
+function Set.isdisjoint(self, set) end
 
 ---size of this set (also `#` for 5.2).
 ---@param self pl.Set
 ---@return integer size
 ---@nodiscard
-function Set:len() end
+function Set.len(self) end
 
 ---string representation of a set.
 ---@param self pl.Set
 ---@return string
 ---@nodiscard
-function Set:__tostring() end
+function Set.__tostring(self) end
 
 ---union of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
 ---@nodiscard
-function Set:__add(set) end
+function Set.__add(self, set) end
 
 ---intersection of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
 ---@nodiscard
-function Set:__mul(set) end
+function Set.__mul(self, set) end
 
 ---difference of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
 ---@nodiscard
-function Set:__sub(set) end
+function Set.__sub(self, set) end
 
 ---symmetric difference of sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return pl.Set
 ---@nodiscard
-function Set:__pow(set) end
+function Set.__pow(self, set) end
 
 ---first set subset of second?
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return boolean
 ---@nodiscard
-function Set:__lt(set) end
+function Set.__lt(self, set) end
 
 ---cardinality of set (5.2).
 ---@param self pl.Set
 ---@return integer
 ---@nodiscard
-function Set:__len(set) end
+function Set.__len(self, set) end
 
 ---equality between sets.
 ---@param self pl.Set
 ---@param set pl.Set
 ---@return boolean
 ---@nodiscard
-function Set:__eq(set) end
+function Set.__eq(self, set) end
 
 return Set
