@@ -127,21 +127,18 @@ function List:count(x) end
 ---@param self pl.List
 ---@param cmp? fun(a: any, b: any): boolean
 ---@return pl.List self
----@diagnostic disable-next-line:duplicate-set-field
 function List:sort(cmp) end
 
 ---Sort the items of the list, in place.
 ---@param self pl.List
 ---@param cmp? pl.BoolBinOpString -- an optional comparison function (default `'<'`)
 ---@return pl.List self -- the list
----@diagnostic disable-next-line:duplicate-set-field
 function List:sort(cmp) end
 
 ---@param self pl.List
 ---@param cmp? fun(a: any, b: any): boolean
 ---@return pl.List
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:sorted(cmp) end
 
 ---Return a sorted copy of this list.
@@ -149,7 +146,6 @@ function List:sorted(cmp) end
 ---@param cmp? pl.BoolBinOpString -- an optional comparison function (default `'<'`)
 ---@return pl.List -- a new list
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:sorted(cmp) end
 
 ---Reverse the elements of the list, in place.
@@ -254,14 +250,12 @@ function List:concat(delim) end
 ---@param self pl.List
 ---@param fun fun(value: any)
 ---@param ... any
----@diagnostic disable-next-line:duplicate-set-field
 function List:foreach(fun, ...) end
 
 ---Call the function on each element of the list.
 ---@param self pl.List
 ---@param fun pl.OpString -- a function or callable object
 ---@param ... any -- optional values to pass to function
----@diagnostic disable-next-line:duplicate-set-field
 function List:foreach(fun, ...) end
 
 ---Call the named method on each element of the list.
@@ -275,7 +269,6 @@ function List:foreachm(name, ...) end
 ---@param arg? any
 ---@return pl.List
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:filter(fun, arg) end
 
 ---Create a list of all elements which match a function.
@@ -284,7 +277,6 @@ function List:filter(fun, arg) end
 ---@param arg? any -- optional argument to be passed as second argument of the predicate
 ---@return pl.List -- a new filtered list.
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:filter(fun, arg) end
 
 ---Split a string using a delimiter.
@@ -299,7 +291,6 @@ function List.split(s, delim) end
 ---@param ... any
 ---@return pl.List
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:map(fun, ...) end
 
 ---Apply a function to all elements. Any extra arguments will be passed to the
@@ -315,14 +306,12 @@ function List:map(fun, ...) end
 ---```lua
 ---List{'one', 'two'}:map(string.upper) == {'ONE', 'TWO'}
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function List:map(fun, ...) end
 
 ---@param self pl.List
 ---@param fun fun(value: any, ...: any): any
 ---@param ... any
 ---@return pl.List self
----@diagnostic disable-next-line:duplicate-set-field
 function List:transform(fun, ...) end
 
 ---Apply a function to all elements, in-place. Any extra arguments are passed
@@ -331,7 +320,6 @@ function List:transform(fun, ...) end
 ---@param fun pl.OpString -- A function that takes at least one argument
 ---@param ... any -- arbitrary extra arguments.
 ---@return pl.List self -- the list.
----@diagnostic disable-next-line:duplicate-set-field
 function List:transform(fun, ...) end
 
 ---@param self pl.List
@@ -340,7 +328,6 @@ function List:transform(fun, ...) end
 ---@param ... any
 ---@return pl.List
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:map2(fun, ls, ...) end
 
 ---Apply a function to elements of two lists. Any extra arguments will be
@@ -351,7 +338,6 @@ function List:map2(fun, ls, ...) end
 ---@param ... any -- arbitrary extra arguments.
 ---@return pl.List -- a new list: `{fun(x, y) for x, y in zip(self, ls)}`
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:map2(fun, ls, ...) end
 
 ---apply a named method to all elements. Any extra arguments will be passed to the method.
@@ -366,7 +352,6 @@ function List:mapm(name, ...) end
 ---@param fun fun(memo: any, val: any): any
 ---@return any
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:reduce(fun) end
 
 ---'reduce' a list using a binary function.
@@ -374,7 +359,6 @@ function List:reduce(fun) end
 ---@param fun pl.BinOpString -- a function of two arguments
 ---@return any -- result of the function
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:reduce(fun) end
 
 ---@param self pl.List
@@ -382,7 +366,6 @@ function List:reduce(fun) end
 ---@param ... any
 ---@return pl.MultiMap
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:partition(fun, ...) end
 
 ---Partition a list using a classifier function. The function may return nil,
@@ -392,7 +375,6 @@ function List:partition(fun, ...) end
 ---@param ... any -- will also be passed to the function
 ---@return pl.MultiMap -- a table where the keys are the returned values, and the values are Lists of values where the function returned that key.
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function List:partition(fun, ...) end
 
 ---return an iterator over all values.

@@ -31,7 +31,6 @@ local Date = class()
 --- * year (will be followed by month, day etc)
 ---
 ---@param is_utc? boolean -- `true` if Universal Coordinated Time
----@diagnostic disable-next-line:duplicate-set-field
 function Date:_init(t, is_utc) end
 
 ---@param self pl.Date
@@ -41,7 +40,6 @@ function Date:_init(t, is_utc) end
 ---@param hour? integer
 ---@param min? integer
 ---@param sec? integer
----@diagnostic disable-next-line:duplicate-set-field
 function Date:_init(year, month, day, hour, min, sec) end
 
 ---set the current time of this Date object.
@@ -71,97 +69,83 @@ function Date:toLocal() end
 ---@param self pl.Date
 ---@param y integer -- Four-digit year
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:year(y) end
 
 ---set the month.
 ---@param self pl.Date
 ---@param m integer -- month
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:month(m) end
 
 ---set the day.
 ---@param self pl.Date
 ---@param d integer -- day
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:day(d) end
 
 ---set the hour.
 ---@param h integer -- hour
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:hour(h) end
 
 ---set the minutes.
 ---@param self pl.Date
 ---@param min integer -- minutes
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:min(min) end
 
 ---set the seconds.
 ---@param self pl.Date
 ---@param sec integer -- seconds
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:sec(sec) end
 
 ---set the day of year.
 ---@param self pl.Date
 ---@param yday integer -- day of year
 ---@return pl.Date self
----@diagnostic disable-next-line:duplicate-set-field
 function Date:yday(yday) end
 
 ---get the year.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:year() end
 
 ---get the month.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:month() end
 
 ---get the day.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:day() end
 
 ---get the hour.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:hour() end
 
 ---get the minutes.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:min() end
 
 ---get the seconds.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:sec() end
 
 ---get the day of year.
 ---@param self pl.Date
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Date:yday() end
 
 ---name of day of week.

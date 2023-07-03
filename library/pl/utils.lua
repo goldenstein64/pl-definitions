@@ -280,14 +280,12 @@ function utils.enum(...) end
 ---
 ---Raises: if `idx` is not a number or if `f` is not callable
 ---
----@diagnostic disable-next-line:duplicate-set-field
 function utils.function_arg(idx, f, msg) end
 
 ---@param idx integer
 ---@param f pl.OpString
 ---@param msg? string
 ---@return function
----@diagnostic disable-next-line:duplicate-set-field
 function utils.function_arg(idx, f, msg) end
 
 ---assert the common case that the argument is a string.
@@ -469,7 +467,6 @@ function utils.string_lambda(lf) end
 ---@param p P
 ---@return fun(x: X, ...: any) f
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function utils.bind1(fn, p) end
 
 ---bind the first argument of the function to a value.
@@ -492,7 +489,6 @@ function utils.bind1(fn, p) end
 ---print(hello("world"))     --> "Hello world"
 ---print(hello("sunshine"))  --> "Hello sunshine"
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function utils.bind1(fn, p) end
 
 ---@generic P, X
@@ -500,7 +496,6 @@ function utils.bind1(fn, p) end
 ---@param p P
 ---@return fun(x: X, ...: any) f
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function utils.bind2(fn, p) end
 
 ---bind the second argument of the function to a value.
@@ -510,7 +505,6 @@ function utils.bind2(fn, p) end
 ---@nodiscard
 ---
 ---Raises: if `f` is not callable
----@diagnostic disable-next-line:duplicate-set-field
 function utils.bind2(fn, p) end
 
 ---Sets a deprecation warning function. An application can override this

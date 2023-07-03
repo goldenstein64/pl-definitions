@@ -60,7 +60,6 @@ function Set.values(self) end
 ---@param ... any
 ---@return pl.Set
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Set.map(self, fn, ...) end
 
 ---map a function over the values of a set.
@@ -69,7 +68,6 @@ function Set.map(self, fn, ...) end
 ---@param ... any -- extra arguments to pass to the function.
 ---@return pl.Set -- a new set
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Set.map(self, fn, ...) end
 
 ---union of two sets (also `+`).
