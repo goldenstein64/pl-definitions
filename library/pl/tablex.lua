@@ -35,11 +35,18 @@ function tablex.size(t) end
 ---```
 function tablex.index_by(tbl, idx) end
 
+---@param fun fun(val: any, ...: any): any
+---@param t table
+---@param ... any
+---@return table t
+function tablex.transform(fun, t, ...) end
+
 ---apply a function to all values of a table, in-place. Any extra arguments are
 ---passed to the function.
----@param fun fun(val: any, ...: any): any -- A function that takes at least one argument
+---@param fun pl.OpString -- A function that takes at least one argument
 ---@param t table -- a table
 ---@param ... any -- extra arguments passed to `fun`
+---@return table t
 function tablex.transform(fun, t, ...) end
 
 ---generate a table of all numbers in a range. This is consistent with a
@@ -54,15 +61,23 @@ function tablex.range(start, finish, step) end
 ---@generic T
 ---@param fun fun(memo: T, val: T): T
 ---@param t T[]
+---@return T
 ---@nodiscard
 function tablex.reduce(fun, t) end
 
----'reduce' a list using a binary function.
 ---@generic T, U
----@param fun fun(memo: U, val: T): U -- a function of two arguments
----@param t T[] -- a list-like table
----@param memo U -- optional initial memo value. Defaults to first value in table.
----@return U -- the result of the function
+---@param fun fun(memo: U, val: T): U
+---@param t T[]
+---@param memo U
+---@return U
+---@nodiscard
+function tablex.reduce(fun, t, memo) end
+
+---'reduce' a list using a binary function.
+---@param fun pl.BinOpString -- a function of two arguments
+---@param t any[] -- a list-like table
+---@param memo? any -- optional initial memo value. Defaults to first value in table.
+---@return any -- the result of the function
 ---@nodiscard
 ---
 ---Usage:
@@ -103,10 +118,17 @@ function tablex.union(t1, t2) end
 ---@nodiscard
 function tablex.intersection(t1, t2) end
 
+---@generic T
+---@param t T[]
+---@param cmp? fun(a: T, b: T): boolean
+---@return { [T]: integer }
+---@nodiscard
+function tablex.count_map(t, cmp) end
+
 ---A table where the key/values are the values and value counts of the table.
 ---@generic T
 ---@param t T[] -- a list-like table
----@param cmp? fun(a: T, b: T): boolean -- a function that defines equality (otherwise uses `==`)
+---@param cmp? pl.BoolBinOpString -- a function that defines equality (otherwise uses `==`)
 ---@return { [T]: integer } -- a map-like table
 ---@nodiscard
 function tablex.count_map(t, cmp) end
@@ -341,9 +363,16 @@ function tablex.find_if(t, cmp, arg) end
 ---```
 function tablex.search(t, value, exclude) end
 
+---@param fun fun(val, ...): any
+---@param t table
+---@param ... any
+---@return table
+---@nodiscard
+function tablex.map(fun, t, ...) end
+
 ---apply a function to all values of a table. This returns a table of the
 ---results. Any extra arguments are passed to the function.
----@param fun fun(val, ...): any -- A function that takes at least one argument
+---@param fun pl.OpString -- A function that takes at least one argument
 ---@param t table -- A table
 ---@param ... any -- optional arguments
 ---@return table
@@ -356,14 +385,21 @@ function tablex.search(t, value, exclude) end
 ---```
 function tablex.map(fun, t, ...) end
 
+---@generic T, U, A...
+---@param fun fun(val: T, ...: A...): U
+---@param t T[]
+---@param ... A...
+---@return pl.List
+---@nodiscard
+function tablex.imap(fun, t, ...) end
+
 ---apply a function to all values of a list. This returns a table of the
 ---results. Any extra arguments are passed to the function.
----@generic T, U, A...
----@param fun fun(val: T, ...: A...): U -- A function that takes at least one argument
+---@generic T, A...
+---@param fun pl.OpString -- A function that takes at least one argument
 ---@param t T[] -- a table (applies to array part)
 ---@param ... A... -- optional arguments
 ---@return pl.List -- a list-like table
----@nodiscard
 ---@nodiscard
 ---
 ---Usage:
@@ -408,8 +444,16 @@ function tablex.imap(fun, t, ...) end
 ---```
 function tablex.map_named_method(name, t, ...) end
 
+---@param fun fun(val1, val2, ...): any
+---@param t1 table
+---@param t2 table
+---@param ... any
+---@return table
+---@nodiscard
+function tablex.map2(fun, t1, t2, ...) end
+
 ---apply a function to values from two tables.
----@param fun fun(val1, val2, ...): any -- a function of at least two arguments
+---@param fun pl.OpString -- a function of at least two arguments
 ---@param t1 table -- a table
 ---@param t2 table -- a table
 ---@param ... any -- extra arguments
@@ -423,8 +467,16 @@ function tablex.map_named_method(name, t, ...) end
 ---```
 function tablex.map2(fun, t1, t2, ...) end
 
+---@param fun fun(val1, val2, ...): any
+---@param t1 any[]
+---@param t2 any[]
+---@param ... any
+---@return any[]
+---@nodiscard
+function tablex.imap2(fun, t1, t2, ...) end
+
 ---apply a function to values from two arrays. The result will be the length of the shortest array.
----@param fun fun(val1, val2, ...): any -- a function of at least two arguments
+---@param fun pl.OpString -- a function of at least two arguments
 ---@param t1 any[] -- a list-like table
 ---@param t2 any[] -- a list-like table
 ---@param ... any -- extra arguments
@@ -438,11 +490,17 @@ function tablex.map2(fun, t1, t2, ...) end
 ---```
 function tablex.imap2(fun, t1, t2, ...) end
 
+---@param fun function
+---@param ... table
+---@return table
+---@nodiscard
+function tablex.mapn(fun, ...) end
+
 ---Apply a function to a number of tables. A more general version of
 ---`tablex.map`. The result is a table containing the result of applying that
 ---function to the ith value of each table. Length of output list is the
 ---minimum length of all the lists
----@param fun function -- A function that takes `n` tables
+---@param fun pl.OpString -- A function that takes `n` tables
 ---@param ... table -- `n` tables
 ---@return table
 ---@nodiscard
@@ -456,12 +514,19 @@ function tablex.imap2(fun, t1, t2, ...) end
 ---```
 function tablex.mapn(fun, ...) end
 
+---@param fun fun(k, v, ...: any): (new_v: any, new_k: any)
+---@param t table
+---@param ... any
+---@return table
+---@nodiscard
+function tablex.pairmap(fun, t, ...) end
+
 ---call the function with the key and value pairs from a table. The function
 ---can return a value and a key (note the order!). If both are not nil, then
 ---this pair is inserted into the result: if the key already exists, we convert
 ---the value for that key into a table and append into it. If only value is not
 ---nil, then it is appended to the result.
----@param fun fun(k, v, ...: any): (new_v: any, new_k: any) -- A function which will be passed each key and value as arguments, plus any extra arguments to `tablex.pairmap`.
+---@param fun pl.OpString -- A function which will be passed each key and value as arguments, plus any extra arguments to `tablex.pairmap`.
 ---@param t table -- A table
 ---@param ... any -- optional arguments
 ---@return table
@@ -476,31 +541,49 @@ function tablex.mapn(fun, ...) end
 ---```
 function tablex.pairmap(fun, t, ...) end
 
+---@generic T, A
+---@param t T[]
+---@param pred fun(val: T, arg: A): any
+---@param arg A
+---@return T[]
+---@nodiscard
+function tablex.filter(t, pred, arg) end
+
 ---filter an array's values using a predicate function
 ---@generic T
 ---@param t T[] -- a list-like table
----@param pred fun(val: T): any -- a boolean function
+---@param pred pl.BoolBinOpString -- a boolean function
 ---@param arg any -- optional argument to be passed as second argument of the predicate
 ---@return T[]
 ---@nodiscard
 function tablex.filter(t, pred, arg) end
 
+---@generic K, V
+---@param t { [K]: V }
+---@param fun fun(value: V, key: K, ...: any)
+---@param ... any
+function tablex.foreach(t, fun, ...) end
+
 ---apply a function to all elements of a table. The arguments to the function
 ---will be the value, the key and finally any extra arguments passed to this
 ---function. Note that the Lua 5.0 function `table.foreach` passed the key
 ---first.
----@generic K, V
----@param t { [K]: V } -- a table
----@param fun fun(value: V, key: K, ...: any) -- a function on the elements
+---@param t table -- a table
+---@param fun pl.OpString -- a function on the elements
 ---@param ... any -- extra arguments passed to `fun`
 function tablex.foreach(t, fun, ...) end
+
+---@generic T
+---@param t T[]
+---@param fun fun(value: T, index: integer, ...: any)
+---@param ... any
+function tablex.foreachi(t, fun, ...) end
 
 ---apply a function to all elements of a list-like table in order. The
 ---arguments to the function will be the value, the index and finally any extra
 ---arguments passed to this function.
----@generic T
----@param t T[] -- a table
----@param fun fun(value: T, index: integer, ...: any) -- a function with at least one argument
+---@param t any[] -- a table
+---@param fun pl.OpString -- a function with at least one argument
 ---@param ... any -- optional arguments
 function tablex.foreachi(t, fun, ...) end
 
