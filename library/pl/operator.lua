@@ -195,6 +195,7 @@ function operator.nop(...) end
 ---| "^"
 ---| ".."
 ---| "()"
+---| "{}"
 ---| "[]"
 ---| "<"
 ---| "<="
@@ -204,14 +205,13 @@ function operator.nop(...) end
 ---| "~="
 ---| "and"
 ---| "or"
----| "{}"
 ---| "~"
 ---| ""
 
 -- apparently "# renders currently when compared to "#"
 
 ---@alias pl.UnOpString
----| "#
+---| "#"
 ---| "()"
 ---| "{}"
 ---| ""
@@ -221,7 +221,28 @@ function operator.nop(...) end
 ---| "{}"
 ---| ""
 
----@alias pl.OpString pl.BinOpString|pl.UnOpString|pl.MultiOpString
+---@alias pl.OpString
+---| "+"
+---| "-"
+---| "*"
+---| "/"
+---| "%"
+---| "^"
+---| ".."
+---| "()"
+---| "{}"
+---| "[]"
+---| "<"
+---| "<="
+---| ">"
+---| ">="
+---| "=="
+---| "~="
+---| "and"
+---| "or"
+---| "~"
+---| "#"
+---| ""
 
 ---Map from operator symbol to function. Most of these map directly from
 ---operators; But note these extras
