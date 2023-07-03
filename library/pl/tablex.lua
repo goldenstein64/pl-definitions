@@ -55,7 +55,6 @@ function tablex.range(start, finish, step) end
 ---@param fun fun(memo: T, val: T): T
 ---@param t T[]
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.reduce(fun, t) end
 
 ---'reduce' a list using a binary function.
@@ -71,7 +70,6 @@ function tablex.reduce(fun, t) end
 ---```lua
 ---reduce('+', {1, 2, 3, 4}) == 10
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.reduce(fun, t, memo) end
 
 ---create an index map from a list-like table. The original values become keys,
@@ -215,7 +213,6 @@ function tablex.deepcompare(t1, t2, ignore_mt, eps) end
 ---@param cmp fun(v1: any, v2: any): boolean
 ---@return boolean
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.compare(t1, t2, cmp) end
 
 ---compare two arrays using a predicate.
@@ -234,7 +231,6 @@ function tablex.compare(t1, t2, cmp) end
 ---   {1, 2, 3, hello = "world"},  -- fields are not compared!
 ---   {1, 2, 3}, function(v1, v2) return v1 == v2 end)
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.compare(t1, t2, cmp) end
 
 ---@param t1 any[]
@@ -242,7 +238,6 @@ function tablex.compare(t1, t2, cmp) end
 ---@param cmp? fun(v1: any, v2: any): boolean
 ---@return boolean
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.compare_no_order(t1, t2, cmp) end
 
 ---compare two list-like tables using an optional predicate, without regard
@@ -252,7 +247,6 @@ function tablex.compare_no_order(t1, t2, cmp) end
 ---@param cmp? pl.BoolBinOpString -- A comparison function (may be nil)
 ---@return boolean
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.compare_no_order(t1, t2, cmp) end
 
 ---return the index of a value in a list. Like `string.find`, there is an
@@ -293,7 +287,6 @@ function tablex.rfind(t, val, idx) end
 ---@param cmp fun(v, arg): any
 ---@param arg? any
 ---@return any?, any
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.find_if(t, cmp, arg) end
 
 ---return the index (or key) of a value in a table using a comparison function.
@@ -332,7 +325,6 @@ function tablex.find_if(t, cmp, arg) end
 ---assert(idx == nil)               -- looking up 'false' failed!
 ---assert(cmp_result == nil)
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.find_if(t, cmp, arg) end
 
 ---find a value in a table by recursive search.
@@ -517,7 +509,6 @@ function tablex.foreachi(t, fun, ...) end
 ---@param f? fun(key1: K, key2: K): boolean
 ---@return fun(): (K, V)
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.sort(t, f) end
 
 ---return an iterator to a table sorted by its keys
@@ -532,7 +523,6 @@ function tablex.sort(t, f) end
 ---```lua
 ---for k, v in tablex.sort(t) do print(k, v) end
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.sort(t, f) end
 
 ---@generic K, V
@@ -540,7 +530,6 @@ function tablex.sort(t, f) end
 ---@param f? fun(value1: V, value2: V): boolean
 ---@return fun(): (K, V)
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.sortv(t, f) end
 
 ---return an iterator to a table sorted by its values
@@ -555,7 +544,6 @@ function tablex.sortv(t, f) end
 ---```lua
 ---for k, v in tablex.sortv(t) do print(k, v) end
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function tablex.sortv(t, f) end
 
 ---return all the keys of a table in arbitrary order.

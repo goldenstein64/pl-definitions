@@ -84,7 +84,6 @@ function seq.range(start, finish) end
 ---@param condn fun(val: T): boolean
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.count(iter, condn) end
 
 ---@generic T, A
@@ -92,7 +91,6 @@ function seq.count(iter, condn) end
 ---@param condn fun(val: T, arg: A): boolean
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.count(iter, condn) end
 
 ---count the number of elements in the sequence which satisfy the predicate
@@ -102,7 +100,6 @@ function seq.count(iter, condn) end
 ---@param arg T -- optional argument to be passed to predicate as second argument.
 ---@return integer -- count
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.count(iter, condn, arg) end
 
 ---return the minimum and the maximum value of the sequence.
@@ -213,7 +210,6 @@ function seq.count_map(iter) end
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence
 ---@return fun(): T
----@diagnostic disable-next-line:duplicate-set-field
 ---@nodiscard
 function seq.unique(iter) end
 
@@ -222,7 +218,6 @@ function seq.unique(iter) end
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence
 ---@param returns_table true -- true if we return a table, not a sequence
 ---@return T[] -- a sequence or a table; defaults to a sequence.
----@diagnostic disable-next-line:duplicate-set-field
 ---@nodiscard
 function seq.unique(iter, returns_table) end
 
@@ -247,7 +242,6 @@ function seq.splice(iter1, iter2) end
 ---@param iter fun(): (K, A)|pl.Sequence
 ---@return fun(): R
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.map(fn, iter) end
 
 ---return a sequence where every element of a sequence has been transformed by
@@ -260,7 +254,6 @@ function seq.map(fn, iter) end
 ---@param arg A -- optional argument to pass to function.
 ---@return fun(): R
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.map(fn, iter, arg) end
 
 ---@generic K, A
@@ -268,7 +261,6 @@ function seq.map(fn, iter, arg) end
 ---@param pred fun(value1: K, value2: A): boolean
 ---@return fun(): (K, A)
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.filter(iter, pred) end
 
 ---@generic K, A
@@ -276,7 +268,6 @@ function seq.filter(iter, pred) end
 ---@param pred pl.BoolBinOpString
 ---@return fun(): (K, A)
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.filter(iter, pred) end
 
 ---@generic K, A
@@ -285,7 +276,6 @@ function seq.filter(iter, pred) end
 ---@param arg A
 ---@return fun(): K
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.filter(iter, pred, arg) end
 
 ---filter a sequence using a predicate function.
@@ -295,7 +285,6 @@ function seq.filter(iter, pred, arg) end
 ---@param arg A -- optional argument to pass to function.
 ---@return fun(): K
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.filter(iter, pred, arg) end
 
 ---@generic L, T
@@ -304,7 +293,6 @@ function seq.filter(iter, pred, arg) end
 ---@param initval L
 ---@return L
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.reduce(fn, iter, initval) end
 
 ---'reduce' a sequence using a binary function.
@@ -322,7 +310,6 @@ function seq.reduce(fn, iter, initval) end
 ---
 ---seq.reduce('-',{1,2,3,4,5}) == -13
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function seq.reduce(fn, iter, initval) end
 
 ---@generic T
@@ -330,7 +317,6 @@ function seq.reduce(fn, iter, initval) end
 ---@param iter fun(): T|pl.Sequence
 ---@return T
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.reduce(fn, iter) end
 
 ---@generic T
@@ -338,7 +324,6 @@ function seq.reduce(fn, iter) end
 ---@param iter fun(): T|pl.Sequence
 ---@return T
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.reduce(fn, iter) end
 
 ---take the first `n` values from the sequence.
@@ -377,7 +362,6 @@ function seq.enum(iter) end
 ---@param arg2 A2 -- optional second extra argument
 ---@return fun(): R...
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.mapmethod(iter, name, arg1, arg2) end
 
 ---@generic S, A, R...
@@ -386,7 +370,6 @@ function seq.mapmethod(iter, name, arg1, arg2) end
 ---@param arg1 A
 ---@return fun(): R...
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.mapmethod(iter, name, arg1) end
 
 ---@generic S, R...
@@ -394,7 +377,6 @@ function seq.mapmethod(iter, name, arg1) end
 ---@param name S
 ---@return fun(): R...
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function seq.mapmethod(iter, name) end
 
 ---returns a sequence of (last,current) values from another sequence.
@@ -409,14 +391,12 @@ function seq.last(iter) end
 ---@generic T
 ---@param iter T[] -- a sequence with up to 3 values
 ---@param fn fun(v: T) -- a function
----@diagnostic disable-next-line:duplicate-set-field
 function seq.foreach(iter, fn) end
 
 ---call the function on each element of the sequence.
 ---@generic T1, T2, T3
 ---@param iter fun(): (T1, T2, T3)|pl.Sequence -- a sequence with up to 3 values
 ---@param fn fun(v1: T1, v2: T2, v3: T3) -- a function
----@diagnostic disable-next-line:duplicate-set-field
 function seq.foreach(iter, fn) end
 
 ---@class pl.Sequence
@@ -431,7 +411,6 @@ local Sequence = {}
 ---@param arg A -- optional argument to be passed to predicate as second argument.
 ---@return integer -- count
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:count(condn, arg) end
 
 ---@generic T
@@ -439,7 +418,6 @@ function Sequence:count(condn, arg) end
 ---@param condn fun(val: T): boolean
 ---@return integer
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:count(condn) end
 
 ---return the minimum and the maximum value of the sequence.
@@ -536,14 +514,12 @@ function Sequence:count_map() end
 ---@param returns_table true -- true if we return a table, not a sequence
 ---@return T[] -- a sequence or a table; defaults to a sequence.
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:unique(returns_table) end
 
 ---@generic T
 ---@param self pl.Sequence
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:unique() end
 
 ---print out a sequence iter with a separator.
@@ -572,7 +548,6 @@ function Sequence:splice(iter2) end
 ---@param arg A -- optional argument to pass to function.
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn, arg) end
 
 ---@generic A
@@ -581,7 +556,6 @@ function Sequence:map(fn, arg) end
 ---@param arg A
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn, arg) end
 
 ---@generic K, A, R
@@ -589,14 +563,12 @@ function Sequence:map(fn, arg) end
 ---@param fn fun(value1: K, value2: A): R
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn) end
 
 ---@param self pl.Sequence
 ---@param fn pl.BinOpString|pl.UnOpString
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:map(fn) end
 
 ---filter a sequence using a predicate function.
@@ -606,7 +578,6 @@ function Sequence:map(fn) end
 ---@param arg A -- optional argument to pass to function.
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred, arg) end
 
 ---filter a sequence using a predicate function.
@@ -616,7 +587,6 @@ function Sequence:filter(pred, arg) end
 ---@param arg A
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred, arg) end
 
 ---@generic K, A
@@ -624,7 +594,6 @@ function Sequence:filter(pred, arg) end
 ---@param pred fun(value1: K, value2: A): boolean
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred) end
 
 ---@generic K, A
@@ -632,7 +601,6 @@ function Sequence:filter(pred) end
 ---@param pred pl.BoolBinOpString
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:filter(pred) end
 
 ---'reduce' a sequence using a binary function.
@@ -650,7 +618,6 @@ function Sequence:filter(pred) end
 ---
 ---seq.reduce('-',{1,2,3,4,5}) == -13
 ---```
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn, initval) end
 
 ---@generic L, T
@@ -659,7 +626,6 @@ function Sequence:reduce(fn, initval) end
 ---@param initval L
 ---@return L
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn, initval) end
 
 ---@generic T
@@ -667,7 +633,6 @@ function Sequence:reduce(fn, initval) end
 ---@param fn fun(last: T, current: T): T
 ---@return T
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn) end
 
 ---@generic T
@@ -675,7 +640,6 @@ function Sequence:reduce(fn) end
 ---@param fn pl.BinOpString
 ---@return T
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:reduce(fn) end
 
 ---take the first `n` values from the sequence.
@@ -706,7 +670,6 @@ function Sequence:enum() end
 ---@param arg2 any -- optional second extra argument
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:mapmethod(name, arg1, arg2) end
 
 ---@param self pl.Sequence
@@ -714,14 +677,12 @@ function Sequence:mapmethod(name, arg1, arg2) end
 ---@param arg1 any
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:mapmethod(name, arg1) end
 
 ---@param self pl.Sequence
 ---@param name string
 ---@return pl.Sequence
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:mapmethod(name) end
 
 ---returns a sequence of (last,current) values from another sequence.
@@ -735,7 +696,6 @@ function Sequence:last() end
 ---call the function on each element of the sequence.
 ---@param self pl.Sequence
 ---@param fn fun(v1: any, v2: any, v3: any) -- a function
----@diagnostic disable-next-line:duplicate-set-field
 function Sequence:foreach(fn) end
 
 return seq

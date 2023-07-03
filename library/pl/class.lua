@@ -47,12 +47,10 @@ local Instance = {}
 ---@param some_class pl.Class -- class to check against, or `nil` to return the class
 ---@return boolean -- `true` if instance is derived from some_class
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Instance:is_a(some_class) end
 
 ---@return pl.Class
 ---@nodiscard
----@diagnostic disable-next-line:duplicate-set-field
 function Instance:is_a() end
 
 return class
