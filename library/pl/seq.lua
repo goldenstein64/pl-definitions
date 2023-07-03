@@ -149,9 +149,8 @@ function seq.copy2(iter, i1, i2) end
 
 ---create a table of 'tuples' from a multi-valued sequence.
 ---A generalization of `seq.copy2`
----@generic T...
----@param iter T...[]|fun(): (...: T...)|pl.Sequence -- a multiple-valued sequence
----@return T...[] -- a list-like table
+---@param iter any[]|fun(): (...: any)|pl.Sequence -- a multiple-valued sequence
+---@return any[] -- a list-like table
 ---@nodiscard
 function seq.copy_tuples(iter) end
 
@@ -350,32 +349,32 @@ function seq.skip(iter, n) end
 ---@nodiscard
 function seq.enum(iter) end
 
----@alias pl.ObjectWithMethodAndTwoArguments<S, A1, A2, R...> { [S]: fun(self: pl.ObjectWithMethodAndTwoArguments<S, A1, A2, R...>, arg1: A1, arg2: A2, ...: any): (...: R...) }
----@alias pl.ObjectWithMethodAndOneArgument<S, A, R...> { [S]: fun(self: pl.ObjectWithMethodAndOneArgument<S, A, R...>, arg1: A): (...: R...) }
----@alias pl.ObjectWithMethodAndNoArguments<S, R...> { [S]: fun(self: pl.ObjectWithMethodAndNoArguments<S, R...>): (...: R...) }
+---@alias pl.ObjectWithMethodAndTwoArguments<S, A1, A2> { [S]: fun(self: pl.ObjectWithMethodAndTwoArguments<S, A1, A2, any>, arg1: A1, arg2: A2, ...: any): (...: any) }
+---@alias pl.ObjectWithMethodAndOneArgument<S, A> { [S]: fun(self: pl.ObjectWithMethodAndOneArgument<S, A, any>, arg1: A): (...: any) }
+---@alias pl.ObjectWithMethodAndNoArguments<S> { [S]: fun(self: pl.ObjectWithMethodAndNoArguments<S, any>): (...: any) }
 
 ---map using a named method over a sequence.
----@generic S, A1, A2, R...
----@param iter pl.ObjectWithMethodAndTwoArguments<S, A1, A2, R...>[]|fun(): pl.ObjectWithMethodAndTwoArguments<S, A1, A2, R...>|pl.Sequence -- a sequence
+---@generic S, A1, A2
+---@param iter pl.ObjectWithMethodAndTwoArguments<S, A1, A2>[]|(fun(): pl.ObjectWithMethodAndTwoArguments<S, A1, A2>)|pl.Sequence -- a sequence
 ---@param name S -- the method name
 ---@param arg1 A1 -- optional first extra argument
 ---@param arg2 A2 -- optional second extra argument
----@return fun(): R...
+---@return fun(): (...: any)
 ---@nodiscard
 function seq.mapmethod(iter, name, arg1, arg2) end
 
----@generic S, A, R...
----@param iter pl.ObjectWithMethodAndOneArgument<S, A, R...>[]|fun(): pl.ObjectWithMethodAndOneArgument<S, A, R...>|pl.Sequence
+---@generic S, A
+---@param iter pl.ObjectWithMethodAndOneArgument<S, A>[]|(fun(): pl.ObjectWithMethodAndOneArgument<S, A>)|pl.Sequence
 ---@param name S
 ---@param arg1 A
----@return fun(): R...
+---@return fun(): (...: any)
 ---@nodiscard
 function seq.mapmethod(iter, name, arg1) end
 
----@generic S, R...
----@param iter pl.ObjectWithMethodAndNoArguments<S, R...>[]|fun(): pl.ObjectWithMethodAndNoArguments<S, R...>|pl.Sequence
+---@generic S
+---@param iter pl.ObjectWithMethodAndNoArguments<S>[]|(fun(): pl.ObjectWithMethodAndNoArguments<S>)|pl.Sequence
 ---@param name S
----@return fun(): R...
+---@return fun(): (...: any)
 ---@nodiscard
 function seq.mapmethod(iter, name) end
 
@@ -469,9 +468,8 @@ function Sequence:copy2(i1, i2) end
 
 ---create a table of 'tuples' from a multi-valued sequence.
 ---A generalization of `seq.copy2`
----@generic T...
 ---@param self pl.Sequence
----@return T...[] -- a list-like table
+---@return any[] -- a list-like table
 ---@nodiscard
 function Sequence:copy_tuples() end
 

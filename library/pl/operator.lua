@@ -13,8 +13,7 @@
 local operator = {}
 
 ---apply function to some arguments `()`
----@generic A..., R...
----@param fn fun(...: A...): R... -- a function or callable object
+---@param fn fun(...: any): any -- a function or callable object
 ---@param ... any -- arguments
 ---@return any ...
 ---@nodiscard

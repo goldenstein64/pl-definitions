@@ -88,10 +88,10 @@ func._4 = func.register(empty)
 func._5 = func.register(empty)
 
 ---bind the first parameter of the function to a value.
----@generic T, U..., R...
----@param fn fun(p: T, ...: U...): R... -- a function of one or more arguments
+---@generic T
+---@param fn fun(p: T, ...: any): any -- a function of one or more arguments
 ---@param p T -- a value
----@return fun(...: U...): R... -- a function
+---@return fun(...: any): any -- a function
 ---@nodiscard
 ---
 ---Usage:
@@ -105,10 +105,9 @@ function func.bind1(fn, p) end
 func.curry = func.bind1
 
 ---create a function which chains two functions.
----@generic A..., B..., C...
----@param f fun(...: A...): B... -- a function of at least one argument
----@param g fun(...: B...): C... -- a function of at least one argument
----@return fun(...: A...): C... -- a function
+---@param f function -- a function of at least one argument
+---@param g function -- a function of at least one argument
+---@return function fog -- a function
 ---@nodiscard
 ---
 ---Usage:

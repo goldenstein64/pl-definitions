@@ -385,20 +385,20 @@ function tablex.map(fun, t, ...) end
 ---```
 function tablex.map(fun, t, ...) end
 
----@generic T, U, A...
----@param fun fun(val: T, ...: A...): U
+---@generic T, U
+---@param fun fun(val: T, ...: any): U
 ---@param t T[]
----@param ... A...
+---@param ... any
 ---@return pl.List
 ---@nodiscard
 function tablex.imap(fun, t, ...) end
 
 ---apply a function to all values of a list. This returns a table of the
 ---results. Any extra arguments are passed to the function.
----@generic T, A...
+---@generic T
 ---@param fun pl.OpString -- A function that takes at least one argument
 ---@param t T[] -- a table (applies to array part)
----@param ... A... -- optional arguments
+---@param ... any -- optional arguments
 ---@return pl.List -- a list-like table
 ---@nodiscard
 ---
