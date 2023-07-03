@@ -42,12 +42,19 @@ function array2d.column(a, j) end
 ---@nodiscard
 function array2d.row(a, i) end
 
+---@generic T, A, R
+---@param f fun(value: T, arg: A): R
+---@param a T[][]
+---@param arg A
+---@return R[][]
+---@nodiscard
+function array2d.map(f, a, arg) end
+
 ---map a function over a 2D array
----@generic T, A
----@param f fun(value: T, arg?: A) -- a function of at least one argument
----@param a T[][] -- 2d array
----@param arg? A -- an optional extra argument to be passed to the function.
----@return T[][] -- 2d array
+---@param f pl.OpString -- a function of at least one argument
+---@param a any[][] -- 2d array
+---@param arg any -- an optional extra argument to be passed to the function.
+---@return any[][] -- 2d array
 ---@nodiscard
 function array2d.map(f, a, arg) end
 
@@ -76,24 +83,40 @@ function array2d.reduce_cols(f, a) end
 ---@nodiscard
 function array2d.reduce2(opc, opr, a) end
 
----map a function over two arrays. They can be both or either 2D arrays
 ---@generic T, U, R
----@param f fun(aval: T, bval: U): R -- function of at least two arguments
----@param ad integer -- order of first array (`1` if `a` is a list/array, `2` if it is a 2d array)
----@param bd integer -- order of second array (`1` if `b` is a list/array, `2` if it is a 2d array)
----@param a T[]|T[][] -- 1d or 2d array
----@param b U[]|U[][] -- 1d or 2d array
----@param arg any -- optional extra argument to pass to function
----@return R[]|R[][] -- 2D array, unless both arrays are 1D
+---@param f fun(aval: T, bval: U): R
+---@param ad 1 | 2
+---@param bd 1 | 2
+---@param a T[]|T[][]
+---@param b U[]|U[][]
+---@param arg any
+---@return R[]|R[][]
 ---@nodiscard
 function array2d.map2(f, ad, bd, a, b, arg) end
 
----cartesian product of two 1d arrays.
+---map a function over two arrays. They can be both or either 2D arrays
+---@param f pl.UnOpString|pl.BinOpString -- function of at least two arguments
+---@param ad 1 | 2 -- order of first array (`1` if `a` is a list/array, `2` if it is a 2d array)
+---@param bd 1 | 2 -- order of second array (`1` if `b` is a list/array, `2` if it is a 2d array)
+---@param a any[]|any[][] -- 1d or 2d array
+---@param b any[]|any[][] -- 1d or 2d array
+---@param arg any -- optional extra argument to pass to function
+---@return any[]|any[][] -- 2D array, unless both arrays are 1D
+---@nodiscard
+function array2d.map2(f, ad, bd, a, b, arg) end
+
 ---@generic T, U, R
----@param f fun(val1: T, val2: U): R -- a function of 2 arguments
----@param t1 T[] -- a 1d table
----@param t2 U[] -- a 1d table
----@return R[][] -- 2d table
+---@param f fun(val1: T, val2: U): R
+---@param t1 T[]
+---@param t2 U[]
+---@return R[][]
+function array2d.product(f, t1, t2) end
+
+---cartesian product of two 1d arrays.
+---@param f pl.BinOpString -- a function of 2 arguments
+---@param t1 any[] -- a 1d table
+---@param t2 any[] -- a 1d table
+---@return any[][] -- 2d table
 ---@nodiscard
 ---
 ---Usage:
