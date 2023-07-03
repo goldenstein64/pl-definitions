@@ -71,11 +71,13 @@ function seq.keys(t) end
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence
 ---@return fun(): T
+---@nodiscard
 function seq.iter(iter) end
 
 ---create an iterator over a numerical range. Like the standard Python function xrange.
 ---@param start number -- a number
 ---@param finish number -- a number greater than `start`
+---@return fun(): number
 ---@nodiscard
 function seq.range(start, finish) end
 
