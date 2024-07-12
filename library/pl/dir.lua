@@ -21,20 +21,20 @@ function dir.fnmatch(filename, pattern) end
 ---Return a list of all file names within an array which match a pattern.
 ---@param filenames string[] -- An array containing file names.
 ---@param pattern string -- A shell pattern (see `dir.fnmatch`).
----@return string[] -- List of matching file names.
+---@return pl.List(string) -- List of matching file names.
 ---@nodiscard
 function dir.filter(filenames, pattern) end
 
 ---return a list of all files in a directory which match a shell pattern.
 ---@param dirname? string -- A directory. (default '.')
 ---@param mask? string -- A shell pattern (see `dir.fnmatch`). If not given, all files are returned. (optional)
----@return string[] -- list of files
+---@return pl.List(string) -- list of files
 ---@nodiscard
 function dir.getfiles(dirname, mask) end
 
 ---return a list of all subdirectories of the directory.
 ---@param dirname? string -- A directory. (default '.')
----@return string[] -- a list of directories
+---@return pl.List(string) -- a list of directories
 ---@nodiscard
 ---
 ---Raises: dir must be a valid directory
@@ -68,5 +68,49 @@ function dir.movefile(src, dest) end
 ---
 ---Raises: root must be a directory
 function dir.walk(root, bottom_up, follow_links) end
+
+---Remove a whole directory tree.
+---Symlinks in the tree will be deleted without following them.
+---@param fullpath string -- A directory path (must be an actual directory, not a symlink)
+---@return true?, string? -- true on success, nil + errormsg on failure
+---Raises: fullpath must be a string
+function dir.rmtree(fullpath) end
+
+---Create a directory path.
+---This will create subdirectories as necessary!
+---@param p string A directory path
+---@return true?, string? -- true on success, nil + errormsg on failure
+---Raises: failure to create
+function dir.makepath (p) end
+
+---Clone a directory tree.
+---Will always try to create a new directory structure
+---if necessary.
+---@param path1 string -- the base path of the source tree
+---@param path2 string -- the new base path for the destination
+---@param file_fun fun(p1: string, p2: string): any -- an optional function to apply on all files
+---@param verbose boolean|fun(...)? -- an optional boolean to control the verbosity of the output. It can also be a logging function that behaves like print()
+---@return true? -- true on success or nil 
+---@return string|string[]? -- message on failure or list of failed directory creations on success
+---@return string[]? -- list of failed file operations on success
+---Raises: path1 and path2 must be strings
+---Usage clonetree('.','../backup',copyfile)
+function dir.clonetree (path1,path2,file_fun,verbose) end
+
+---Return an iterator over all entries in a directory tree
+---@param d string -- a directory
+---@return (fun(): string, boolean) -- iterator giving pathname and mode (true for dir, false otherwise)
+---@return any
+---Raises: d must be a non-empty string
+function dir.dirtree( d )
+end
+
+---Recursively returns all the file starting at 'path'. It can optionally take a shell pattern and
+---only returns files that match 'shell_pattern'. If a pattern is given it will do a case insensitive search.
+---@param start_path string? -- [opt='.'] A directory.
+---@param shell_pattern string? -- [opt='*'] A shell pattern (see `fnmatch`).
+---@return pl.List(string) containing all the files found recursively starting at 'path' and filtered by 'shell_pattern'.
+---Raises: start_path must be a directory
+function dir.getallfiles( start_path, shell_pattern ) end
 
 return dir
