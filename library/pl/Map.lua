@@ -24,13 +24,13 @@ local Map = class()
 
 ---list of keys.
 ---@param self pl.Map
----@return any[]
+---@return pl.List
 ---@nodiscard
 function Map:keys() end
 
 ---list of values.
 ---@param self pl.Map
----@return any[]
+---@return pl.List
 ---@nodiscard
 function Map:values() end
 
