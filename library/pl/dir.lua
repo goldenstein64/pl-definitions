@@ -43,7 +43,7 @@ function dir.getdirectories(dirname) end
 ---copy a file.
 ---@param src string -- source file
 ---@param dest string -- destination file or directory
----@param flag boolean -- true if you want to force the copy (default)
+---@param flag boolean? -- true if you want to force the copy (default)
 ---@return boolean -- operation succeeded
 function dir.copyfile(src, dest, flag) end
 
