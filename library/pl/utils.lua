@@ -236,7 +236,7 @@ function utils.assert_arg(n, val, tp, verify, msg, lev) end
 ---  },
 ---
 ---  some_method = function(self)
----    return self.ERR.OUT_OF_BOUNDS
+---    return nil, self.ERR.OUT_OF_BOUNDS
 ---  end,
 ---}
 ---
@@ -437,8 +437,8 @@ function utils.splitv(s, re, plain, n) end
 ---advance what values will be required, so building a table upfront is
 ---wasteful/impossible.
 ---@generic K, R
----@param func fun(val: K): R -- a function of at least one argument
----@return fun(val: K): R -- a function with at least one argument, which is used as the key.
+---@param func fun(val: K): R -- a function that takes exactly one argument (which later serves as the cache key) and returns a single value
+---@return fun(val: K): R -- a function taking one argument and returning a single value either from the cache or by running the original input function
 ---@nodiscard
 function utils.memoize(func) end
 

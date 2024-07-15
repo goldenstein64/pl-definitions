@@ -249,7 +249,7 @@ function stringx.strip(s, chrs) end
 ---```
 function stringx.splitv(s, re) end
 
----partition the string using first occurance of a delimiter
+---partition the string using first occurrence of a delimiter
 ---@param s string -- the string
 ---@param ch string -- delimiter (match as plain string, no patterns)
 ---@return string -- part before `ch`
@@ -266,7 +266,7 @@ function stringx.splitv(s, re) end
 ---```
 function stringx.partition(s, ch) end
 
----partition the string using last occurance of a delimiter
+---partition the string using last occurrence of a delimiter
 ---@param s string -- the string
 ---@param ch string -- delimiter (match as plain string, no patterns)
 ---@return string -- part before `ch`
@@ -436,8 +436,8 @@ function stringx.shorten(s, w, tail) end
 ---@nodiscard
 function stringx.quote_string(s) end
 
----Python-style formatting operator. Calling text.format_operator() overloads the
----`%` operator for strings to give Python/Ruby style formated output. This is
+---Python-style formatting operator. Calling `text.format_operator()` overloads the
+---`%` operator for strings to give Python/Ruby style formatted output. This is
 ---extended to also do template-like substitution for map-like data.
 ---
 ---Note this goes further than the original, and will allow these cases:

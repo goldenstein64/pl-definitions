@@ -40,7 +40,7 @@ function permute.order_table(a) end
 
 ---an iterator over all permutations of the elements of the given lists.
 ---@param ... any[] -- list-like tables, they are nil-safe if a length-field `n` is provided (see `utils.pack`)
----@return fun(): (integer, ...: any) -- an iterator which provides the next permutation as return values in the same order as the provided lists, preceeded by an index
+---@return fun(): (integer, ...: any) -- an iterator which provides the next permutation as return values in the same order as the provided lists, preceded by an index
 ---@nodiscard
 ---
 ---Usage:

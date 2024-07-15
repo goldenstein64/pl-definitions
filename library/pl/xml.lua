@@ -146,7 +146,7 @@ function XMLNode:up() end
 ---@return pl.XMLNode self -- the current node (`self`)
 function XMLNode:reset() end
 
----Append a child to the currrent Node (ignoring current position).
+---Append a child to the current Node (ignoring current position).
 ---@param child string|pl.XMLNode -- a child node (either text or a document)
 ---@return pl.XMLNode self -- the current node (`self`)
 function XMLNode:add_direct_child(child) end
@@ -167,7 +167,7 @@ function XMLNode:add_direct_child(child) end
 ---```
 function XMLNode:add_child(child) end
 
----Set attributes of a document node. Will add/overwite values, but will not
+---Set attributes of a document node. Will add/overwrite values, but will not
 ---remove existing ones. Operates on the Node itself, will not take position
 ---into account.
 ---@param t { [string]: string } -- a table containing attribute/value pairs
@@ -340,7 +340,7 @@ function xml.is_tag(d) end
 ---@param operation fun(tag_name: string, Node: pl.XMLNode) -- a function which will receive the current tag name and current node.
 function xml.walk(doc, depth_first, operation) end
 
----Parse a well-formed HTML file as a string. Tags are case-insenstive, DOCTYPE
+---Parse a well-formed HTML file as a string. Tags are case-insensitive, DOCTYPE
 ---is ignored, and empty elements can be empty.
 ---@param s string -- the HTML
 ---@return pl.XMLNode

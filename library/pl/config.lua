@@ -37,8 +37,8 @@
 ---```
 local config = {}
 
----like `io.lines()`, but allows for lines to be continued with `"`.
----@param file { read: fun(): string } -- a file-like object (anything where read() returns the next line) or a filename. Defaults to stardard input.
+---like `io.lines()`, but allows for lines to be continued with `\`.
+---@param file { read: fun(): string } -- a file-like object (anything where read() returns the next line) or a filename. Defaults to standard input.
 ---@return (fun(): string)? -- an iterator over the lines, or `nil`
 ---@return string? -- error 'not a file-like object' or 'file is nil'
 ---@nodiscard

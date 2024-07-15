@@ -81,7 +81,7 @@ function app.lua() end
 ---Multiple short args can be combined like so: ( -abcd).
 ---
 ---When specifying the flags_valid parameter, its contents can also contain
----aliasses, to convert short/long flags to the same output name. See the
+---aliases, to convert short/long flags to the same output name. See the
 ---example below.
 ---
 ---Note: if a flag is repeated, the last value wins.
@@ -100,7 +100,7 @@ function app.lua() end
 ---  { "hello", "world" },  -- list of flags taking values
 ---  { "l", "a", "b"})      -- list of allowed flags (value ones will be added)
 ---
------ More complex example using aliasses:
+----- More complex example using aliases:
 ---local valid = {
 ---  long = "l",           -- if 'l' is specified, it is reported as 'long'
 ---  new = { "n", "old" }, -- here both 'n' and 'old' will go into 'new'
