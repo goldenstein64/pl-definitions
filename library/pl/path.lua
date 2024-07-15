@@ -55,30 +55,34 @@ function path.islink(P) end
 
 ---return size of a file.
 ---@param P string -- A file path
----@return integer
+---@return integer? -- size or `nil` on error
+---@return string?, integer? -- error message and error code on error
 function path.getsize(P) end
 
 ---does a path exist?
 ---@param P string -- A file path
----@return boolean
+---@return string|false
 ---@nodiscard
 function path.exists(P) end
 
 ---Return the time of last access as the number of seconds since the epoch.
 ---@param P string -- A file path
----@return integer
+---@return integer? -- time or `nil` on error
+---@return string?, integer? -- error message and error code on error
 ---@nodiscard
 function path.getatime(P) end
 
 ---Return the time of last modification as the number of seconds since the epoch.
 ---@param P string -- A file path
----@return integer
+---@return integer? -- time or nil on error
+---@return string?, integer? -- error message and error code on error
 ---@nodiscard
 function path.getmtime(P) end
 
 ---Return the system's ctime as the number of seconds since the epoch.
 ---@param P string -- A file path
----@return integer
+---@return integer? -- time or nil on error
+---@return string?, integer? -- error message and error code on error
 ---@nodiscard
 function path.getctime(P) end
 
