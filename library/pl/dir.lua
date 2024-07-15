@@ -62,12 +62,12 @@ function dir.movefile(src, dest) end
 ---we go deeper. This means that you can modify the returned list of directories
 ---before continuing. This is a clone of `os.walk` from the Python libraries.
 ---@param root string -- A starting directory
----@param bottom_up? boolean -- `false` if we start listing entries immediately.
+---@param bottom_up? boolean -- `false` if we start listing entries immediately. (default)
 ---@param follow_links? boolean -- follow symbolic links (default `false`)
 ---@return fun(): string -- an iterator returning root,dirs,files
 ---@nodiscard
 ---
----Raises: root must be a directory
+---Raises: `root` must be a directory
 function dir.walk(root, bottom_up, follow_links) end
 
 ---Remove a whole directory tree.
@@ -75,7 +75,7 @@ function dir.walk(root, bottom_up, follow_links) end
 ---@param fullpath string -- A directory path (must be an actual directory, not a symlink)
 ---@return true?, string? -- `true` on success, `nil + errormsg` on failure
 ---
----Raises: fullpath must be a string
+---Raises: `fullpath` must be a string
 function dir.rmtree(fullpath) end
 
 ---Create a directory path.
@@ -120,7 +120,7 @@ function dir.dirtree(d) end
 ---@param shell_pattern string? -- A shell pattern (see `fnmatch`). (default '*')
 ---@return pl.List -- list containing all the files found recursively starting at `path` and filtered by `shell_pattern`
 ---
----Raises: start_path must be a directory
+---Raises: `start_path` must be a directory
 function dir.getallfiles(start_path, shell_pattern) end
 
 return dir
