@@ -97,7 +97,12 @@ function dir.makepath(p) end
 ---@return string[]? -- list of failed file operations on success
 ---
 ---Raises: path1 and path2 must be strings
----Usage: clonetree('.','../backup',copyfile)
+---
+---Usage:
+---
+---```lua
+---clonetree('.', '../backup', copyfile)
+---```
 function dir.clonetree(path1, path2, file_fun, verbose) end
 
 ---Return an iterator over all entries in a directory tree
@@ -110,8 +115,8 @@ function dir.dirtree(d) end
 
 ---Recursively returns all the file starting at 'path'. It can optionally take a shell pattern and
 ---only returns files that match 'shell_pattern'. If a pattern is given it will do a case insensitive search.
----@param start_path string? -- [opt='.'] A directory.
----@param shell_pattern string? -- [opt='*'] A shell pattern (see `fnmatch`).
+---@param start_path string? -- A directory. (default '.')
+---@param shell_pattern string? -- A shell pattern (see `fnmatch`). (default '*')
 ---@return pl.List containing all the files found recursively starting at 'path' and filtered by 'shell_pattern'.
 ---
 ---Raises: start_path must be a directory
