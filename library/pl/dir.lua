@@ -73,6 +73,7 @@ function dir.walk(root, bottom_up, follow_links) end
 ---Symlinks in the tree will be deleted without following them.
 ---@param fullpath string -- A directory path (must be an actual directory, not a symlink)
 ---@return true?, string? -- true on success, nil + errormsg on failure
+---
 ---Raises: fullpath must be a string
 function dir.rmtree(fullpath) end
 
@@ -80,8 +81,9 @@ function dir.rmtree(fullpath) end
 ---This will create subdirectories as necessary!
 ---@param p string A directory path
 ---@return true?, string? -- true on success, nil + errormsg on failure
+---
 ---Raises: failure to create
-function dir.makepath (p) end
+function dir.makepath(p) end
 
 ---Clone a directory tree.
 ---Will always try to create a new directory structure
@@ -90,27 +92,29 @@ function dir.makepath (p) end
 ---@param path2 string -- the new base path for the destination
 ---@param file_fun fun(p1: string, p2: string): any -- an optional function to apply on all files
 ---@param verbose boolean|fun(...)? -- an optional boolean to control the verbosity of the output. It can also be a logging function that behaves like print()
----@return true? -- true on success or nil 
+---@return true? -- true on success or nil
 ---@return string|string[]? -- message on failure or list of failed directory creations on success
 ---@return string[]? -- list of failed file operations on success
+---
 ---Raises: path1 and path2 must be strings
----Usage clonetree('.','../backup',copyfile)
-function dir.clonetree (path1,path2,file_fun,verbose) end
+---Usage: clonetree('.','../backup',copyfile)
+function dir.clonetree(path1, path2, file_fun, verbose) end
 
 ---Return an iterator over all entries in a directory tree
 ---@param d string -- a directory
 ---@return (fun(): string, boolean) -- iterator giving pathname and mode (true for dir, false otherwise)
 ---@return any
+---
 ---Raises: d must be a non-empty string
-function dir.dirtree( d )
-end
+function dir.dirtree(d) end
 
 ---Recursively returns all the file starting at 'path'. It can optionally take a shell pattern and
 ---only returns files that match 'shell_pattern'. If a pattern is given it will do a case insensitive search.
 ---@param start_path string? -- [opt='.'] A directory.
 ---@param shell_pattern string? -- [opt='*'] A shell pattern (see `fnmatch`).
 ---@return pl.List(string) containing all the files found recursively starting at 'path' and filtered by 'shell_pattern'.
+---
 ---Raises: start_path must be a directory
-function dir.getallfiles( start_path, shell_pattern ) end
+function dir.getallfiles(start_path, shell_pattern) end
 
 return dir
