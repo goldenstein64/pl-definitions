@@ -3,7 +3,7 @@
 ---
 ---PL loader, for loading all PL libraries, only on demand.
 ---
----Whenever a module is implicitly accesssed, the table will have the module
+---Whenever a module is implicitly accessed, the table will have the module
 ---automatically injected. (e.g. _ENV.tablex) then that module is dynamically
 ---loaded. The submodules are all brought into the table that is provided as
 ---the argument, or returned in a new table. If a table is provided, that

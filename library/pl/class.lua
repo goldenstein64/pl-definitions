@@ -1,7 +1,7 @@
 ---@meta
 ---# Module [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html)
 ---
----Provides a reuseable and convenient framework for creating classes in Lua.
+---Provides a reusable and convenient framework for creating classes in Lua.
 ---
 ---Two possible notations:
 ---

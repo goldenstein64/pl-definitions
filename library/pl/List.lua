@@ -383,7 +383,7 @@ function List:partition(fun, ...) end
 ---@nodiscard
 function List:iter() end
 
----Create an iterator over a seqence. This captures the Python concept of
+---Create an iterator over a sequence. This captures the Python concept of
 ---'sequence'. For tables, iterates over all values with integer indices.
 ---@param seq pl.Sequence|string|table|file*|(fun(): any) -- a sequence; a string (over characters), a table, a file object (over lines) or an iterator function
 ---@return fun(): any
