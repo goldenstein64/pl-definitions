@@ -21,20 +21,20 @@ function dir.fnmatch(filename, pattern) end
 ---Return a list of all file names within an array which match a pattern.
 ---@param filenames string[] -- An array containing file names.
 ---@param pattern string -- A shell pattern (see `dir.fnmatch`).
----@return pl.List(string) -- List of matching file names.
+---@return pl.List -- List of matching file names.
 ---@nodiscard
 function dir.filter(filenames, pattern) end
 
 ---return a list of all files in a directory which match a shell pattern.
 ---@param dirname? string -- A directory. (default '.')
 ---@param mask? string -- A shell pattern (see `dir.fnmatch`). If not given, all files are returned. (optional)
----@return pl.List(string) -- list of files
+---@return pl.List -- list of files
 ---@nodiscard
 function dir.getfiles(dirname, mask) end
 
 ---return a list of all subdirectories of the directory.
 ---@param dirname? string -- A directory. (default '.')
----@return pl.List(string) -- a list of directories
+---@return pl.List -- a list of directories
 ---@nodiscard
 ---
 ---Raises: dir must be a valid directory
@@ -112,7 +112,7 @@ function dir.dirtree(d) end
 ---only returns files that match 'shell_pattern'. If a pattern is given it will do a case insensitive search.
 ---@param start_path string? -- [opt='.'] A directory.
 ---@param shell_pattern string? -- [opt='*'] A shell pattern (see `fnmatch`).
----@return pl.List(string) containing all the files found recursively starting at 'path' and filtered by 'shell_pattern'.
+---@return pl.List containing all the files found recursively starting at 'path' and filtered by 'shell_pattern'.
 ---
 ---Raises: start_path must be a directory
 function dir.getallfiles(start_path, shell_pattern) end
