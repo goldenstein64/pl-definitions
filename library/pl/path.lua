@@ -60,7 +60,7 @@ function path.getsize(P) end
 
 ---does a path exist?
 ---@param P string -- A file path
----@return boolean
+---@return string|false
 ---@nodiscard
 function path.exists(P) end
 
