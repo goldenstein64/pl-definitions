@@ -54,7 +54,7 @@ function tablex.transform(fun, t, ...) end
 ---@param start integer -- number
 ---@param finish integer -- number
 ---@param step? integer -- make this negative for `start < finish` (default 1)
----@return integer[]
+---@return integer[]|pl.List
 ---@nodiscard
 function tablex.range(start, finish, step) end
 
@@ -632,14 +632,14 @@ function tablex.sortv(t, f) end
 ---return all the keys of a table in arbitrary order.
 ---@generic K
 ---@param t { [K]: any } -- the table
----@return K[] -- A list-like table where the values are the keys of the input table
+---@return K[]|pl.List -- A list-like table where the values are the keys of the input table
 ---@nodiscard
 function tablex.keys(t) end
 
 ---return all the values of the table in arbitrary order
 ---@generic V
 ---@param t { [any]: V } -- the table
----@return V[] -- A list-like table where the values are the values of the input table
+---@return V[]|pl.List -- A list-like table where the values are the values of the input table
 ---@nodiscard
 function tablex.values(t) end
 
