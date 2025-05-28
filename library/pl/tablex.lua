@@ -632,14 +632,14 @@ function tablex.sortv(t, f) end
 ---return all the keys of a table in arbitrary order.
 ---@generic K
 ---@param t { [K]: any } -- the table
----@return pl.List|string[] K -- A list-like table where the values are the keys of the input table
+---@return K[]|pl.List -- A list-like table where the values are the keys of the input table
 ---@nodiscard
 function tablex.keys(t) end
 
 ---return all the values of the table in arbitrary order
 ---@generic V
 ---@param t { [any]: V } -- the table
----@return pl.List|any[] V -- A list-like table where the values are the values of the input table
+---@return V[]|pl.List -- A list-like table where the values are the values of the input table
 ---@nodiscard
 function tablex.values(t) end
 
@@ -696,4 +696,3 @@ function tablex.difference(s1, s2, symm) end
 function tablex.zip(...) end
 
 return tablex
-
