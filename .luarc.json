@@ -1,0 +1,16 @@
+{
+  "runtime": {
+    "version": "Lua 5.4",
+    "plugin": "plugin.lua"
+  },
+  "workspace": {
+    "checkThirdParty": false,
+    "library": [
+      "$USERPROFILE/.vscode/extensions/sumneko.lua-3.15.0-win32-x64/server/script",
+      "${addons}/bee/module/library"
+    ]
+  },
+  "misc": {
+    "parameters": ["--develop=true"]
+  }
+}
