@@ -1,0 +1,50 @@
+name: Publish
+
+on:
+  push:
+    tags: v[0-9]+.[0-9]+.[0-9]+.[0-9]+*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      package_name: lls-addon-penlight
+      spec_revision: 1
+      src_rock_name: ""
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Publish to LuaRocks
+        uses: nvim-neorocks/luarocks-tag-release@v7
+        env:
+          LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
+        with:
+          name: ${{ env.package_name }}
+          dependencies: |
+            lls-addon-luafilesystem
+          copy_directories: ""
+          license: MIT
+          template: ./.github/templates/rockspec.template
+          specrev: ${{ env.spec_revision }}
+
+      - name: Retrieve Source Rock
+        run: |
+          if [[ "${{ github.ref_name }}" =~ ^v(.+)$ ]]; then
+            spec_version="${BASH_REMATCH[1]}-${{ env.spec_revision }}"
+          else
+            echo "rockspec version not found" >&2
+            exit 1
+          fi
+
+          src_rock_name="${{ env.package_name }}-${spec_version}.src.rock"
+          curl --fail --output "${src_rock_name}" "https://luarocks.org/${src_rock_name}"
+          echo "src_rock_name=${src_rock_name}" >> $GITHUB_ENV
+
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.src_rock_name }}
