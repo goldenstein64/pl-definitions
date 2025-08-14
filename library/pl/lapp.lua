@@ -28,7 +28,7 @@
 ---@overload fun(str: string, args?: string[]): { [string]: string }
 local lapp = {
 	---controls whether to dump usage on error. Defaults to `true`
-	show_usage_error = true,--[[@as boolean]]
+	show_usage_error = true --[[@as boolean]],
 }
 
 ---quit this script immediately.
