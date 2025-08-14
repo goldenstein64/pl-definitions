@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [v1.14.0.1]
+
 ### Added
 
 - Add changes from v1.14.0
