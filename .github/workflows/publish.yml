@@ -38,7 +38,7 @@ jobs:
       - name: Write LuaRocks Rockspec
         run: |
           luarocks new_version \
-            --tag ${{ github.ref_name }}
+            --tag ${{ github.ref_name }} \
             ${{ env.package_name }}-release-1.rockspec
 
       - name: Publish to LuaRocks
