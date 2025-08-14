@@ -207,9 +207,9 @@ function path.isabs(P) end
 ---Usage:
 ---
 ---```lua
----path.join("/first","second","third")   -- "/first/second/third"
----path.join("first","second/third")      -- "first/second/third"
----path.join("/first","/second","third")  -- "/second/third"
+---path.join("/first", "second", "third")   -- "/first/second/third"
+---path.join("first", "second/third")      -- "first/second/third"
+---path.join("/first", "/second", "third")  -- "/second/third"
 ---```
 function path.join(p1, p2, ...) end
 

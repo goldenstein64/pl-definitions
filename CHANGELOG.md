@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Add whitespace in a `pl.path` doc comment. Oops!
+
 ## [v1.13.1.3]
 
 ### Fixed
