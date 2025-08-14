@@ -8,15 +8,15 @@
 ---
 ---```lua
 ---> utils.import 'pl.func'
----> ls = List{10,20,30}
+---> ls = List{10, 20, 30}
 ---> = ls:map(_1+1)
----{11,21,31}
+---{11, 21, 31}
 ---```
 ---
 ---They can also be used to *bind* particular arguments of a function.
 ---```lua
----> p = bind(print,'start>',_0)
----> p(10,20,30)
+---> p = bind(print, 'start>', _0)
+---> p(10, 20, 30)
 ---> start>   10   20  30
 ---```
 ---
@@ -97,7 +97,7 @@ func._5 = func.register(empty)
 ---Usage:
 ---
 ---```lua
----(func.bind1(math.max,10))(20) == math.max(10,20)
+---(func.bind1(math.max, 10))(20) == math.max(10, 20)
 ---```
 function func.bind1(fn, p) end
 
@@ -113,11 +113,11 @@ func.curry = func.bind1
 ---Usage:
 ---
 ---```lua
----printf = compose(io.write,string.format)
+---printf = compose(io.write, string.format)
 ---```
 function func.compose(f, g) end
 
----bind the arguments of a function to given values. `func.bind(fn,v,_2)` is equivalent to `func.bind1(fn,v)`.
+---bind the arguments of a function to given values. `func.bind(fn, v, _2)` is equivalent to `func.bind1(fn, v)`.
 ---@param fn function -- a function of at least one argument
 ---@param ... any -- values or placeholder variables
 ---@return function -- a function
@@ -126,9 +126,9 @@ function func.compose(f, g) end
 ---Usage:
 ---
 ---```lua
----(bind(f, func._1, a))(b) == f(a,b)
+---(bind(f, func._1, a))(b) == f(a, b)
 ---
----(bind(f, func._2, func._1))(a,b) == f(b,a)
+---(bind(f, func._2, func._1))(a, b) == f(b, a)
 ---```
 function func.bind(fn, ...) end
 
