@@ -101,7 +101,7 @@ func._5 = func.register(empty)
 ---```
 function func.bind1(fn, p) end
 
----@deprecated
+---@deprecated Use func.bind1 instead.
 func.curry = func.bind1
 
 ---create a function which chains two functions.
