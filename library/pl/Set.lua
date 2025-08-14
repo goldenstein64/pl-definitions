@@ -19,11 +19,11 @@ local class = require("pl.class")
 ---[apple,orange,banana]   [blue,green,orange,red]
 ---> = fruit+colours
 ---[blue,green,apple,red,orange,banana]
+---> = fruit*colours
 ---[orange]
 ---> more_fruits = fruit + 'apricot'
----> = fruit*colours
 --- =  more_fruits, fruit
----banana,apricot,apple,orange]    [banana,apple,orange]
+---[banana,apricot,apple,orange]    [banana,apple,orange]
 ---```
 ---
 ---Dependencies:
