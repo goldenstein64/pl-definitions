@@ -75,7 +75,7 @@ function stringx.endswith(s, suffix) end
 ---Usage:
 ---
 ---```lua
----stringx.join(' ', {1,2,3}) == '1 2 3'
+---stringx.join(' ', {1, 2, 3}) == '1 2 3'
 ---```
 function stringx.join(s, seq) end
 
@@ -455,8 +455,8 @@ function stringx.quote_string(s) end
 ---
 ---```lua
 ---require 'pl.text'.format_operator()
----local out1 = '%s = %5.3f' % {'PI',math.pi}                   --> 'PI = 3.142'
----local out2 = '$name = $value' % {name='dog',value='Pluto'}   --> 'dog = Pluto'
+---local out1 = '%s = %5.3f' % {'PI', math.pi}                   --> 'PI = 3.142'
+---local out2 = '$name = $value' % {name='dog', value='Pluto'}   --> 'dog = Pluto'
 ---```
 function stringx.format_operator() end
 

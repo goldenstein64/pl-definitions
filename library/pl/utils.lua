@@ -191,8 +191,8 @@ utils.stdmt = {
 ---Usage:
 ---
 ---```lua
----local param1 = assert_arg(1,"hello",'table')  --> error: argument 1 expected a 'table', got a 'string'
----local param4 = assert_arg(4,'!@#$%^&*','string',path.isdir,'not a directory')
+---local param1 = assert_arg(1, "hello", 'table')  --> error: argument 1 expected a 'table', got a 'string'
+---local param4 = assert_arg(4, '!@#$%^&*', 'string', path.isdir, 'not a directory')
 ---     --> error: argument 4: '!@#$%^&*' not a directory
 ---```
 function utils.assert_arg(n, val, tp, verify, msg, lev) end

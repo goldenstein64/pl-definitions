@@ -11,8 +11,8 @@
 ---comments and classify keywords as 'keyword' tokens. For example:
 ---
 ---```lua
----> s = 'for i=1,n do'
----> for t,v in lexer.lua(s)  do print(t,v) end
+---> s = 'for i=1, n do'
+---> for t, v in lexer.lua(s)  do print(t, v) end
 ---keyword for
 ---iden    i
 ---=       =

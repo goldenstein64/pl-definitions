@@ -7,23 +7,23 @@ local class = require("pl.class")
 ---
 ---```lua
 ---> Set = require 'pl.Set'
----> = Set{'one','two'} == Set{'two','one'}
+---> = Set{'one', 'two'} == Set{'two', 'one'}
 ---true
----> fruit = Set{'apple','banana','orange'}
+---> fruit = Set{'apple', 'banana', 'orange'}
 ---> = fruit['banana']
 ---true
 ---> = fruit['hazelnut']
 ---nil
----> colours = Set{'red','orange','green','blue'}
----> = fruit,colours
+---> colours = Set{'red', 'orange', 'green', 'blue'}
+---> = fruit, colours
 ---[apple,orange,banana]   [blue,green,orange,red]
 ---> = fruit+colours
 ---[blue,green,apple,red,orange,banana]
+---> = fruit*colours
 ---[orange]
 ---> more_fruits = fruit + 'apricot'
----> = fruit*colours
---- =  more_fruits, fruit
----banana,apricot,apple,orange]    [banana,apple,orange]
+---> = more_fruits, fruit
+---[banana,apricot,apple,orange]    [banana,apple,orange]
 ---```
 ---
 ---Dependencies:

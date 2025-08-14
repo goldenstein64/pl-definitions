@@ -6,7 +6,7 @@
 ---```lua
 ---require 'pl'
 ---local total, n = seq.sum(input.numbers())
----print('average',total/n)
+---print('average', total / n)
 ---```
 ---
 ---*source* is defined as a string or a file-like object (i.e. has a read() method which returns the next line)
@@ -70,7 +70,7 @@ function input.words(f) end
 ---Usage:
 ---
 ---```lua
----for x,y in fields {2,3} do print(x,y) end -- 2nd and 3rd fields from stdin
+---for x, y in fields {2, 3} do print(x, y) end -- 2nd and 3rd fields from stdin
 ---```
 function input.fields(ids, delim, f, opts) end
 

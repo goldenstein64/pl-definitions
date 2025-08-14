@@ -6,12 +6,12 @@
 ---```lua
 ---f = stringio.open(text)
 ---l1 = f:read()  -- read first line
----n,m = f:read ('*n','*n') -- read two numbers
+---n, m = f:read ('*n', '*n') -- read two numbers
 ---for line in f:lines() do print(line) end -- iterate over all lines
 ---f = stringio.create()
 ---f:write('hello')
 ---f:write('dolly')
----assert(f:value(),'hellodolly')
+---assert(f:value(), 'hellodolly')
 ---```
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/03-strings.md.html#File_style_I_O_on_Strings).
@@ -86,7 +86,7 @@ function stringio.create() end
 ---
 ---```lua
 ---f = stringio.open '20 10'
----x,y = f:read ('*n','*n')
+---x, y = f:read ('*n', '*n')
 ---assert(x == 20 and y == 10)
 ---```
 function stringio.open(s) end

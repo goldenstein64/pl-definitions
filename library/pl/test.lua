@@ -6,10 +6,10 @@ local utils = require("pl.utils")
 ---Useful test utilities.
 ---
 ---```lua
----test.asserteq({1,2},{1,2}) -- can compare tables
----test.asserteq(1.2,1.19,0.02) -- compare FP numbers within precision
+---test.asserteq({1, 2}, {1, 2}) -- can compare tables
+---test.asserteq(1.2, 1.19, 0.02) -- compare FP numbers within precision
 ---T = test.tuple -- used for comparing multiple results
----test.asserteq(T(string.find(" me","me")),T(2,3))
+---test.asserteq(T(string.find(" me", "me")), T(2, 3))
 ---```
 ---
 ---Dependencies:

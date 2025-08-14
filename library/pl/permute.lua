@@ -25,7 +25,7 @@ function permute.order_iter(a) end
 ---Usage:
 ---
 ---```lua
----local results = permute.order_table {1,2,3}
+---local results = permute.order_table {1, 2, 3}
 ----- results = {
 -----   { 2, 3, 1 },
 -----   { 3, 2, 1 },

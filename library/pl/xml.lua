@@ -12,7 +12,7 @@
 ---> d = xml.parse "<nodes><node id='1'>alice</node></nodes>"
 ---> = d
 -----> <nodes><node id='1'>alice</node></nodes>
----> = xml.tostring(d,'','  ')
+---> = xml.tostring(d, '', '  ')
 -----> <nodes>
 ----->    <node id='1'>alice</node>
 -----> </nodes>

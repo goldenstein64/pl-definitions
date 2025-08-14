@@ -5,7 +5,7 @@
 ---
 ---```lua
 ---data.read 'test.txt'
----==> {{10,20},{2,5},{40,50},fieldnames={'x','y'},delim=','}
+---==> {{10, 20}, {2, 5}, {40, 50}, fieldnames={'x', 'y'}, delim=','}
 ---```
 ---
 ---Provides a way of creating basic SQL-like queries.
@@ -14,8 +14,8 @@
 ---require 'pl'
 ---local d = data.read('xyz.txt')
 ---local q = d:select('x,y,z where x > 3 and z < 2 sort by y')
----for x,y,z in q do
----    print(x,y,z)
+---for x, y, z in q do
+---    print(x, y, z)
 ---end
 ---```
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/06-data.md.html#Reading_Columnar_Data)

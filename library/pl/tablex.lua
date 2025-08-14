@@ -54,7 +54,7 @@ function tablex.transform(fun, t, ...) end
 ---@param start integer -- number
 ---@param finish integer -- number
 ---@param step? integer -- make this negative for `start < finish` (default 1)
----@return integer[]
+---@return integer[]|pl.List
 ---@nodiscard
 function tablex.range(start, finish, step) end
 
@@ -301,7 +301,7 @@ function tablex.find(t, val, idx) end
 ---Usage:
 ---
 ---```lua
----tablex.rfind({10,10,10},10) == 3
+---tablex.rfind({10, 10, 10}, 10) == 3
 ---```
 function tablex.rfind(t, val, idx) end
 
@@ -508,7 +508,7 @@ function tablex.mapn(fun, ...) end
 ---Usage:
 ---
 ---```lua
----mapn(function(x,y,z) return x+y+z end, {1, 2, 3}, {10, 20, 30}, {100, 200, 300}) == {111, 222, 333}
+---mapn(function(x, y, z) return x+y+z end, {1, 2, 3}, {10, 20, 30}, {100, 200, 300}) == {111, 222, 333}
 ---
 ---mapn(math.max, {1, 20, 300}, {10, 2, 3}, {100, 200, 100}) == {100, 200, 300}
 ---```
@@ -535,9 +535,9 @@ function tablex.pairmap(fun, t, ...) end
 ---Usage:
 ---
 ---```lua
----pairmap(function(k,v) return v end,{fred=10,bonzo=20}) == {10,20} or {20,10}
+---pairmap(function(k, v) return v end, {fred=10, bonzo=20}) == {10, 20} or {20, 10}
 ---
----pairmap(function(k, v) return {k, v}, k end,{one=1, two=2}) == {one={'one', 1}, two={'two', 2}}
+---pairmap(function(k, v) return {k, v}, k end, {one=1, two=2}) == {one={'one', 1}, two={'two', 2}}
 ---```
 function tablex.pairmap(fun, t, ...) end
 
@@ -632,20 +632,20 @@ function tablex.sortv(t, f) end
 ---return all the keys of a table in arbitrary order.
 ---@generic K
 ---@param t { [K]: any } -- the table
----@return K[] -- A list-like table where the values are the keys of the input table
+---@return K[]|pl.List -- A list-like table where the values are the keys of the input table
 ---@nodiscard
 function tablex.keys(t) end
 
 ---return all the values of the table in arbitrary order
 ---@generic V
 ---@param t { [any]: V } -- the table
----@return V[] -- A list-like table where the values are the values of the input table
+---@return V[]|pl.List -- A list-like table where the values are the values of the input table
 ---@nodiscard
 function tablex.values(t) end
 
 ---Extract a range from a table, like `string.sub`. If first or last are
----negative then they are relative to the end of the list eg. `sub(t,-2)` gives
----last 2 entries in a list, and `sub(t,-4,-2)` gives from -4th to -2nd
+---negative then they are relative to the end of the list eg. `sub(t, -2)` gives
+---last 2 entries in a list, and `sub(t, -4, -2)` gives from -4th to -2nd
 ---@generic T
 ---@param t T[] -- a list-like table
 ---@param first integer -- An index

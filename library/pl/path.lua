@@ -18,13 +18,13 @@ local lfs = require("lfs")
 --- [`lfs`](http://stevedonovan.github.io/lua-stdlibs/modules/lfs.html)
 local path = {
 	---are we running Windows?
-	is_windows = true or false,--[[@as boolean]]
+	is_windows = nil --[[@as boolean]],
 
 	---path separator for this platform.
-	sep = "/" or "\\",--[[@as string]]
+	sep = nil --[[@as string]],
 
 	---separator for PATH for this platform
-	dirsep = ";" or ";;",--[[@as string]]
+	dirsep = nil --[[@as string]],
 }
 
 path.dir = lfs.dir

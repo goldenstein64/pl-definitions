@@ -13,7 +13,7 @@
 ---Example:
 ---
 ---```lua
----#  for i = 1,3 do
+---#  for i = 1, 3 do
 ---   $(i) Hello, Word!
 ---#  end
 ---===>
@@ -26,7 +26,7 @@
 ---output language.
 ---
 ---```lua
----> for _,n in pairs{'one','two','three'} do
+---> for _, n in pairs{'one', 'two', 'three'} do
 ---static int l_${n} (luaState *state);
 ---> end
 ---```
