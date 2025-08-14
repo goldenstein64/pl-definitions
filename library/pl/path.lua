@@ -250,7 +250,8 @@ function path.relpath(P, start) end
 ---isn't set, then `USERPROFILE` is used in preference to `HOMEDRIVE` `HOMEPATH`.
 ---This is guaranteed to be writeable on all versions of Windows.
 ---@param P string -- A file path
----@return string
+---@return string|nil path -- The file path with the `~` prefix substituted, or the input path if it had no prefix.
+---@return string|nil err -- Error message if the environment variables were unavailable.
 ---@nodiscard
 function path.expanduser(P) end
 

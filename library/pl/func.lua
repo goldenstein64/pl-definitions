@@ -89,9 +89,9 @@ func._5 = func.register(empty)
 
 ---bind the first parameter of the function to a value.
 ---@generic T
----@param fn fun(p: T, ...: any): any -- a function of one or more arguments
+---@param fn fun(p: T, ...: any): (...: any) -- a function of one or more arguments
 ---@param p T -- a value
----@return fun(...: any): any -- a function
+---@return fun(...: any): (...: any) -- a function
 ---@nodiscard
 ---
 ---Usage:
@@ -104,18 +104,20 @@ function func.bind1(fn, p) end
 ---@deprecated Use func.bind1 instead.
 func.curry = func.bind1
 
----create a function which chains two functions.
+---create a function which chains multiple functions.
 ---@param f function -- a function of at least one argument
 ---@param g function -- a function of at least one argument
----@return function fog -- a function
+---@param ... function -- additional functions to compose
+---@return function -- a function
 ---@nodiscard
 ---
 ---Usage:
 ---
 ---```lua
 ---printf = compose(io.write, string.format)
+---printf = compose(io.write, string.lower, string.format)
 ---```
-function func.compose(f, g) end
+function func.compose(f, g, ...) end
 
 ---bind the arguments of a function to given values. `func.bind(fn, v, _2)` is equivalent to `func.bind1(fn, v)`.
 ---@param fn function -- a function of at least one argument

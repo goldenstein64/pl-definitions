@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- Add changes from v1.14.0
+  - `pl.func.compose` can take more than two arguments
+  - `pl.path.expanduser` can fail and return `nil, string`
+
 ## [v1.13.1.4]
 
 ### Changed
