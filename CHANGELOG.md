@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [v1.13.1.4]
+
 ### Changed
 
 - Add whitespace in a `pl.path` doc comment. Oops!
