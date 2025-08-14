@@ -9,7 +9,7 @@
 ---The size of the arrays is determined by using the length operator # hence the
 ---module is not nil safe, and the usual precautions apply.
 ---
----Note: all functions taking i1,j1,i2,j2 as arguments will normalize the arguments using `array2d.default_range`.
+---Note: all functions taking `i1, j1, i2, j2` as arguments will normalize the arguments using `array2d.default_range`.
 ---
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
@@ -122,7 +122,7 @@ function array2d.product(f, t1, t2) end
 ---Usage:
 ---
 ---```lua
----product('..',{1,2},{'a','b'}) == {{'1a','2a'},{'1b','2b'}}
+---product('..', {1, 2}, {'a', 'b'}) == {{'1a', '2a'}, {'1b', '2b'}}
 ---```
 function array2d.product(f, t1, t2) end
 
@@ -135,7 +135,7 @@ function array2d.product(f, t1, t2) end
 ---Usage:
 ---
 ---```lua
----flatten {{1,2},{3,4},{5,6}} == {1,2,3,4,5,6}
+---flatten {{1, 2}, {3, 4}, {5, 6}} == {1, 2, 3, 4, 5, 6}
 ---```
 function array2d.flatten(t) end
 
@@ -294,7 +294,7 @@ function array2d.move(dest, di, dj, src, i1, j1, i2, j2) end
 ---@param j1? integer -- start col (default 1)
 ---@param i2? integer -- end row (default N)
 ---@param j2? integer -- end col (default M)
----@return (fun(): integer, integer, T)|(fun(): T) -- returns either value or i,j,value depending on the value of indices
+---@return (fun(): integer, integer, T)|(fun(): T) -- returns either value or i, j, value depending on the value of indices
 ---@nodiscard
 function array2d.iter(a, indices, i1, j1, i2, j2) end
 
@@ -317,7 +317,7 @@ function array2d.rows(a) end
 ---@generic T
 ---@param rows integer -- number of rows
 ---@param cols integer -- number of cols
----@param val (fun(i: integer, j: integer): T)|T -- initial value; if it's a function then use `val(i,j)`
+---@param val (fun(i: integer, j: integer): T)|T -- initial value; if it's a function then use `val(i, j)`
 ---@return T[][] -- new 2d array
 ---@nodiscard
 function array2d.new(rows, cols, val) end

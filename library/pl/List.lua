@@ -162,7 +162,7 @@ function List:minmax() end
 
 ---Emulate list slicing, like `list[first:last]` in Python. If `first` or
 ---`last` are negative then they are relative to the end of the list eg.
----`slice(-2)` gives last 2 entries in a list, and `slice(-4,-2)` gives from
+---`slice(-2)` gives last 2 entries in a list, and `slice(-4, -2)` gives from
 ----4th to -2nd
 ---@param self pl.List
 ---@param first integer -- An index
@@ -392,9 +392,9 @@ function List:iter() end
 ---Usage:
 ---
 ---```lua
----for x in iterate {1,10,22,55} do io.write(x,',') end --> 1,10,22,55
+---for x in iterate {1, 10, 22, 55} do io.write(x, ',') end --> 1,10,22,55
 ---
----for ch in iterate 'help' do io.write(ch,' ') end --> h e l p
+---for ch in iterate 'help' do io.write(ch, ' ') end --> h e l p
 ---```
 function List.iterate(seq) end
 

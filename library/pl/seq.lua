@@ -130,7 +130,7 @@ function seq.sum(iter, fn) end
 ---```lua
 ---seq.copy(seq.list(ls)) == ls
 ---
----seq.copy(seq.list {1,2,3}) == List{1,2,3}
+---seq.copy(seq.list {1, 2, 3}) == List{1, 2, 3}
 ---```
 function seq.copy(iter) end
 
@@ -145,7 +145,7 @@ function seq.copy(iter) end
 ---Usage:
 ---
 ---```lua
----seq.copy2(ipairs{10,20,30}) == {{1,10},{2,20},{3,30}}
+---seq.copy2(ipairs{10, 20, 30}) == {{1, 10}, {2, 20}, {3, 30}}
 ---```
 function seq.copy2(iter, i1, i2) end
 
@@ -178,7 +178,7 @@ function seq.random(n, l, u) end
 ---return an iterator to the sorted elements of a sequence.
 ---@generic T
 ---@param iter fun(): T|pl.Sequence -- a sequence
----@param comp fun(a: T, b: T): boolean -- an optional comparison function (comp(x,y) is true if x < y)
+---@param comp fun(a: T, b: T): boolean -- an optional comparison function (comp(x, y) is true if x < y)
 ---@return fun(): T
 ---@nodiscard
 function seq.sort(iter, comp) end
@@ -193,7 +193,7 @@ function seq.sort(iter, comp) end
 ---Usage:
 ---
 ---```lua
----for x,y in seq.zip(ls1,ls2) do ... end
+---for x, y in seq.zip(ls1, ls2) do ... end
 ---```
 function seq.zip(iter1, iter2) end
 
@@ -307,9 +307,9 @@ function seq.reduce(fn, iter, initval) end
 ---Usage:
 ---
 ---```lua
----seq.reduce(operator.add,seq.list{1,2,3,4}) == 10
+---seq.reduce(operator.add, seq.list{1, 2, 3, 4}) == 10
 ---
----seq.reduce('-',{1,2,3,4,5}) == -13
+---seq.reduce('-', {1, 2, 3, 4, 5}) == -13
 ---```
 function seq.reduce(fn, iter, initval) end
 
@@ -347,7 +347,7 @@ function seq.skip(iter, n) end
 ---`enum(copy(ls))` is a roundabout way of saying `ipairs(ls)`.
 ---@generic T1, T2
 ---@param iter T1[]|fun(): (T1, T2)|pl.Sequence -- a single or double valued sequence
----@return fun(): (integer, T1, T2) -- sequence of (i,v), i = 1..n and v is from iter.
+---@return fun(): (integer, T1, T2) -- sequence of (i, v), i = 1..n and v is from iter.
 ---@nodiscard
 function seq.enum(iter) end
 
@@ -380,8 +380,8 @@ function seq.mapmethod(iter, name, arg1) end
 ---@nodiscard
 function seq.mapmethod(iter, name) end
 
----returns a sequence of (last,current) values from another sequence.
----This will return S(i-1),S(i) if given S(i)
+---returns a sequence of (last, current) values from another sequence.
+---This will return S(i-1), S(i) if given S(i)
 ---@generic T
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence
 ---@nodiscard
@@ -449,7 +449,7 @@ function Sequence:sum(fn) end
 ---```lua
 ---seq.copy(seq.list(ls)) == ls
 ---
----seq.copy(seq.list {1,2,3}) == List{1,2,3}
+---seq.copy(seq.list {1, 2, 3}) == List{1, 2, 3}
 ---```
 function Sequence:copy() end
 
@@ -464,7 +464,7 @@ function Sequence:copy() end
 ---Usage:
 ---
 ---```lua
----seq(ipairs{}):copy2({10,20,30}, 0) == {{1,10},{2,20},{3,30}}
+---seq(ipairs{}):copy2({10, 20, 30}, 0) == {{1, 10}, {2, 20}, {3, 30}}
 ---```
 function Sequence:copy2(i1, i2) end
 
@@ -478,7 +478,7 @@ function Sequence:copy_tuples() end
 ---return an iterator to the sorted elements of a sequence.
 ---@generic T
 ---@param self pl.Sequence
----@param comp fun(a: T, b: T): boolean -- an optional comparison function (comp(x,y) is true if x < y)
+---@param comp fun(a: T, b: T): boolean -- an optional comparison function (comp(x, y) is true if x < y)
 ---@return pl.Sequence
 ---@nodiscard
 function Sequence:sort(comp) end
@@ -493,7 +493,7 @@ function Sequence:sort(comp) end
 ---Usage:
 ---
 ---```lua
----for x,y in seq.zip(ls1,ls2) do ... end
+---for x, y in seq.zip(ls1, ls2) do ... end
 ---```
 function Sequence:zip(iter2) end
 
@@ -614,9 +614,9 @@ function Sequence:filter(pred) end
 ---Usage:
 ---
 ---```lua
----seq.reduce(operator.add,seq.list{1,2,3,4}) == 10
+---seq.reduce(operator.add, seq.list{1, 2, 3, 4}) == 10
 ---
----seq.reduce('-',{1,2,3,4,5}) == -13
+---seq.reduce('-', {1, 2, 3, 4, 5}) == -13
 ---```
 function Sequence:reduce(fn, initval) end
 
@@ -685,8 +685,8 @@ function Sequence:mapmethod(name, arg1) end
 ---@nodiscard
 function Sequence:mapmethod(name) end
 
----returns a sequence of (last,current) values from another sequence.
----This will return S(i-1),S(i) if given S(i)
+---returns a sequence of (last, current) values from another sequence.
+---This will return S(i-1), S(i) if given S(i)
 ---@generic T
 ---@param self pl.Sequence
 ---@return pl.Sequence

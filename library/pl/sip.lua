@@ -6,10 +6,10 @@
 ---SIP patterns start with '$', then a one-letter type, and then an optional variable in curly braces.
 ---
 ---```lua
----sip.match('$v=$q','name="dolly"',res)
----==> res=={'name','dolly'}
----sip.match('($q{first},$q{second})','("john","smith")',res)
----==> res=={second='smith',first='john'}
+---sip.match('$v=$q', 'name="dolly"', res)
+---==> res=={'name', 'dolly'}
+---sip.match('($q{first},$q{second})', '("john","smith")', res)
+---==> res=={second='smith', first='john'}
 ---```
 ---
 ---Type names:
@@ -76,7 +76,7 @@ function sip.pattern(spec, fun) end
 
 ---enter a loop which applies all registered matches to the input file.
 ---@param f file* -- a file-like object
----@param matches ({[1]: string, [2]: fun(...: string)}|{[1]: string, [2]: fun(matches: {[string]: string })})[] -- optional list of {spec,fun} pairs, as for pattern above.
+---@param matches ({[1]: string, [2]: fun(...: string)}|{[1]: string, [2]: fun(matches: {[string]: string })})[] -- optional list of `{spec, fun}` pairs.
 function sip.read(f, matches) end
 
 return sip

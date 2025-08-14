@@ -64,7 +64,7 @@ function dir.movefile(src, dest) end
 ---@param root string -- A starting directory
 ---@param bottom_up? boolean -- `false` if we start listing entries immediately. (default)
 ---@param follow_links? boolean -- follow symbolic links (default `false`)
----@return fun(): string -- an iterator returning root,dirs,files
+---@return fun(): string -- an iterator returning root, dirs, files
 ---@nodiscard
 ---
 ---Raises: `root` must be a directory
