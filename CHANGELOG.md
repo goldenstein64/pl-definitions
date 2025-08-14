@@ -5,6 +5,7 @@
 ### Changed
 
 - Add whitespace in a `pl.path` doc comment. Oops!
+- Add comment on deprecation of `pl.func.curry`
 
 ## [v1.13.1.3]
 
