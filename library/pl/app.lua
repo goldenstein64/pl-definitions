@@ -8,6 +8,7 @@
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html),
 --- [`pl.path`](https://lunarmodules.github.io/Penlight/libraries/pl.path.html)
+---@class pl.app
 local app = {}
 
 ---Return the name of the current script running.

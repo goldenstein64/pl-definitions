@@ -10,6 +10,7 @@
 ---
 ---Operator strings like `'>'` and `'{}'` can be passed to most Penlight functions
 ---expecting a function argument.
+---@class pl.operator
 local operator = {}
 
 ---apply function to some arguments `()`

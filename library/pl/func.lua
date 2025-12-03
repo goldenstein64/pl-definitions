@@ -25,6 +25,7 @@
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#)
+---@class pl.func
 local func = {}
 
 ---@class pl.PlaceholderExpression

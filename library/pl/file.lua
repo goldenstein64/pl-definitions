@@ -15,6 +15,7 @@ local path = require("pl.path")
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.dir`](https://lunarmodules.github.io/Penlight/libraries/pl.dir.html#),
 --- [`pl.path`](https://lunarmodules.github.io/Penlight/libraries/pl.path.html#)
+---@class pl.file
 local file = {
 	read = utils.readfile,
 	write = utils.writefile,

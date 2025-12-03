@@ -16,6 +16,7 @@ local lfs = require("lfs")
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`lfs`](http://stevedonovan.github.io/lua-stdlibs/modules/lfs.html)
+---@class pl.path
 local path = {
 	---are we running Windows?
 	is_windows = nil --[[@as boolean]],

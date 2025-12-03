@@ -15,6 +15,7 @@
 ---```
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/03-strings.md.html#File_style_I_O_on_Strings).
+---@class pl.stringio
 local stringio = {}
 
 ---@class pl.StringIOWriter

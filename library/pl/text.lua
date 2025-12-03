@@ -17,6 +17,7 @@
 --- [`pl.stringx`](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#),
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
 ---@deprecated -- use pl.stringx
+---@class pl.text: pl.stringx
 local text = require("pl.stringx")
 
 return text

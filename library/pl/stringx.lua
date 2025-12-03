@@ -12,6 +12,7 @@
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
 --- [`pl.types`](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#)
+---@class pl.stringx
 local stringx = {}
 
 ---does `s` only contain alphabetic characters?

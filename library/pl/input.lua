@@ -15,6 +15,7 @@
 ---
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
+---@class pl.input
 local input = {}
 
 ---create an iterator over all tokens. based on `allwords()` from [PiL, 7.1](https://www.lua.org/pil/7.1.html)

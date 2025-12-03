@@ -11,6 +11,7 @@
 --- [pl.lexer](https://lunarmodules.github.io/Penlight/libraries/pl.lexer.html#),
 --- [pl.stringx](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
+---@class pl.pretty
 ---@overload fun(...)
 local pretty = {}
 

@@ -35,6 +35,7 @@
 ---
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
+---@class pl.template
 local template = {}
 
 ---expand the template using the specified environment. This function will

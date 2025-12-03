@@ -15,6 +15,7 @@
 ---If the global `PENLIGHT_NO_GLOBAL_STRICT` is defined, then this module won't
 ---make the global environment strict - if you just want to explicitly set
 ---table strictness.
+---@class pl.strict
 local strict = {}
 
 ---@param name? string

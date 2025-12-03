@@ -2,6 +2,7 @@
 ---# Module [`pl.url`](https://lunarmodules.github.io/Penlight/libraries/pl.url.html)
 ---
 ---Python-style URL quoting library.
+---@class pl.url
 local url = {}
 
 ---Quote the url, replacing special characters using the '%xx' escape.

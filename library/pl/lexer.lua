@@ -23,6 +23,7 @@
 ---```
 ---
 ---See the Guide for further [discussion](https://lunarmodules.github.io/Penlight/manual/06-data.md.html#Lexical_Scanning)
+---@class pl.lexer
 local lexer = {}
 
 ---@alias pl.TokenStream fun(): (string, string)
