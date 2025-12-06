@@ -18,6 +18,7 @@ local utils = require("pl.utils")
 --- [pl.pretty](https://lunarmodules.github.io/Penlight/libraries/pl.pretty.html#),
 --- [pl.path](https://lunarmodules.github.io/Penlight/libraries/pl.path.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
+---@class pl.test
 local test = {}
 
 ---error handling for test results. By default, this writes to stderr and

@@ -8,6 +8,7 @@
 --- [`pl.path`](https://lunarmodules.github.io/Penlight/libraries/pl.path.html)
 ---
 ---Soft Dependencies: `alien`, `ffi` (either are used on Windows for copying/moving files)
+---@class pl.dir
 local dir = {}
 
 ---Test whether a file name matches a shell pattern. Both parameters are

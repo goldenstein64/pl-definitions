@@ -8,6 +8,7 @@
 ---Dependencies:
 --- [`pl.compat`](https://lunarmodules.github.io/Penlight/libraries/pl.compat.html#),
 --- all exported fields and functions from [`pl.compat`](https://lunarmodules.github.io/Penlight/libraries/pl.compat.html#) are also available in this module.
+---@class pl.utils
 local utils = {}
 
 ---pack an argument list into a table.

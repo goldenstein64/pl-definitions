@@ -9,6 +9,7 @@
 --- [pl.utils](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [pl.types](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
+---@class pl.seq
 ---@overload fun(iter: any[]|fun(): any|pl.Sequence): pl.Sequence
 local seq = {}
 

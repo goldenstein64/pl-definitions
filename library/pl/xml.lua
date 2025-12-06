@@ -35,6 +35,7 @@
 ---
 ---Soft Dependencies:
 --- `lxp.lom` (fallback is to use basic Lua parser)
+---@class pl.xml
 ---@deprecated
 local xml = {}
 

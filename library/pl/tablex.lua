@@ -8,6 +8,7 @@
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.types`](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#)
+---@class pl.tablex
 local tablex = {}
 
 ---total number of elements in this table. Note that this is distinct from
