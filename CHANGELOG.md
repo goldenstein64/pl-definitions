@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- Add `@class` annotations for the rest of the sub-modules
+- Add `@class pl` annotation: holds all sub-modules and classes accessible from `require("pl.import_into")()`
+
 ## [v1.14.0.1]
 
 ### Added
