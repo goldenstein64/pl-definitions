@@ -73,7 +73,7 @@ function utils.array_tostring(t, temp, tostr) end
 ---is the object of the specified type? If the type is a string, then use type,
 ---otherwise compare with metatable
 ---@param obj any -- An object to check
----@param tp type|table -- String or metatable of what type it should be
+---@param tp string|type|table -- String or metatable of what type it should be
 ---@return boolean
 ---@nodiscard
 ---
