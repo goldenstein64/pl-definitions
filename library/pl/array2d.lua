@@ -15,6 +15,7 @@
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
 --- [`pl.types`](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#)
+---@class pl.array2d
 local array2d = {}
 
 ---return the row and column size. Size is calculated using the Lua length

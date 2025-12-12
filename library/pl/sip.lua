@@ -23,6 +23,7 @@
 ---```
 ---
 ---See [the Guide](https://lunarmodules.github.io/Penlight/manual/08-additional.md.html#Simple_Input_Patterns)
+---@class pl.sip
 local sip = {}
 
 ---@alias pl.SipOptions { at_start: boolean? }

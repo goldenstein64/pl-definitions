@@ -9,6 +9,7 @@
 ---All other functions are exported as usual in the returned module table.
 ---
 ---NOTE: everything in this module is also available in pl.utils.
+---@class pl.compat
 local compat = {
 
 	---boolean flag this is Lua 5.1 (or LuaJIT).

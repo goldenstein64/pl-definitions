@@ -35,6 +35,7 @@
 ---  read_timeout = 10
 ---}
 ---```
+---@class pl.config
 local config = {}
 
 ---like `io.lines()`, but allows for lines to be continued with `\`.

@@ -23,6 +23,7 @@
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.array2d`](https://lunarmodules.github.io/Penlight/libraries/pl.array2d.html) (fallback methods)
+---@class pl.data
 local data = {}
 
 ---@class pl.Data

@@ -20,6 +20,7 @@
 ---print(lb.match_string([["test\"123" .. "more"]]))
 -----> "test\"123"     12
 ---```
+---@class pl.luabalanced
 local luabalanced = {}
 
 ---Match Lua string in string `s` starting at position `pos`.

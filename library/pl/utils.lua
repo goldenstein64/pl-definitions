@@ -8,6 +8,7 @@
 ---Dependencies:
 --- [`pl.compat`](https://lunarmodules.github.io/Penlight/libraries/pl.compat.html#),
 --- all exported fields and functions from [`pl.compat`](https://lunarmodules.github.io/Penlight/libraries/pl.compat.html#) are also available in this module.
+---@class pl.utils
 local utils = {}
 
 ---pack an argument list into a table.
@@ -72,7 +73,7 @@ function utils.array_tostring(t, temp, tostr) end
 ---is the object of the specified type? If the type is a string, then use type,
 ---otherwise compare with metatable
 ---@param obj any -- An object to check
----@param tp string|table -- String or metatable of what type it should be
+---@param tp string|type|table -- String or metatable of what type it should be
 ---@return boolean
 ---@nodiscard
 ---

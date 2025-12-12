@@ -26,6 +26,7 @@
 ---Dependencies:
 --- [`pl.sip`](https://lunarmodules.github.io/Penlight/libraries/pl.sip.html#)
 ---@overload fun(str: string, args?: string[]): { [string]: string }
+---@class pl.lapp
 local lapp = {
 	---controls whether to dump usage on error. Defaults to `true`
 	show_usage_error = true --[[@as boolean]],

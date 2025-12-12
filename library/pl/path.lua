@@ -16,6 +16,7 @@ local lfs = require("lfs")
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`lfs`](http://stevedonovan.github.io/lua-stdlibs/modules/lfs.html)
+---@class pl.path
 local path = {
 	---are we running Windows?
 	is_windows = nil --[[@as boolean]],
@@ -207,9 +208,9 @@ function path.isabs(P) end
 ---Usage:
 ---
 ---```lua
----path.join("/first","second","third")   -- "/first/second/third"
----path.join("first","second/third")      -- "first/second/third"
----path.join("/first","/second","third")  -- "/second/third"
+---path.join("/first", "second", "third")   -- "/first/second/third"
+---path.join("first", "second/third")      -- "first/second/third"
+---path.join("/first", "/second", "third")  -- "/second/third"
 ---```
 function path.join(p1, p2, ...) end
 
@@ -250,7 +251,8 @@ function path.relpath(P, start) end
 ---isn't set, then `USERPROFILE` is used in preference to `HOMEDRIVE` `HOMEPATH`.
 ---This is guaranteed to be writeable on all versions of Windows.
 ---@param P string -- A file path
----@return string
+---@return string|nil path -- The file path with the `~` prefix substituted, or the input path if it had no prefix.
+---@return string|nil err -- Error message if the environment variables were unavailable.
 ---@nodiscard
 function path.expanduser(P) end
 

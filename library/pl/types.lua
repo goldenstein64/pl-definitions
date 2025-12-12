@@ -7,6 +7,7 @@ local utils = require("pl.utils")
 ---
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html)
+---@class pl.types
 local types = {}
 
 ---is the object either a function or a callable object?

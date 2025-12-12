@@ -6,6 +6,7 @@
 ---Dependencies:
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#),
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#)
+---@class pl.permute
 local permute = {}
 
 ---an iterator over all order-permutations of the elements of a list. Please
