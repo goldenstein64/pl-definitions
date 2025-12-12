@@ -6,7 +6,7 @@
 
 - Add `@class` annotations for the rest of the sub-modules
 - Add `@class pl` annotation: holds all sub-modules and classes accessible from `require("pl.import_into")()`
-- Add string auto-completes for `tp` argument of `pl.util.is_type(obj, tp)`
+- Add string auto-completes for `tp` argument of `pl.utils.is_type(obj, tp)`
 
 ## [v1.14.0.1]
 
