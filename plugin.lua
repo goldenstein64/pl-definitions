@@ -15,7 +15,7 @@ local function compileState(uri, text)
 	local version = config.get(uri, "Lua.runtime.version")
 
 	local state = compile(text, "Lua", version, options)
-	luadoc(state)
+	luadoc.luadoc(state)
 
 	return state
 end
