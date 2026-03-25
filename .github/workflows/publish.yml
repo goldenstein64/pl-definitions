@@ -33,7 +33,7 @@ jobs:
       - name: Set up LuaRocks
         uses: leafo/gh-actions-luarocks@v6
         with:
-          luaRocksVersion: "3.12.2"
+          luaRocksVersion: "3.13.0"
 
       - name: Write LuaRocks Rockspec
         run: |
