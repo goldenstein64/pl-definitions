@@ -22,13 +22,13 @@ local class = require("pl.class")
 ---@overload fun(t?: pl.Map|pl.Set): pl.Map
 local Map = class()
 
----list of keys.
+---return a List of all keys.
 ---@param self pl.Map
 ---@return pl.List
 ---@nodiscard
 function Map:keys() end
 
----list of values.
+---return a List of all values.
 ---@param self pl.Map
 ---@return pl.List
 ---@nodiscard
@@ -40,7 +40,7 @@ function Map:values() end
 ---@nodiscard
 function Map:iter() end
 
----return a List of all key-value pairs, sorted by the keys.
+---return a List of all key-value pairs, sorted by the keys in ascending order.
 ---@param self pl.Map
 ---@return pl.List
 ---@nodiscard
