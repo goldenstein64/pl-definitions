@@ -12,7 +12,13 @@ Some features are missing simply because I don't know how to lint them. The most
 
 ## Usage
 
-The definition files can be installed using the [addon manager](https://github.com/LuaLS/lua-language-server/wiki/Addons#vs-code-addon-manager), under "Penlight".
+Definition files can be installed via [luarocks](https://luarocks.org):
+
+```sh
+luarocks install lls-addon-penlight
+```
+
+or by using the [addon manager](https://github.com/LuaLS/lua-language-server/wiki/Addons#vs-code-addon-manager), under "Penlight".
 
 For manual installation, add these settings to your `settings.json` file.
 
@@ -25,9 +31,10 @@ For manual installation, add these settings to your `settings.json` file.
     // e.g. on Windows, "$USERPROFILE/Documents/LuaEnvironments/penlight"
 
     // this library uses luafilesystem as a dependency
-    "${3rd}/lfs"
+    // See: https://github.com/goldenstein64/lls-addon-luafilesystem
+    "path/to/lls-addon-luafilesystem",
   ],
-  "Lua.runtime.plugin": "path/to/this/repo/plugin.lua"
+  "Lua.runtime.plugin": "path/to/this/repo/plugin.lua",
 }
 ```
 
