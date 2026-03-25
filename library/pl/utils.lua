@@ -355,6 +355,16 @@ function utils.writefile(filename, str, is_bin) end
 ---Raises: error if `filename` is not a string
 function utils.readlines(filename) end
 
+---Execute a shell command.
+---
+---This function is a copy of [compat.execute](lua://pl.compat.execute).
+---
+---@see pl.compat.execute
+---@param cmd string -- a shell command
+---@return boolean -- true if successful
+---@return integer -- actual return code
+function utils.execute(cmd) end
+
 ---execute a shell command and return the output. This function redirects the
 ---output to tempfiles and returns the content of those files.
 ---@param cmd string -- a shell command
