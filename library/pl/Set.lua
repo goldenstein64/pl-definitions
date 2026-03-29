@@ -38,9 +38,9 @@ local class = require("pl.class")
 local Set = class()
 
 ---@class pl.Set
----@operator add(any): pl.Set
+---@operator add(pl.Set): pl.Set
 ---@operator mul(pl.Set): pl.Set
----@operator sub(any): pl.Set
+---@operator sub(pl.Set): pl.Set
 ---@operator pow(pl.Set): pl.Set
 ---@operator len: integer
 
