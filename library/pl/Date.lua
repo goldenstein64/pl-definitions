@@ -14,6 +14,7 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#)
 --- [`pl.stringx`](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#)
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
+---@deprecated -- use a more specialized library instead
 ---@class pl.Date : pl.Class
 ---@operator sub(pl.Date): pl.Date.Interval
 ---@overload fun(t?: number|pl.Date|osdate, is_utc?: boolean): pl.Date
