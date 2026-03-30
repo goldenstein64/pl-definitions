@@ -228,7 +228,7 @@ function seq.unique(iter, returns_table) end
 ---@param iter T[]|fun(): T|pl.Sequence -- a sequence
 ---@param sep? string -- the separator (default space)
 ---@param nfields? integer -- maximum number of values per line (default 7)
----@param fmt? fun(v: T): string -- optional format function for each value
+---@param fmt? string -- optional format string for each value
 function seq.printall(iter, sep, nfields, fmt) end
 
 -- return an iterator running over every element of two sequences (concatenation).
@@ -528,7 +528,7 @@ function Sequence:unique() end
 ---@param self pl.Sequence -- a sequence
 ---@param sep? string -- the separator (default space)
 ---@param nfields? integer -- maximum number of values per line (default 7)
----@param fmt? fun(v: T): string -- optional format function for each value
+---@param fmt? string -- optional format string for each value
 function Sequence:printall(sep, nfields, fmt) end
 
 -- return an iterator running over every element of two sequences (concatenation).
