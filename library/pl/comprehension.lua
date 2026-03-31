@@ -40,7 +40,7 @@
 local comprehension = {}
 
 ---@param env? table -- defaults to caller of `comprehension.new`
----@return fun(expr: string): fun(list?: any[]):any
+---@return fun(expr: string): fun(...: any[]):any
 ---@nodiscard
 function comprehension.new(env) end
 
