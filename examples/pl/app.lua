@@ -1,5 +1,8 @@
 ---@meta
 
+---@type fun(a: unknown, b: unknown): boolean
+local same = nil
+
 local app = require("pl.app")
 
 print(app.appfile("test.txt")) --> /absolute/path/to/test.txt
@@ -24,9 +27,6 @@ local values = {
 }
 -- command:  myapp.lua -l --old:hello --value world param1 param2
 local flags, params = app.parse_args({ "-l", "--old:hello", "--value", "world", "param1", "param2" }, values, valid)
-
----@type fun(a: any, b: any): boolean
-local same = nil
 
 assert(same(flags, {
 	long = true, -- input from 'l'
