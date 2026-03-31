@@ -14,29 +14,52 @@
 ---
 ---See the Guide for further [discussion](https://lunarmodules.github.io/Penlight/manual/01-introduction.md.html#Simplifying_Object_Oriented_Programming_in_Lua)
 ---@class pl.ClassModule
----@operator call(pl.Class?): pl.Class
+---@overload fun(base?: pl.Class): pl.Class
+---@overload fun(c: table, class_init_arg?: any): pl.Class
+---@overload fun(base: pl.Class, class_init_arg: any, c?: table)
 local class = {}
 
 ---@class pl.Class
----@operator call(...): pl.Instance
+---@overload fun(...: any): pl.Instance
 local Class = {}
 
----initializes an instance upon creation.
+---initializes an instance upon creation
+---@param obj pl.Instance
 ---@param ... any -- parameters passed to the constructor
-function Class._init(...) end
+---@return any? new_obj -- _if_ a constructor returns a value, it becomes the object...
+function Class._init(obj, ...) end
 
----checks whether an instance is derived from this class. Works the other way around as `is_a`.
----@param some_instance pl.Instance
----@return boolean -- true if `some_instance` is derived from this class
+---initializes a subclass of this class upon creation
+---@param cls pl.Class
+---@param class_init_arg any -- parameter passed into `class(base, class_init_arg, c)`
+function Class._class_init(cls, class_init_arg) end
+
+---initializes an instance of a subclass of this class after the subclass's
+---`_init` function runs
+function Class._post_init(obj) end
+
+---checks whether an instance is derived from this class. Works the other way around as `is_a`
+---@param obj pl.Instance
+---@return boolean -- true if `obj` is derived from this class
 ---@nodiscard
-function class:class_of(some_instance) end
+function Class:class_of(obj) end
 
 ---cast an object to another class. It is not clever (or safe!) so use
 ---carefully.
----@generic T: pl.Class
----@param self T
----@param some_instance pl.Instance -- the object to be changed
-function class:cast(some_instance) end
+---@param obj pl.Instance -- the object to be changed
+---@return pl.Instance obj -- the same object with its class changed
+function Class:cast(obj) end
+
+---@param handler fun(self: pl.Class, key: any): (value: any)
+function Class.catch(handler) end
+
+---set a handler for methods/properties not found in the class
+---@param handler fun(self: pl.Class, key: any): (value: any)
+function Class:catch(handler) end
+
+---@protected
+---@type (fun(self: pl.Class, key: any): (value: any))?
+Class._handler = nil
 
 ---@class pl.Instance
 local Instance = {}
@@ -44,13 +67,23 @@ local Instance = {}
 ---checks whether an instance is derived from some class. Works the other way
 ---around as class_of. It has two ways of using; 1) call with a class to check
 ---against, 2) call without params.
----@param some_class pl.Class -- class to check against, or `nil` to return the class
----@return boolean -- `true` if instance is derived from some_class
+---@param cls pl.Class -- class to check against, or `nil` to return the class
+---@return boolean -- `true` if instance is derived from `cls`
 ---@nodiscard
-function Instance:is_a(some_class) end
+function Instance:is_a(cls) end
 
 ---@return pl.Class
 ---@nodiscard
 function Instance:is_a() end
+
+---calls the superclass' constructor. **This method exists _if and only if_ it's
+---called in its constructor and the superclass exists.**
+---@param ... any
+function Instance:super(...) end
+
+---@protected
+---A reference to an instance's class. Use `Instance:is_a()` to do the same.
+---@type pl.Class
+Instance._class = nil
 
 return class
