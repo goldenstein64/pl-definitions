@@ -36,13 +36,13 @@ function prototype_Data:column_by_name(name) end
 
 ---return a query iterator on this data (method).
 ---@param condn string -- the query expression
----@return fun(): ...
+---@return fun(): (...: any)
 ---@nodiscard
 function prototype_Data:select(condn) end
 
 ---return a row iterator on this data (method).
 ---@param condn string -- the query expression
----@return fun(): ...
+---@return fun(): (...: any)
 ---@nodiscard
 function prototype_Data:select_row(condn) end
 
@@ -67,17 +67,17 @@ function prototype_Data:write_row(f, row) end
 function prototype_Data:write(f) end
 
 ---@class pl.Data.ReadConfig
----@field delim string -- a string pattern to split fields
----@field fieldnames string[] -- (i.e. don't read from first line)
----@field no_convert boolean -- (default is to try conversion on first data line)
----@field convert { [string]: (fun(value: string): any?, string?) } -- table of custom conversion functions with column keys
----@field numfields integer -- indices of columns known to be numbers
----@field last_field_collect boolean -- only split as many fields as fieldnames.
----@field thousands_dot integer -- thousands separator in Excel CSV is '.'
----@field csv boolean -- fields may be double-quoted and contain commas; Also, empty fields are considered to be equivalent to zero.
+---@field delim? string -- a string pattern to split fields
+---@field fieldnames? string[] -- (i.e. don't read from first line)
+---@field no_convert? boolean -- (default is to try conversion on first data line)
+---@field convert? { [string]: (fun(value: string): any?, string?) } -- table of custom conversion functions with column keys
+---@field numfields? integer -- indices of columns known to be numbers
+---@field last_field_collect? boolean -- only split as many fields as fieldnames.
+---@field thousands_dot? integer -- thousands separator in Excel CSV is '.'
+---@field csv? boolean -- fields may be double-quoted and contain commas; Also, empty fields are considered to be equivalent to zero.
 
 ---@param file string|file* -- a filename or a file-like object
----@param cnfg pl.Data.ReadConfig -- parsing options. See `DataReadConfig` type for more info
+---@param cnfg? pl.Data.ReadConfig -- parsing options. See `DataReadConfig` type for more info
 ---@return pl.Data? -- data object, or `nil`
 ---@return string? -- error message. May be a file error, 'not a file-like object' or a conversion error
 ---@nodiscard
