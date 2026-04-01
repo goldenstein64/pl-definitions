@@ -34,7 +34,7 @@ local lexer = {}
 
 ---create a plain token iterator from a string or file-like object.
 ---@param s string|file* -- a string or a file-like object with :read() method returning lines.
----@param matches? {[1]: string, [2]: fun(token: string, options: {[string]: any}, bounds: { [1]: integer, [2]: integer })}[] -- an optional match table - array of token descriptions. A token is described by a `{pattern, action}` pair, where pattern should match token body and action is a function called when a token of described type is found.
+---@param matches? [string, fun(token: string, options: {[string]: any}, bounds: [integer, integer])][] -- an optional match table - array of token descriptions. A token is described by a `{pattern, action}` pair, where pattern should match token body and action is a function called when a token of described type is found.
 ---@param filter? pl.LexerFilter -- a table of token types to exclude, by default `{ space = true }`
 ---@param options? {[string]: any} -- a table of options; by default, `{ number = true, string = true }` which means convert numbers and strip string quotes.
 ---@return pl.TokenStream -- a token stream
@@ -46,7 +46,7 @@ function lexer.scan(s, matches, filter, options) end
 ---@param a1 string -- a string is the type, a table is a token list and a function is assumed to be a token-like iterator (returns type & value)
 ---@param a2 string -- a string is the value
 ---@overload fun(tok: pl.TokenStream, a1: fun(): pl.TokenStream)
----@overload fun(tok: pl.TokenStream, a1: {[1]: string, [2]: string}[])
+---@overload fun(tok: pl.TokenStream, a1: [string, string][])
 function lexer.insert(tok, a1, a2) end
 
 lexer.insert(lexer.scan(""), { { "e", "r" } })
