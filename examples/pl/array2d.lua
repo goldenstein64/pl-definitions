@@ -3,7 +3,7 @@
 ---@type fun(a: unknown, b: unknown): boolean
 local same = nil
 
-local array2d = require("pl.array2d")
+local array2d = require("pl.array2d") ---@type pl.array2d
 
 local product = array2d.product
 local flatten = array2d.flatten

@@ -1,4 +1,4 @@
-local class = require("pl.class") ---@type pl.class
+local class = require("pl.class") ---@type pl.ClassModule
 
 local A = class()
 local B = class(A)

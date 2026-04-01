@@ -1,3 +1,5 @@
+---@meta
+
 local test_config = [[
 # test.config
 # Read timeout in seconds
@@ -13,8 +15,8 @@ do
 	assert(test_config_file:close())
 end
 
-local config = require("pl.config")
-local pretty = require("pl.pretty")
+local config = require("pl.config") ---@type pl.config
+local pretty = require("pl.pretty") ---@type pl.pretty
 local t = assert(config.read("test.config"))
 
 assert(pretty.write(t) == [[

@@ -3,7 +3,9 @@
 ---@type fun(a: unknown, b: unknown): boolean
 local same = nil
 
-local C = require("pl.comprehension").new()
+local comprehension = require("pl.comprehension") ---@type pl.Comprehension
+
+local C = comprehension.new()
 
 C("x for x=1,10")() --> {1,2,3,4,5,6,7,8,9,10}
 C("x^2 for x=1,4")() --> {1,4,9,16}

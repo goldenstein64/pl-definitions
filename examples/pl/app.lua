@@ -3,7 +3,7 @@
 ---@type fun(a: unknown, b: unknown): boolean
 local same = nil
 
-local app = require("pl.app")
+local app = require("pl.app") ---@type pl.app
 
 print(app.appfile("test.txt")) --> /absolute/path/to/test.txt
 
