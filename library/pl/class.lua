@@ -23,6 +23,11 @@ local class = {}
 ---@overload fun(...: any): pl.Instance
 local Class = {}
 
+---determines how an instance is created, defaults to returning `{}`
+---@param ... any
+---@return pl.Instance
+function Class._create(...) end
+
 ---initializes an instance upon creation
 ---@param obj pl.Instance
 ---@param ... any -- parameters passed to the constructor
