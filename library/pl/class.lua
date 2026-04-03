@@ -16,7 +16,7 @@
 ---@class pl.ClassModule
 ---@overload fun(base?: pl.Class): pl.Class
 ---@overload fun(c: table, class_init_arg?: any): pl.Class
----@overload fun(base: pl.Class, class_init_arg: any, c?: table)
+---@overload fun(base: pl.Class, class_init_arg: any, c?: table): pl.Class
 local class = {}
 
 ---@class pl.Class
@@ -31,7 +31,7 @@ function Class._create(...) end
 ---initializes an instance upon creation
 ---@param obj pl.Instance
 ---@param ... any -- parameters passed to the constructor
----@return any? new_obj -- _if_ a constructor returns a value, it becomes the object...
+---@return table? new_obj -- _if_ a constructor returns a value, it becomes the object...
 function Class._init(obj, ...) end
 
 ---initializes a subclass of this class upon creation
@@ -41,6 +41,7 @@ function Class._class_init(cls, class_init_arg) end
 
 ---initializes an instance of a subclass of this class after the subclass's
 ---`_init` function runs
+---@param obj pl.Instance
 function Class._post_init(obj) end
 
 ---checks whether an instance is derived from this class. Works the other way around as `is_a`
@@ -77,6 +78,7 @@ local Instance = {}
 ---@nodiscard
 function Instance:is_a(cls) end
 
+---returns a reference to this instance's class
 ---@return pl.Class
 ---@nodiscard
 function Instance:is_a() end
