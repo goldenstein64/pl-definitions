@@ -77,7 +77,7 @@ function sip.pattern(spec, fun) end
 
 ---enter a loop which applies all registered matches to the input file.
 ---@param f file* -- a file-like object
----@param matches ({[1]: string, [2]: fun(...: string)}|{[1]: string, [2]: fun(matches: {[string]: string })})[] -- optional list of `{spec, fun}` pairs.
+---@param matches ([string, fun(...: string)]|[string, fun(matches: {[string]: string })])[] -- optional list of `{spec, fun}` pairs.
 function sip.read(f, matches) end
 
 return sip
