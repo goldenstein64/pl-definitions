@@ -94,7 +94,7 @@ function stringx.splitlines(s, keep_ends) end
 ---@param s string -- the string
 ---@param re? string -- a delimiter (defaults to whitespace)
 ---@param n? integer -- maximum number of results
----@return pl.List -- List
+---@return pl.List<string> -- List
 ---@nodiscard
 ---
 ---Usage:
@@ -332,7 +332,7 @@ function stringx.dedent(s) end
 ---@param s string -- the string to format
 ---@param width? integer -- the margin width (default `70`)
 ---@param breaklong? boolean -- if truthy, words longer than the width given will be forced split. (default `false`)
----@return pl.List -- a list of lines (`List` object), use `stringx.fill` to return a string instead of a `List`.
+---@return pl.List<string> -- a list of lines (`List` object), use `stringx.fill` to return a string instead of a `List`.
 ---@nodiscard
 function stringx.wrap(s, width, breaklong) end
 

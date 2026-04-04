@@ -18,83 +18,106 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
 --- [`pl.tablex`](https://lunarmodules.github.io/Penlight/libraries/pl.tablex.html#),
 --- [`pl.pretty`](https://lunarmodules.github.io/Penlight/libraries/pl.pretty.html#)
----@class pl.Map : pl.Class
----@overload fun(t?: pl.Map|pl.Set): pl.Map
-local Map = class()
+---@class pl.MapClass : pl.MapBase, pl.Class
+---@overload fun<K, V>(t?: { [K]: V }): pl.Map<K, V>
+---@overload fun<K, V>(t?: pl.Map<K, V>): pl.Map<K, V>
+---@overload fun<K>(t?: pl.Set<K>): pl.Map<K, true?>
+local MapClass = class() --[[@as pl.MapClass]]
+
+---@class pl.MapBase
+local Map = MapClass --[[@as pl.MapBase]]
+
+---@class pl.Map<K, V> : { [K]: V }, pl.MapBase, pl.Instance
+
+---@generic K, V
+---@param self pl.Map<K, V>
+---@param t? pl.Map<K, V>
+---@overload fun<K, V>(t?: { [K]: V }): pl.Map<K, V>
+---@overload fun<K>(t?: pl.Set<K>): pl.Map<K, true?>
+function MapClass:_init(t) end
 
 ---return a List of all keys.
----@param self pl.Map
----@return pl.List
+---@generic K
+---@param self pl.Map<K, any>
+---@return pl.List<K>
 ---@nodiscard
 function Map:keys() end
 
 ---return a List of all values.
----@param self pl.Map
----@return pl.List
+---@generic V
+---@param self pl.Map<any, V>
+---@return pl.List<V>
 ---@nodiscard
 function Map:values() end
 
 ---return an iterator over all key-value pairs.
----@param self pl.Map
----@return fun(): (any, any)
+---@generic K, V
+---@param self pl.Map<K, V>
+---@return fun<K, V>(state: { [K]: V }, k: K?): (K, V) next, self state
 ---@nodiscard
 function Map:iter() end
 
 ---return a List of all key-value pairs, sorted by the keys in ascending order.
----@param self pl.Map
----@return pl.List
+---@generic K, V
+---@param self pl.Map<K, V>
+---@return pl.List<[K, V]>
 ---@nodiscard
 function Map:items() end
 
 ---set a value in the map if it doesn't exist yet.
----@param self pl.Map
----@param key any -- the key
----@param default any -- value to set
----@return any -- the value stored in the map (existing value, or the new value)
+---@generic K, V
+---@param self pl.Map<K, V>
+---@param key K -- the key
+---@param default V -- value to set
+---@return V -- the value stored in the map (existing value, or the new value)
 function Map:setdefault(key, default) end
 
 ---size of map. note: this is a relatively expensive operation!
----@param self pl.Map
+---@param self pl.Map<any, any>
 ---@return integer
 ---@nodiscard
 function Map:len() end
 
 ---put a value into the map. This will remove the key if the value is nil
----@param self pl.Map
----@param key any -- the key
----@param val any -- the value
+---@generic K, V
+---@param self pl.Map<K, V>
+---@param key K -- the key
+---@param val V -- the value
 function Map:set(key, val) end
 
 ---get a value from the map.
----@param self pl.Map
----@param key any -- the key
----@return any val -- the value, or `nil` if not found.
+---@generic K, V
+---@param self pl.Map<K, V>
+---@param key K -- the key
+---@return V val -- the value, or `nil` if not found.
 ---@nodiscard
 function Map:get(key) end
 
 ---get a list of values indexed by a list of keys.
----@param self pl.Map
----@param keys pl.List -- a list-like table of keys
----@return pl.List values -- a new list
+---@generic K, V
+---@param self pl.Map<K, V>
+---@param keys pl.List<K> -- a list-like table of keys
+---@return pl.List<V> values -- a new list
 ---@nodiscard
 function Map:getvalues(keys) end
 
 ---update the map using key/value pairs from another table.
----@param self pl.Map
----@param table pl.Map|table
+---@generic K, V
+---@param self pl.Map<K, V>
+---@param table pl.Map<K, V>|{ [K]: V }
 function Map:update(table) end
 
 ---equality between maps.
----@param self pl.Map
----@param m pl.Map -- another map.
+---@param self pl.Map<any, any>
+---@param m pl.Map<any, any> -- another map.
 ---@return boolean
 ---@nodiscard
 function Map:__eq(m) end
 
 ---string representation of a map.
----@param self pl.Map
+---@param self pl.Map<any, any>
 ---@return string
 ---@nodiscard
 function Map:__tostring() end
 
-return Map
+return MapClass

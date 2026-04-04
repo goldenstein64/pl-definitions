@@ -33,54 +33,60 @@ local class = require("pl.class")
 --- [`pl.class`](https://lunarmodules.github.io/Penlight/libraries/pl.class.html#),
 --- [`pl.Map`](https://lunarmodules.github.io/Penlight/classes/pl.Map.html#),
 --- ([`pl.List`](https://lunarmodules.github.io/Penlight/classes/pl.List.html#) if `__tostring` is used)
----@class pl.Set.Class : pl.Map
----@overload fun(t?: any[]|pl.List|pl.Set|pl.Map): pl.Set
-local Set = class()
+---@class pl.SetClass : pl.MapBase, pl.Class
+---@overload fun<V>(t?: V[]|pl.List<V>|pl.Set<V>|pl.Map<V, any>): pl.Set<V>
+local Set = class() --[[@as pl.SetClass]]
 
----@class pl.Set
----@operator add(pl.Set): pl.Set
----@operator mul(pl.Set): pl.Set
----@operator sub(pl.Set): pl.Set
----@operator pow(pl.Set): pl.Set
+---@class pl.Set<V>
+---@field [V] true?
+---@operator add(pl.Set<any>): pl.Set<V>
+---@operator mul(pl.Set<any>): pl.Set<V>
+---@operator sub(pl.Set<any>): pl.Set<V>
+---@operator pow(pl.Set<any>): pl.Set<V>
 ---@operator len: integer
 
 ---create a set.
----@param self pl.Set
----@param t? any[]|pl.List|pl.Set|pl.Map -- may be a Set, Map or list-like table.
+---@generic V
+---@param self pl.Set<V>
+---@param t? V[]|pl.List<V>|pl.Set<V>|pl.Map<V, any> -- may be a Set, Map or list-like table.
 function Set:_init(t) end
 
 ---get a list of the values in a set.
----@param self pl.Set
----@return pl.List -- a list
+---@generic V
+---@param self pl.Set<V>
+---@return pl.List<V> -- a list
 ---@nodiscard
 function Set.values(self) end
 
----@param self pl.Set
----@param fn fun(val: any, ...: any): any
----@param ... any
----@return pl.Set
+---@generic V, W, A...
+---@param self pl.Set<V>
+---@param fn fun(val: V, ...: A...): W
+---@param ... A...
+---@return pl.Set<W>
 ---@nodiscard
 function Set.map(self, fn, ...) end
 
 ---map a function over the values of a set.
----@param self pl.Set
+---@param self pl.Set<any>
 ---@param fn pl.OpString -- a function
 ---@param ... any -- extra arguments to pass to the function.
----@return pl.Set -- a new set
+---@return pl.Set<any> -- a new set
 ---@nodiscard
 function Set.map(self, fn, ...) end
 
 ---union of two sets (also `+`).
----@param self pl.Set
----@param set pl.Set -- another set
----@return pl.Set -- a new set
+---@generic V, W
+---@param self pl.Set<V>
+---@param set pl.Set<W> -- another set
+---@return pl.Set<V, W> -- a new set
 ---@nodiscard
 function Set.union(self, set) end
 
 ---intersection of two sets (also `*`).
----@param self pl.Set
----@param set pl.Set -- another set
----@return pl.Set -- a new set
+---@generic V
+---@param self pl.Set<V>
+---@param set pl.Set<any> -- another set
+---@return pl.Set<V> -- a new set
 ---@nodiscard
 ---
 ---Usage:
@@ -98,95 +104,101 @@ function Set.union(self, set) end
 function Set.intersection(self, set) end
 
 ---a new set with elements in *either* one set *or* other but not both (also `^`).
----@param self pl.Set
----@param set pl.Set -- another set
----@return pl.Set -- a new set
+---@generic V, W
+---@param self pl.Set<V>
+---@param set pl.Set<W> -- another set
+---@return pl.Set<V | W> -- a new set
 function Set.symmetric_difference(self, set) end
 
 ---new set with elements in the set that are not in the other (also `-`).
----@param self pl.Set
----@param set pl.Set -- another set
----@return pl.Set -- a new set
+---@generic V
+---@param self pl.Set<V>
+---@param set pl.Set<any> -- another set
+---@return pl.Set<V> -- a new set
 ---@nodiscard
 function Set.difference(self, set) end
 
 ---is the first set a subset of the second (also `<`)?
----@param self pl.Set
----@param set pl.Set -- another set
+---@param self pl.Set<any>
+---@param set pl.Set<any> -- another set
 ---@return boolean
 ---@nodiscard
 function Set.issubset(self, set) end
 
 ---is the set empty?
----@param self pl.Set
+---@param self pl.Set<any>
 ---@return boolean
 ---@nodiscard
 function Set.isempty(self) end
 
 ---are the sets disjoint (no elements in common)? Uses naive definition, i.e.
 ---that intersection is empty
----@param self pl.Set
----@param set pl.Set -- another set
+---@param self pl.Set<any>
+---@param set pl.Set<any> -- another set
 ---@return boolean
 ---@nodiscard
 function Set.isdisjoint(self, set) end
 
 ---size of this set (also `#` for 5.2).
----@param self pl.Set
+---@param self pl.Set<any>
 ---@return integer size
 ---@nodiscard
 function Set.len(self) end
 
 ---string representation of a set.
----@param self pl.Set
+---@param self pl.Set<any>
 ---@return string
 ---@nodiscard
 function Set.__tostring(self) end
 
 ---union of sets.
----@param self pl.Set
----@param set pl.Set
----@return pl.Set
+---@generic V, W
+---@param self pl.Set<V>
+---@param set pl.Set<W>
+---@return pl.Set<V | W>
 ---@nodiscard
 function Set.__add(self, set) end
 
 ---intersection of sets.
----@param self pl.Set
----@param set pl.Set
----@return pl.Set
+---@generic V
+---@param self pl.Set<V>
+---@param set pl.Set<any>
+---@return pl.Set<V>
 ---@nodiscard
 function Set.__mul(self, set) end
 
 ---difference of sets.
----@param self pl.Set
----@param set pl.Set
----@return pl.Set
+---@generic V
+---@param self pl.Set<V>
+---@param set pl.Set<any>
+---@return pl.Set<V>
 ---@nodiscard
 function Set.__sub(self, set) end
 
 ---symmetric difference of sets.
----@param self pl.Set
----@param set pl.Set
----@return pl.Set
+---@generic V, W
+---@param self pl.Set<V>
+---@param set pl.Set<W>
+---@return pl.Set<V | W>
 ---@nodiscard
 function Set.__pow(self, set) end
 
 ---first set subset of second?
----@param self pl.Set
----@param set pl.Set
+---@param self pl.Set<any>
+---@param set pl.Set<any>
 ---@return boolean
 ---@nodiscard
 function Set.__lt(self, set) end
 
 ---cardinality of set (5.2).
----@param self pl.Set
+---@param self pl.Set<any>
 ---@return integer
 ---@nodiscard
 function Set.__len(self, set) end
 
 ---equality between sets.
----@param self pl.Set
----@param set pl.Set
+---@param self pl.Set<any>
+---@param set pl.Set<any>
 ---@return boolean
 ---@nodiscard
 function Set.__eq(self, set) end

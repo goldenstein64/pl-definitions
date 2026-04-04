@@ -1,7 +1,6 @@
----@meta
-
 local class = require("pl.class")
 
+---@meta
 ---# Class [`pl.Date`](https://lunarmodules.github.io/Penlight/classes/pl.Date.html)
 ---
 ---Date and Date Format classes.
@@ -15,11 +14,25 @@ local class = require("pl.class")
 --- [`pl.stringx`](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#)
 --- [`pl.utils`](https://lunarmodules.github.io/Penlight/libraries/pl.utils.html#)
 ---@deprecated -- use a more specialized library instead
----@class pl.Date : pl.Class
----@operator sub(pl.Date): pl.Date.Interval
+---@class pl.DateClass : pl.Class
 ---@overload fun(t?: number|pl.Date|osdate, is_utc?: boolean): pl.Date
 ---@overload fun(year: integer, month: integer, day: integer, hour?: integer, min?: integer, sec?: integer): pl.Date
-local Date = class()
+local DateClass = class() --[[@as pl.DateClass]]
+
+---@class pl.DateBase
+local Date = DateClass --[[@as pl.DateBase]]
+
+---@class pl.Date : pl.DateBase, pl.Instance
+---@operator sub(pl.Date): pl.Date.Interval
+
+---@param self pl.Date
+---@param year integer
+---@param month integer
+---@param day integer
+---@param hour? integer
+---@param min? integer
+---@param sec? integer
+function DateClass:_init(year, month, day, hour, min, sec) end
 
 ---Date constructor.
 ---@param self pl.Date
@@ -32,16 +45,7 @@ local Date = class()
 --- * year (will be followed by month, day etc)
 ---
 ---@param is_utc? boolean -- `true` if Universal Coordinated Time
-function Date:_init(t, is_utc) end
-
----@param self pl.Date
----@param year integer
----@param month integer
----@param day integer
----@param hour? integer
----@param min? integer
----@param sec? integer
-function Date:_init(year, month, day, hour, min, sec) end
+function DateClass:_init(t, is_utc) end
 
 ---set the current time of this Date object.
 ---@param self pl.Date
@@ -222,14 +226,17 @@ function Date:__sub(other) end
 ---@nodiscard
 function Date:__add(other) end
 
----@class pl.Date.Interval : pl.Class
+---@class pl.Date.IntervalClass : pl.Class
 ---@overload fun(t: integer): pl.Date.Interval
-local DateInterval = class()
+local DateIntervalClass = class() --[[@as pl.Date.IntervalClass]]
+
+---@class pl.Date.Interval : pl.Instance
+local DateInterval = DateIntervalClass --[[@as pl.Date.Interval]]
 
 ---Date.Interval constructor
 ---@param self pl.Date.Interval
----@param t integer - an interval in seconds
-function DateInterval:_init(t) end
+---@param t integer -- an interval in seconds
+function DateIntervalClass:_init(t) end
 
 ---If it's an interval then the format is '2 hours 29 sec' etc.
 ---@param self pl.Date.Interval
@@ -237,15 +244,18 @@ function DateInterval:_init(t) end
 ---@nodiscard
 function DateInterval:__tostring() end
 
-Date.Interval = DateInterval
+DateClass.Interval = DateIntervalClass
 
----@class pl.Date.Format : pl.Class
----@overload fun(fmt: string): pl.Date.Format
-local DateFormat = class()
+---@class pl.Date.FormatClass : pl.Class
+---@overload fun(fmt?: string): pl.Date.Format
+local DateFormatClass = class() --[[@as pl.Date.FormatClass]]
+
+---@class pl.Date.Format : pl.Instance
+local DateFormat = DateFormatClass --[[@as pl.Date.Format]]
 
 ---Date.Format constructor
 ---@param self pl.Date.Format
----@param fmt string -- a string where the following fields are significant:
+---@param fmt? string -- a string where the following fields are significant:
 ---
 --- * `d`: day (either d or dd)
 --- * `y`: year (either yy or yyy)
@@ -269,7 +279,7 @@ local DateFormat = class()
 ---```lua
 ---df = Date.Format("yyyy-mm-dd HH:MM:SS")
 ---```
-function DateFormat:_init(fmt) end
+function DateFormatClass:_init(fmt) end
 
 ---parse a string into a Date object.
 ---@param self pl.Date.Format
@@ -290,6 +300,6 @@ function DateFormat:tostring(d) end
 ---@param yesno boolean -- whether US order in dates are forced
 function DateFormat:US_order(yesno) end
 
-Date.Format = DateFormat
+DateClass.Format = DateFormatClass
 
-return Date
+return DateClass

@@ -32,9 +32,9 @@
 ---@field url pl.url
 ---@field utils pl.utils
 ---@field xml pl.xml
----@field Date pl.Date
----@field List pl.List
----@field Map pl.Map
----@field MultiMap pl.MultiMap
----@field OrderedMap pl.OrderedMap
----@field Set pl.Set
+---@field Date pl.DateClass
+---@field List pl.ListClass
+---@field Map pl.MapClass
+---@field MultiMap pl.MultiMapClass
+---@field OrderedMap pl.OrderedMapClass
+---@field Set pl.SetClass

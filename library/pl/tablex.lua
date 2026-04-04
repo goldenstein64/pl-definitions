@@ -55,7 +55,7 @@ function tablex.transform(fun, t, ...) end
 ---@param start integer -- number
 ---@param finish integer -- number
 ---@param step? integer -- make this negative for `start < finish` (default 1)
----@return integer[]|pl.List
+---@return pl.List<integer>
 ---@nodiscard
 function tablex.range(start, finish, step) end
 
@@ -390,7 +390,7 @@ function tablex.map(fun, t, ...) end
 ---@param fun fun(val: T, ...: any): U
 ---@param t T[]
 ---@param ... any
----@return pl.List
+---@return pl.List<U>
 ---@nodiscard
 function tablex.imap(fun, t, ...) end
 
@@ -400,7 +400,7 @@ function tablex.imap(fun, t, ...) end
 ---@param fun pl.OpString -- A function that takes at least one argument
 ---@param t T[] -- a table (applies to array part)
 ---@param ... any -- optional arguments
----@return pl.List -- a list-like table
+---@return pl.List<any> -- a list-like table
 ---@nodiscard
 ---
 ---Usage:
@@ -410,13 +410,35 @@ function tablex.imap(fun, t, ...) end
 ---```
 function tablex.imap(fun, t, ...) end
 
----@alias pl.ObjectWithMethod<S, A..., R> { [S]: fun(self: pl.ObjectWithMethod<S, A..., R>, ...: A...): R }
+---@generic Method: string, A1, A2, R
+---@param name Method
+---@param t pl.ObjectWithMethodAndTwoArguments<Method, A1, A2, R>[]
+---@param arg1 A1
+---@param arg2 A2
+---@return pl.List<R>
+---@nodiscard
+function tablex.map_named_method(name, t, arg1, arg2) end
+
+---@generic Method: string, A, R
+---@param name Method
+---@param t pl.ObjectWithMethodAndOneArgument<Method, A, R>[]
+---@param arg1 A
+---@return pl.List<R>
+---@nodiscard
+function tablex.map_named_method(name, t, arg1) end
+
+---@generic Method: string, R
+---@param name Method
+---@param t pl.ObjectWithMethodAndNoArguments<Method, R>[]
+---@return pl.List<R>
+---@nodiscard
+function tablex.map_named_method(name, t) end
 
 ---apply a named method to values from a table.
 ---@param name string -- the method name
 ---@param t table[] -- a list-like table
 ---@param ... any -- extra arguments to the method
----@return pl.List -- a List with the results of the method (1st result only)
+---@return pl.List<any> -- a List with the results of the method (1st result only)
 ---@nodiscard
 ---
 ---Usage:
@@ -559,10 +581,10 @@ function tablex.filter(t, pred, arg) end
 ---@nodiscard
 function tablex.filter(t, pred, arg) end
 
----@generic K, V
+---@generic K, V, A...
 ---@param t { [K]: V }
----@param fun fun(value: V, key: K, ...: any)
----@param ... any
+---@param fun fun(value: V, key: K, ...: A...)
+---@param ... A...
 function tablex.foreach(t, fun, ...) end
 
 ---apply a function to all elements of a table. The arguments to the function
@@ -574,10 +596,10 @@ function tablex.foreach(t, fun, ...) end
 ---@param ... any -- extra arguments passed to `fun`
 function tablex.foreach(t, fun, ...) end
 
----@generic T
+---@generic T, A...
 ---@param t T[]
----@param fun fun(value: T, index: integer, ...: any)
----@param ... any
+---@param fun fun(value: T, index: integer, ...: A...)
+---@param ... A...
 function tablex.foreachi(t, fun, ...) end
 
 ---apply a function to all elements of a list-like table in order. The
@@ -633,14 +655,14 @@ function tablex.sortv(t, f) end
 ---return all the keys of a table in arbitrary order.
 ---@generic K
 ---@param t { [K]: any } -- the table
----@return K[]|pl.List -- A list-like table where the values are the keys of the input table
+---@return pl.List<K> -- A list-like table where the values are the keys of the input table
 ---@nodiscard
 function tablex.keys(t) end
 
 ---return all the values of the table in arbitrary order
 ---@generic V
 ---@param t { [any]: V } -- the table
----@return V[]|pl.List -- A list-like table where the values are the values of the input table
+---@return pl.List<V> -- A list-like table where the values are the values of the input table
 ---@nodiscard
 function tablex.values(t) end
 
@@ -651,17 +673,25 @@ function tablex.values(t) end
 ---@param t T[] -- a list-like table
 ---@param first integer -- An index
 ---@param last integer -- An index
----@return pl.List -- a new List
+---@return pl.List<T> -- a new List
 ---@nodiscard
 function tablex.sub(t, first, last) end
+
+---@generic K, V
+---@param t1 { [K]: V }
+---@param t2 { [any]: any }
+---@param dup? false
+---@return { [K]: V }
+function tablex.merge(t1, t2, dup) end
 
 ---combine two tables, either as union or intersection. Corresponds to set
 ---operations for sets but more general. Not particularly useful for list-like
 ---tables.
----@param t1 table -- a table
----@param t2 table -- a table
----@param dup? boolean -- `true` for a union, `false` for an intersection. (default `false`)
----@return table
+---@generic K1, V1, K2, V2
+---@param t1 { [K1]: V1 } -- a table
+---@param t2 { [K2]: V2 } -- a table
+---@param dup true -- `true` for a union, `false` for an intersection. (default `false`)
+---@return { [K1 | K2]: V1 | V2 }
 ---@nodiscard
 ---
 ---Usage:
@@ -673,15 +703,63 @@ function tablex.sub(t, first, last) end
 ---```
 function tablex.merge(t1, t2, dup) end
 
+---@generic K1, V1, K2, V2
+---@param s1 { [K1]: V1 }
+---@param s2 { [K2]: V2 }
+---@param symm true
+---@return { [K1 | K2]: V1 | V2 }
+function tablex.difference(s1, s2, symm) end
+
 ---a new table which is the difference of two tables. With sets (where the
 ---values are all true) this is set difference and symmetric difference
 ---depending on the third parameter.
----@param s1 table -- a map-like table or set
----@param s2 table -- a map-like table or set
----@param symm? boolean -- symmetric difference (default `false`)
----@return table -- a map-like table or set
+---@generic K, V
+---@param s1 { [K]: V } -- a map-like table or set
+---@param s2 { [any]: any } -- a map-like table or set
+---@param symm? false -- symmetric difference (default `false`)
+---@return { [K]: V } -- a map-like table or set
 ---@nodiscard
 function tablex.difference(s1, s2, symm) end
+
+---@generic A
+---@param a A
+---@return [A][]
+---@nodiscard
+function tablex.zip(a) end
+
+---@generic A, B
+---@param a A[]
+---@param b B[]
+---@return [A, B][]
+---@nodiscard
+function tablex.zip(a, b) end
+
+---@generic A, B, C
+---@param a A[]
+---@param b B[]
+---@param c C[]
+---@return [A, B, C][]
+---@nodiscard
+function tablex.zip(a, b, c) end
+
+---@generic A, B, C, D
+---@param a A[]
+---@param b B[]
+---@param c C[]
+---@param d D[]
+---@return [A, B, C, D][]
+---@nodiscard
+function tablex.zip(a, b, c, d) end
+
+---@generic A, B, C, D, E
+---@param a A[]
+---@param b B[]
+---@param c C[]
+---@param d D[]
+---@param e E[]
+---@return [A, B, C, D, E][]
+---@nodiscard
+function tablex.zip(a, b, c, d, e, ...) end
 
 ---return a table where each element is a table of the ith values of an
 ---arbitrary number of tables. It is equivalent to a matrix transpose.
