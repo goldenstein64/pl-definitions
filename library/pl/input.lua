@@ -38,40 +38,60 @@ function input.alltokens(getter, pattern, fn) end
 ---is a string, then the getter will return the string and thereafter return
 ---nil. If not specified then the source is assumed to be stdin.
 ---@generic T: string
----@param f string|file* -- string or a file-like object (i.e. has a read() method which returns the next line)
+---@param f? string|file* -- string or a file-like object (i.e. has a read() method which returns the next line)
 ---@return fun(): T -- a getter function
 ---@nodiscard
 function input.create_getter(f) end
 
 ---generate a sequence of numbers from a source.
----@param f string|file* -- a source
+---@param f? string|file* -- a source
 ---@return fun(): number -- an iterator
 ---@nodiscard
 function input.numbers(f) end
 
 ---generate a sequence of words from a source.
----@param f string|file* -- a source
+---@param f? string|file* -- a source
 ---@return fun(): string -- an iterator
 ---@nodiscard
 function input.words(f) end
 
----@class pl.InputFieldsOptions
----@field no_fail boolean -- default `true`
----@field no_convert boolean -- default `false`
+---@param ids integer[]|integer
+---@param delim? string
+---@param f? string|file*
+---@param opts { no_fail?: boolean, no_convert: true }
+---@return fun(): (...: string?)
+function input.fields(ids, delim, f, opts) end
+
+---@param ids integer[]|integer
+---@param delim? string
+---@param f? string|file*
+---@param opts { no_fail: true, no_convert?: false }
+---@return fun(): (...: number?)
+function input.fields(ids, delim, f, opts) end
 
 ---parse an input source into fields. By default, will fail if it cannot
 ---convert a field to a number.
 ---@param ids integer[]|integer -- a list of field indices, or a maximum field index
----@param delim? string -- delimiter to parse fields (default space)
+---@param delim? string -- delimiter pattern to parse fields (default space)
 ---@param f? string|file* -- a source (default stdin)
----@param opts? pl.InputFieldsOptions -- an option table, (default `{no_fail=true, no_convert=false}`)
----@return fun(): ...: string -- an iterator with the field values
+---@param opts? { no_fail?: false, no_convert?: false } -- an options table, (default `{no_fail=false, no_convert=false}`)
+---@return fun(): (...: number) -- an iterator with the field values
 ---@nodiscard
 ---
 ---Usage:
 ---
 ---```lua
----for x, y in fields {2, 3} do print(x, y) end -- 2nd and 3rd fields from stdin
+---local src = [[
+---1 2 3 4 5
+---6 7 8 9 10
+---]]
+---for x, y in input.fields({2, 3}, nil, src) do -- 2nd and 3rd fields from src
+---  assert(type(x) == "number")
+---  assert(type(y) == "number")
+---  print(x, y)
+---end
+-----> 2   3
+-----> 7   8
 ---```
 function input.fields(ids, delim, f, opts) end
 
