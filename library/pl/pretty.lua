@@ -12,7 +12,7 @@
 --- [pl.stringx](https://lunarmodules.github.io/Penlight/libraries/pl.stringx.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
 ---@class pl.pretty
----@overload fun(...)
+---@overload fun(...: any)
 local pretty = {}
 
 ---Read a string representation of a Lua table. This function loads and runs the
@@ -38,7 +38,9 @@ function pretty.load(s, env, paranoid) end
 ---if you want output on one line.
 ---
 ---NOTE: this is NOT a serialization function, not a full blown debug function.
----Check out respectively the `serpent` or `inspect` Lua modules for that if you need them.
+---Check out respectively the [serpent](https://github.com/pkulchenko/serpent)
+---or [inspect](https://github.com/kikito/inspect.lua) Lua modules for that if
+---you need them.
 ---@param tbl table -- Table to serialize to a string.
 ---@param space? string -- The indent to use. Defaults to two spaces; pass an empty string for no indentation.
 ---@param not_clever? boolean -- Pass true for plain output, e.g. `{['key']=1}`. Defaults to `false`.
