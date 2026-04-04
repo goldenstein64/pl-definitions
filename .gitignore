@@ -4,3 +4,4 @@
 /.luarocks
 secret.txt
 test.lua
+.env.local
