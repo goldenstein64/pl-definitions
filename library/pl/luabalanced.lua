@@ -25,7 +25,7 @@ local luabalanced = {}
 
 ---Match Lua string in string `s` starting at position `pos`.
 ---@param s string
----@param pos integer
+---@param pos? integer
 ---@return string? string -- the matched string (or `nil` on no match)
 ---@return integer newpos -- the position following the match (or `pos` on no match)
 ---@nodiscard
@@ -36,7 +36,7 @@ function luabalanced.match_string(s, pos) end
 ---
 ---Function interface is similar to match_string.
 ---@param s string
----@param pos integer
+---@param pos? integer
 ---@return string? string -- the matched string (or `nil` on no match)
 ---@return integer newpos -- the position following the match (or `pos` on no match)
 ---@nodiscard
@@ -46,7 +46,7 @@ function luabalanced.match_bracketed(s, pos) end
 ---
 ---Function interface is similar to match_string.
 ---@param s string
----@param pos integer
+---@param pos? integer
 ---@return string? string -- the matched string (or `nil` on no match)
 ---@return integer newpos -- the position following the match (or `pos` on no match)
 ---@nodiscard
@@ -56,7 +56,7 @@ function luabalanced.match_expression(s, pos) end
 ---
 ---Function interface is similar to match_string, but returns array as match.
 ---@param s string
----@param pos integer
+---@param pos? integer
 ---@return string[] strings -- the matched strings
 ---@return integer newpos -- the position following the match (or `pos` on no match)
 ---@nodiscard
@@ -65,7 +65,7 @@ function luabalanced.match_namelist(s, pos) end
 ---Match expression list (zero or more expressions).  E.g. "a+b,b*c".
 ---Function interface is similar to match_string, but returns array as match.
 ---@param s string
----@param pos integer
+---@param pos? integer
 ---@return string[] strings -- the matched strings
 ---@return integer newpos -- the position following the match (or `pos` on no match)
 ---@nodiscard
@@ -81,7 +81,7 @@ function luabalanced.match_explist(s, pos) end
 ---
 ---This is somewhat analogous to `string.gsub`.
 ---@param s string
----@param f fun(u: string, sin: string): (sout: string|false|nil)
+---@param f fun(u: "c" | "s" | "e", sin: string): (sout: string|false|nil)
 ---@return string
 ---@nodiscard
 function luabalanced.gsub(s, f) end
