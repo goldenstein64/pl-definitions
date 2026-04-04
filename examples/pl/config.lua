@@ -1,5 +1,3 @@
----@meta
-
 local test_config = [[
 # test.config
 # Read timeout in seconds

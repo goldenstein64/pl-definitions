@@ -1,5 +1,3 @@
----@meta
-
 ---@type fun(a: unknown, b: unknown): boolean
 local same = nil
 
