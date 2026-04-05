@@ -13,6 +13,12 @@
 ---@overload fun<V>(iter: V[]|(fun(): V)|pl.Sequence<V>): pl.Sequence<V>
 local seq = {}
 
+---@alias pl.seq.Iterable<T> T[] | pl.List<T> | (fun(): T) | pl.Sequence<T>
+---@alias pl.seq.Iterable2<T, U> (fun(): (T, U)) | pl.Sequence2<T, U>
+---@alias pl.seq.Iterable3<T, U, V> (fun(): (T, U, V)) | pl.Sequence2<T, U, V>
+---@alias pl.seq.Iterable4<T, U, V, W> (fun(): (T, U, V, W)) | pl.Sequence2<T, U, V, W>
+---@alias pl.seq.Iterable5<T, U, V, W, X> (fun(): (T, U, V, W, X)) | pl.Sequence2<T, U, V, W, X>
+
 ---given a number, return a `function(y)` which returns `true` if `y > x`
 ---@param x number | integer -- a number
 ---@return fun(y: number | integer): boolean
@@ -70,7 +76,7 @@ function seq.list(t) end
 function seq.keys(t) end
 
 ---@generic T
----@param iter T[]|pl.List<T>|(fun(): T)|pl.Sequence<T>
+---@param iter pl.seq.Iterable<T>
 ---@return fun(): T
 ---@nodiscard
 function seq.iter(iter) end
@@ -83,14 +89,14 @@ function seq.iter(iter) end
 function seq.range(start, finish) end
 
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence
+---@param iter pl.seq.Iterable<T>
 ---@param condn fun(val: T): boolean
 ---@return integer
 ---@nodiscard
 function seq.count(iter, condn) end
 
 ---@generic T, A
----@param iter T[]|fun(): T|pl.Sequence
+---@param iter pl.seq.Iterable<T>
 ---@param condn fun(val: T, arg: A): boolean
 ---@return integer
 ---@nodiscard
@@ -98,7 +104,7 @@ function seq.count(iter, condn) end
 
 ---count the number of elements in the sequence which satisfy the predicate
 ---@generic T, A
----@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<T> -- a sequence
 ---@param condn pl.BoolBinOpString -- a predicate function (must return either true or false)
 ---@param arg T -- optional argument to be passed to predicate as second argument.
 ---@return integer -- count
@@ -106,14 +112,14 @@ function seq.count(iter, condn) end
 function seq.count(iter, condn, arg) end
 
 ---return the minimum and the maximum value of the sequence.
----@param iter number[]|fun(): number|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<number> -- a sequence
 ---@return number -- minimum value
 ---@return number -- maximum value
 ---@nodiscard
 function seq.minmax(iter) end
 
 ---return the sum and element count of the sequence.
----@param iter number[]|fun(): number|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<number> -- a sequence
 ---@param fn? fun(val: number): number -- an optional function to apply to the values
 ---@return number -- the sum
 ---@return integer -- the element count
@@ -122,7 +128,7 @@ function seq.sum(iter, fn) end
 
 ---create a table from the sequence. (This will make the result in a `List`.)
 ---@generic T
----@param iter T[]|fun(): T -- a sequence
+---@param iter pl.seq.Iterable<T> -- a sequence
 ---@return pl.List<T> -- a List
 ---@nodiscard
 ---
@@ -136,10 +142,10 @@ function seq.sum(iter, fn) end
 function seq.copy(iter) end
 
 ---create a table of pairs from the double-valued sequence.
----@generic K, V, I1, I2
----@param iter fun(i1: I1, i2: I2): (K, V)|pl.Sequence -- a double-valued sequence
----@param i1? I1 -- used to capture extra iterator values as with `pairs` & `ipairs`
----@param i2? I2 -- used to capture extra iterator values as with `pairs` & `ipairs`
+---@generic K, V
+---@param iter pl.seq.Iterable2<K, V> -- a double-valued sequence
+---@param i1? any -- used to capture extra iterator values as with `pairs` & `ipairs`
+---@param i2? any -- used to capture extra iterator values as with `pairs` & `ipairs`
 ---@return [K, V][] -- a list-like table
 ---@nodiscard
 ---
@@ -150,11 +156,31 @@ function seq.copy(iter) end
 ---```
 function seq.copy2(iter, i1, i2) end
 
+---@generic T, U, V, W, X
+---@param iter pl.seq.Iterable5<T, U, V, W, X>
+---@return [T, U, V, W, X][]
+function seq.copy_tuples(iter) end
+
+---@generic T, U, V, W
+---@param iter pl.seq.Iterable4<T, U, V, W>
+---@return [T, U, V, W][]
+function seq.copy_tuples(iter) end
+
+---@generic T, U, V
+---@param iter pl.seq.Iterable3<T, U, V>
+---@return [T, U, V][]
+function seq.copy_tuples(iter) end
+
+---@generic T, U
+---@param iter pl.seq.Iterable2<T, U>
+---@return [T, U][]
+function seq.copy_tuples(iter) end
+
 ---create a table of 'tuples' from a multi-valued sequence.
 ---A generalization of `seq.copy2`
----@param iter any[]|fun(): (...: any)|pl.Sequence -- a multiple-valued sequence
----@return any[] -- a list-like table
----@nodiscard
+---@generic T
+---@param iter pl.seq.Iterable<T> -- a multiple-valued sequence
+---@return [T][] -- a list-like table
 function seq.copy_tuples(iter) end
 
 ---@param n integer
@@ -186,8 +212,8 @@ function seq.sort(iter, comp) end
 
 ---return an iterator which returns elements of two sequences.
 ---@generic T, U
----@param iter1 T[]|fun(): T|pl.Sequence -- a sequence
----@param iter2 U[]|fun(): U|pl.Sequence -- a sequence
+---@param iter1 pl.seq.Iterable<T> -- a sequence
+---@param iter2 pl.seq.Iterable<U> -- a sequence
 ---@return fun(): (T, U)
 ---@nodiscard
 ---
@@ -204,20 +230,20 @@ function seq.zip(iter1, iter2) end
 ---
 ---`pl.tablex.count_map` is more general.
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<T> -- a sequence
 ---@return pl.Map<T, integer> -- a map-like table
 ---@nodiscard
 function seq.count_map(iter) end
 
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence
+---@param iter pl.seq.Iterable<T>
 ---@return fun(): T
 ---@nodiscard
 function seq.unique(iter) end
 
 ---given a sequence, return all the unique values in that sequence.
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<T> -- a sequence
 ---@param returns_table true -- true if we return a table, not a sequence
 ---@return T[] -- a sequence or a table; defaults to a sequence.
 ---@nodiscard
@@ -225,7 +251,7 @@ function seq.unique(iter, returns_table) end
 
 ---print out a sequence iter with a separator.
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<T> -- a sequence
 ---@param sep? string -- the separator (default space)
 ---@param nfields? integer -- maximum number of values per line (default 7)
 ---@param fmt? string -- optional format string for each value
@@ -233,16 +259,30 @@ function seq.printall(iter, sep, nfields, fmt) end
 
 -- return an iterator running over every element of two sequences (concatenation).
 ---@generic T1, T2
----@param iter1 fun(): T1|pl.Sequence -- a sequence
----@param iter2 fun(): T2|pl.Sequence -- a sequence
+---@param iter1 pl.seq.Iterable<T1> -- a sequence
+---@param iter2 pl.seq.Iterable<T2> -- a sequence
 ---@return fun(): T1|T2
 ---@nodiscard
 function seq.splice(iter1, iter2) end
 
 ---@generic K, A, R
 ---@param fn fun(value1: K, value2: A): R
----@param iter fun(): (K, A)|pl.Sequence
+---@param iter pl.seq.Iterable2<K, A>
 ---@return fun(): R
+---@nodiscard
+function seq.map(fn, iter) end
+
+---@generic K, A, R
+---@param fn fun(value1: K, value2: A): R
+---@param iter pl.seq.Iterable<K>
+---@param arg A
+---@return fun(): R
+---@nodiscard
+function seq.map(fn, iter, arg) end
+
+---@param fn pl.UnOpString
+---@param iter pl.seq.Iterable<any>
+---@return fun(): any
 ---@nodiscard
 function seq.map(fn, iter) end
 
@@ -251,29 +291,29 @@ function seq.map(fn, iter) end
 ---both values of a double-valued sequence, otherwise behaves rather like
 ---`tablex.map`.
 ---@generic K, A, R
----@param fn pl.BinOpString|pl.UnOpString|fun(value1: K, value2: A): R -- a function to apply to elements; may take two arguments
----@param iter K[]|fun(): K|pl.Sequence -- a sequence of one or two values
----@param arg A -- optional argument to pass to function.
----@return fun(): R
+---@param fn pl.BinOpString -- a function to apply to elements; may take two arguments
+---@param iter pl.seq.Iterable<any> -- a sequence of one or two values
+---@param arg unknown -- optional argument to pass to function.
+---@return fun(): any
 ---@nodiscard
 function seq.map(fn, iter, arg) end
 
 ---@generic K, A
----@param iter fun(): (K, A)|pl.Sequence
+---@param iter pl.seq.Iterable2<K, A>
 ---@param pred fun(value1: K, value2: A): boolean
 ---@return fun(): (K, A)
 ---@nodiscard
 function seq.filter(iter, pred) end
 
 ---@generic K, A
----@param iter fun(): (K, A)|pl.Sequence
+---@param iter pl.seq.Iterable2<K, A>
 ---@param pred pl.BoolBinOpString
 ---@return fun(): (K, A)
 ---@nodiscard
 function seq.filter(iter, pred) end
 
 ---@generic K, A
----@param iter fun(): K|pl.Sequence
+---@param iter pl.seq.Iterable<K>
 ---@param pred fun(value1: K, value2: A): boolean
 ---@param arg A
 ---@return fun(): K
@@ -282,7 +322,7 @@ function seq.filter(iter, pred, arg) end
 
 ---filter a sequence using a predicate function.
 ---@generic K, A
----@param iter fun(): K|pl.Sequence -- a sequence of one or two values
+---@param iter pl.seq.Iterable<K> -- a sequence of one or two values
 ---@param pred pl.BoolBinOpString -- a boolean function; may take two arguments
 ---@param arg A -- optional argument to pass to function.
 ---@return fun(): K
@@ -291,18 +331,24 @@ function seq.filter(iter, pred, arg) end
 
 ---@generic L, T
 ---@param fn fun(last: L, current: T): L
----@param iter fun(): T|pl.Sequence
+---@param iter pl.seq.Iterable<T>
 ---@param initval L
 ---@return L
 ---@nodiscard
 function seq.reduce(fn, iter, initval) end
 
+---@generic T
+---@param fn fun(last: T, current: T): T
+---@param iter pl.seq.Iterable<T>
+---@return T
+---@nodiscard
+function seq.reduce(fn, iter) end
+
 ---'reduce' a sequence using a binary function.
----@generic L, T
 ---@param fn pl.BinOpString -- a function of two arguments
----@param iter fun(): T|pl.Sequence -- a sequence
----@param initval L -- optional initial value
----@return L
+---@param iter pl.seq.Iterable<any> -- a sequence
+---@param initval? any -- optional initial value
+---@return any
 ---@nodiscard
 ---
 ---Usage:
@@ -314,23 +360,9 @@ function seq.reduce(fn, iter, initval) end
 ---```
 function seq.reduce(fn, iter, initval) end
 
----@generic T
----@param fn fun(last: T, current: T): T
----@param iter fun(): T|pl.Sequence
----@return T
----@nodiscard
-function seq.reduce(fn, iter) end
-
----@generic T
----@param fn pl.BinOpString
----@param iter fun(): T|pl.Sequence
----@return T
----@nodiscard
-function seq.reduce(fn, iter) end
-
 ---take the first `n` values from the sequence.
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence -- a sequence of one or two values
+---@param iter pl.seq.Iterable<T> -- a sequence of one or two values
 ---@param n integer -- number of items to take
 ---@return fun(): T -- a sequence of at most `n` items
 ---@nodiscard
@@ -338,7 +370,7 @@ function seq.take(iter, n) end
 
 ---skip the first `n` values of a sequence
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence -- a sequence of one or more values
+---@param iter pl.seq.Iterable<T> -- a sequence of one or more values
 ---@param n integer -- number of items to skip
 ---@return fun(): T
 ---@nodiscard
@@ -347,7 +379,7 @@ function seq.skip(iter, n) end
 --- a sequence with a sequence count and the original value.
 ---`enum(copy(ls))` is a roundabout way of saying `ipairs(ls)`.
 ---@generic T1, T2
----@param iter T1[]|fun(): (T1, T2)|pl.Sequence2<T1, T2> -- a single or double valued sequence
+---@param iter pl.seq.Iterable2<T1, T2> -- a single or double valued sequence
 ---@return fun(): (integer, T1, T2) -- sequence of (i, v), i = 1..n and v is from iter.
 ---@nodiscard
 function seq.enum(iter) end
@@ -355,8 +387,6 @@ function seq.enum(iter) end
 ---@alias pl.ObjectWithMethodAndTwoArguments<Method, A1, A2, R> { [Method]: fun(self: pl.ObjectWithMethodAndTwoArguments<Method, A1, A2, R>, arg1: A1, arg2: A2, ...: any): R }
 ---@alias pl.ObjectWithMethodAndOneArgument<Method, A, R> { [Method]: fun(self: pl.ObjectWithMethodAndOneArgument<Method, A, R>, arg1: A): R }
 ---@alias pl.ObjectWithMethodAndNoArguments<Method, R> { [Method]: fun(self: pl.ObjectWithMethodAndNoArguments<Method, R>): R }
-
----@alias pl.seq.Iterable<T> T[] | (fun(): T) | pl.Sequence<T>
 
 ---map using a named method over a sequence.
 ---@generic Method, A1, A2, R
@@ -369,7 +399,7 @@ function seq.enum(iter) end
 function seq.mapmethod(iter, name, arg1, arg2) end
 
 ---@generic S, A
----@param iter pl.ObjectWithMethodAndOneArgument<S, A>[]|(fun(): pl.ObjectWithMethodAndOneArgument<S, A>)|pl.Sequence
+---@param iter pl.seq.Iterable<pl.ObjectWithMethodAndOneArgument<S, A>>
 ---@param name S
 ---@param arg1 A
 ---@return fun(): (...: any)
@@ -377,7 +407,7 @@ function seq.mapmethod(iter, name, arg1, arg2) end
 function seq.mapmethod(iter, name, arg1) end
 
 ---@generic S
----@param iter pl.ObjectWithMethodAndNoArguments<S>[]|(fun(): pl.ObjectWithMethodAndNoArguments<S>)|pl.Sequence
+---@param iter pl.seq.Iterable<pl.ObjectWithMethodAndNoArguments<S>>
 ---@param name S
 ---@return fun(): (...: any)
 ---@nodiscard
@@ -386,21 +416,25 @@ function seq.mapmethod(iter, name) end
 ---returns a sequence of (last, current) values from another sequence.
 ---This will return S(i-1), S(i) if given S(i)
 ---@generic T
----@param iter T[]|fun(): T|pl.Sequence -- a sequence
+---@param iter pl.seq.Iterable<T> -- a sequence
 ---@nodiscard
 ---@return fun(): (T, T)
 function seq.last(iter) end
 
----call the function on each element of the sequence.
----@generic T
----@param iter T[] -- a sequence with up to 3 values
----@param fn fun(v: T) -- a function
+---@generic T1, T2, T3
+---@param iter pl.seq.Iterable3<T1, T2, T3>
+---@param fn fun(v1: T1, v2: T2, v3: T3)
+function seq.foreach(iter, fn) end
+
+---@generic T1, T2
+---@param iter pl.seq.Iterable2<T1, T2>
+---@param fn fun(v1: T1, v2: T2)
 function seq.foreach(iter, fn) end
 
 ---call the function on each element of the sequence.
----@generic T1, T2, T3
----@param iter fun(): (T1, T2, T3)|pl.Sequence -- a sequence with up to 3 values
----@param fn fun(v1: T1, v2: T2, v3: T3) -- a function
+---@generic T
+---@param iter pl.seq.Iterable<T> -- a sequence with up to 3 values
+---@param fn fun(v: T) -- a function
 function seq.foreach(iter, fn) end
 
 ---@class pl.Sequence<T>
@@ -708,26 +742,26 @@ function Sequence:reduce(fn, initval) end
 ---@generic T, U
 ---@param self pl.Sequence2<T, U>
 ---@param n integer
----@return self self
+---@return pl.Sequence2<T, U>
 ---@nodiscard
 function Sequence2:take(n) end
 ---@generic T, U, V
 ---@param self pl.Sequence3<T, U, V>
 ---@param n integer
----@return self self
+---@return pl.Sequence3<T, U, V>
 ---@nodiscard
 function Sequence3:take(n) end
 ---@generic T, U, V, W
 ---@param self pl.Sequence4<T, U, V, W>
 ---@param n integer
----@return self self
+---@return pl.Sequence4<T, U, V, W>
 ---@nodiscard
 function Sequence4:take(n) end
 
 ---@generic T, U, V, W, X
 ---@param self pl.Sequence5<T, U, V, W, X>
 ---@param n integer
----@return self self
+---@return pl.Sequence5<T, U, V, W, X>
 ---@nodiscard
 function Sequence5:take(n) end
 
@@ -735,7 +769,7 @@ function Sequence5:take(n) end
 ---@generic T
 ---@param self pl.Sequence<T>
 ---@param n integer -- number of items to take
----@return self self
+---@return pl.Sequence<T>
 ---@nodiscard
 function Sequence:take(n) end
 
@@ -790,39 +824,52 @@ function Sequence2:enum() end
 function Sequence:enum() end
 
 ---map using a named method over a sequence.
----@generic Method, R
----@param self pl.Sequence<pl.ObjectWithMethodAndNoArguments<Method, R>>
+---@generic Method, A1, A2, R
+---@param self pl.Sequence<pl.ObjectWithMethodAndNoArguments<Method, A1, A2, R>>
 ---@param name Method -- the method name
----@param arg1 any -- optional first extra argument
----@param arg2 any -- optional second extra argument
----@return pl.Sequence
+---@param arg1 A1 -- optional first extra argument
+---@param arg2 A2 -- optional second extra argument
+---@return pl.Sequence<R>
 ---@nodiscard
 function Sequence:mapmethod(name, arg1, arg2) end
 
----@param self pl.Sequence
----@param name string
----@param arg1 any
----@return pl.Sequence
+---@generic Method, A, R
+---@param self pl.Sequence<pl.ObjectWithMethodAndOneArgument<Method, A, R>>
+---@param name Method
+---@param arg A
+---@return pl.Sequence<R>
 ---@nodiscard
-function Sequence:mapmethod(name, arg1) end
+function Sequence:mapmethod(name, arg) end
 
----@param self pl.Sequence
----@param name string
----@return pl.Sequence
+---@generic Method, R
+---@param self pl.Sequence<pl.ObjectWithMethodAndNoArguments<Method, R>>
+---@param name Method
+---@return pl.Sequence<R>
 ---@nodiscard
 function Sequence:mapmethod(name) end
 
 ---returns a sequence of (last, current) values from another sequence.
 ---This will return S(i-1), S(i) if given S(i)
 ---@generic T
----@param self pl.Sequence
----@return pl.Sequence
+---@param self pl.Sequence<T>
+---@return pl.Sequence2<T, T>
 ---@nodiscard
 function Sequence:last() end
 
+---@generic T1, T2, T3
+---@param self pl.Sequence3<T1, T2, T3>
+---@param fn fun(v1: T1, v2: T2, v3: T3)
+function Sequence:foreach(fn) end
+
+---@generic T1, T2
+---@param self pl.Sequence2<T1, T2>
+---@param fn fun(v1: T1, v2: T2)
+function Sequence:foreach(fn) end
+
 ---call the function on each element of the sequence.
----@param self pl.Sequence
----@param fn fun(v1: any, v2: any, v3: any) -- a function
+---@generic T
+---@param self pl.Sequence<T>
+---@param fn fun(v: T) -- a function
 function Sequence:foreach(fn) end
 
 return seq
