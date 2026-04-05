@@ -446,7 +446,7 @@ function seq.lines(f, ...) end
 ---@param fn fun(v: T) -- a function
 function seq.foreach(iter, fn) end
 
----makes `seq` functions available on raw functions without calling
+---makes `seq` functions available as methods on raw functions without calling
 ---`seq()` on them.
 ---
 ---Usage:
