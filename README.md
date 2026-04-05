@@ -61,56 +61,115 @@ The types provided by this library are, exhaustively:
 
 - Classes, given as `pl.[CLASS NAME]`. Every class is listed below:
 
-  | Name                          | Module Source      |
-  | ----------------------------- | ------------------ |
-  | `pl.Date`                     | `pl.Date`          |
-  | `pl.Date.Interval`            | `pl.Date`          |
-  | `pl.Date.Format`              | `pl.Date`          |
-  | `pl.List`                     | `pl.List`          |
-  | `pl.Map`                      | `pl.Map`           |
-  | `pl.MultiMap`                 | `pl.MultiMap`      |
-  | `pl.OrderedMap`               | `pl.OrderedMap`    |
-  | `pl.Set`                      | `pl.Set`           |
-  | `pl.Class`                    | `pl.class`         |
-  | `pl.Instance`                 | `pl.class`         |
-  | `pl.Comprehension`            | `pl.comprehension` |
-  | `pl.ConfigReadConfig`         | `pl.config`        |
-  | `pl.Data`                     | `pl.data`          |
-  | `pl.Data.ReadConfig`          | `pl.data`          |
-  | `pl.Data.Options`             | `pl.data`          |
-  | `pl.Data.QueryArg`            | `pl.data`          |
-  | `pl.PlaceholderExpression`    | `pl.func`          |
-  | `pl.InputFieldsOptions`       | `pl.input`         |
-  | `pl.Sequence`                 | `pl.seq`           |
-  | `pl.StringIOWriter`           | `pl.stringio`      |
-  | `pl.StringIOReader`           | `pl.stringio`      |
-  | `pl.Template`                 | `pl.stringx`       |
-  | `pl.CompiledTemplate`         | `pl.template`      |
-  | `pl.CompiledTemplate.Options` | `pl.template`      |
-  | `pl.Tuple`                    | `pl.test`          |
-  | `pl.DeprecationOptions`       | `pl.utils`         |
-  | `pl.XMLNode`                  | `pl.xml`           |
+  | Name                             | Module Source      |
+  | -------------------------------- | ------------------ |
+  | `pl`                             | `pl.init`          |
+  | `pl.app`                         | `pl.app`           |
+  | `pl.array2d`                     | `pl.array2d`       |
+  | `pl.ClassModule`                 | `pl.class`         |
+  | `pl.compat`                      | `pl.compat`        |
+  | `pl.config`                      | `pl.config`        |
+  | `pl.DataModule`                  | `pl.data`          |
+  | `pl.dir`                         | `pl.dir`           |
+  | `pl.file`                        | `pl.file`          |
+  | `pl.func`                        | `pl.func`          |
+  | `pl.input`                       | `pl.input`         |
+  | `pl.lapp`                        | `pl.lapp`          |
+  | `pl.lexer`                       | `pl.lexer`         |
+  | `pl.luabalanced`                 | `pl.luabalanced`   |
+  | `pl.operator`                    | `pl.operator`      |
+  | `pl.path`                        | `pl.path`          |
+  | `pl.permute`                     | `pl.permute`       |
+  | `pl.pretty`                      | `pl.pretty`        |
+  | `pl.seq`                         | `pl.seq`           |
+  | `pl.sip`                         | `pl.sip`           |
+  | `pl.strict`                      | `pl.strict`        |
+  | `pl.stringio`                    | `pl.stringio`      |
+  | `pl.stringx`                     | `pl.stringx`       |
+  | `pl.tablex`                      | `pl.tablex`        |
+  | `pl.template`                    | `pl.template`      |
+  | `pl.test`                        | `pl.test`          |
+  | `pl.text`                        | `pl.text`          |
+  | `pl.types`                       | `pl.types`         |
+  | `pl.url`                         | `pl.url`           |
+  | `pl.utils`                       | `pl.utils`         |
+  | `pl.xml`                         | `pl.xml`           |
+  | `pl.ConfigReadConfig`            | `pl.config`        |
+  | `pl.Data.ReadConfig`             | `pl.data`          |
+  | `pl.Data.Options`                | `pl.data`          |
+  | `pl.Data.QueryArg`               | `pl.data`          |
+  | `pl.DateBase`                    | `pl.Date`          |
+  | `pl.DateClass`                   | `pl.Date`          |
+  | `pl.Date`                        | `pl.Date`          |
+  | `pl.Date.IntervalBase`           | `pl.Date`          |
+  | `pl.Date.IntervalClass`          | `pl.Date`          |
+  | `pl.Date.Interval`               | `pl.Date`          |
+  | `pl.Date.FormatBase`             | `pl.Date`          |
+  | `pl.Date.FormatClass`            | `pl.Date`          |
+  | `pl.Date.Format`                 | `pl.Date`          |
+  | `pl.ListBase`                    | `pl.List`          |
+  | `pl.ListClass`                   | `pl.List`          |
+  | `pl.List<T>`                     | `pl.List`          |
+  | `pl.MapBase`                     | `pl.Map`           |
+  | `pl.MapClass`                    | `pl.Map`           |
+  | `pl.Map<K, V>`                   | `pl.Map`           |
+  | `pl.MultiMapBase`                | `pl.MultiMap`      |
+  | `pl.MultiMapClass`               | `pl.MultiMap`      |
+  | `pl.MultiMap<K, V>`              | `pl.MultiMap`      |
+  | `pl.OrderedMapBase`              | `pl.OrderedMap`    |
+  | `pl.OrderedMapClass`             | `pl.OrderedMap`    |
+  | `pl.OrderedMap<K, V>`            | `pl.OrderedMap`    |
+  | `pl.SetClass`                    | `pl.Set`           |
+  | `pl.Set<T>`                      | `pl.Set`           |
+  | `pl.Class`                       | `pl.class`         |
+  | `pl.Instance`                    | `pl.class`         |
+  | `pl.Comprehension`               | `pl.comprehension` |
+  | `pl.ConfigReadConfig`            | `pl.config`        |
+  | `pl.Data`                        | `pl.data`          |
+  | `pl.Data.ReadConfig`             | `pl.data`          |
+  | `pl.Data.Options`                | `pl.data`          |
+  | `pl.Data.QueryArg`               | `pl.data`          |
+  | `pl.PlaceholderExpressionFields` | `pl.func`          |
+  | `pl.PlaceholderExpression`       | `pl.func`          |
+  | `pl.InputFieldsOptions`          | `pl.input`         |
+  | `pl.Sequence<T>`                 | `pl.seq`           |
+  | `pl.Sequence2<T, U>`             | `pl.seq`           |
+  | `pl.Sequence3<T, U, V>`          | `pl.seq`           |
+  | `pl.Sequence4<T, U, V, W>`       | `pl.seq`           |
+  | `pl.Sequence5<T, U, V, W, X>`    | `pl.seq`           |
+  | `pl.StringIOWriter`              | `pl.stringio`      |
+  | `pl.StringIOReader`              | `pl.stringio`      |
+  | `pl.Template`                    | `pl.stringx`       |
+  | `pl.CompiledTemplate`            | `pl.template`      |
+  | `pl.CompiledTemplate.Options`    | `pl.template`      |
+  | `pl.Tuple`                       | `pl.test`          |
+  | `pl.DeprecationOptions`          | `pl.utils`         |
+  | `pl.XMLNode`                     | `pl.xml`           |
 
   There is also a `@class` annotation for each module and `pl`.
 
 - Aliases, given as `pl.[ALIAS NAME]`. Every alias is listed below:
 
-  | Name                                 | Module Source |
-  | ------------------------------------ | ------------- |
-  | `pl.TokenStream`                     | `pl.lexer`    |
-  | `pl.LexerFilter`                     | `pl.lexer`    |
-  | `pl.LexerOptions`                    | `pl.lexer`    |
-  | `pl.BoolBinOpString`                 | `pl.operator` |
-  | `pl.BoolOrderedBinOpString`          | `pl.operator` |
-  | `pl.BinOpString`                     | `pl.operator` |
-  | `pl.UnOpString`                      | `pl.operator` |
-  | `pl.MultiOpString`                   | `pl.operator` |
-  | `pl.OpString`                        | `pl.operator` |
-  | `pl.ObjectWithMethodAndTwoArguments` | `pl.seq`      |
-  | `pl.ObjectWithMethodAndOneArgument`  | `pl.seq`      |
-  | `pl.ObjectWithMethodAndNoArguments`  | `pl.seq`      |
-  | `pl.SipOptions`                      | `pl.sip`      |
-  | `pl.ObjectWithMethod`                | `pl.tablex`   |
+  | Name                                                    | Module Source |
+  | ------------------------------------------------------- | ------------- |
+  | `pl.TokenStream`                                        | `pl.lexer`    |
+  | `pl.LexerFilter`                                        | `pl.lexer`    |
+  | `pl.LexerOptions`                                       | `pl.lexer`    |
+  | `pl.BoolBinOpString`                                    | `pl.operator` |
+  | `pl.BoolOrderedBinOpString`                             | `pl.operator` |
+  | `pl.BinOpString`                                        | `pl.operator` |
+  | `pl.UnOpString`                                         | `pl.operator` |
+  | `pl.MultiOpString`                                      | `pl.operator` |
+  | `pl.OpString`                                           | `pl.operator` |
+  | `pl.seq.Iterable<T>`                                    | `pl.seq`      |
+  | `pl.seq.Iterable2<T, U>`                                | `pl.seq`      |
+  | `pl.seq.Iterable3<T, U, V>`                             | `pl.seq`      |
+  | `pl.seq.Iterable4<T, U, V, W>`                          | `pl.seq`      |
+  | `pl.seq.Iterable5<T, U, V, W, X>`                       | `pl.seq`      |
+  | `pl.ObjectWithMethodAndTwoArguments<Method, A1, A2, R>` | `pl.seq`      |
+  | `pl.ObjectWithMethodAndOneArgument<Method, A, R>`       | `pl.seq`      |
+  | `pl.ObjectWithMethodAndNoArguments<Method, R>`          | `pl.seq`      |
+  | `pl.SipOptions`                                         | `pl.sip`      |
 
   I should probably simplify the `pl.seq` aliases...
 
