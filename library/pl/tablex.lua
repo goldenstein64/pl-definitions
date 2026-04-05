@@ -581,10 +581,10 @@ function tablex.filter(t, pred, arg) end
 ---@nodiscard
 function tablex.filter(t, pred, arg) end
 
----@generic K, V, A...
+---@generic K, V
 ---@param t { [K]: V }
----@param fun fun(value: V, key: K, ...: A...)
----@param ... A...
+---@param fun fun(value: V, key: K, ...: any)
+---@param ... any
 function tablex.foreach(t, fun, ...) end
 
 ---apply a function to all elements of a table. The arguments to the function
@@ -596,10 +596,10 @@ function tablex.foreach(t, fun, ...) end
 ---@param ... any -- extra arguments passed to `fun`
 function tablex.foreach(t, fun, ...) end
 
----@generic T, A...
+---@generic T, any
 ---@param t T[]
----@param fun fun(value: T, index: integer, ...: A...)
----@param ... A...
+---@param fun fun(value: T, index: integer, ...: any)
+---@param ... any
 function tablex.foreachi(t, fun, ...) end
 
 ---apply a function to all elements of a list-like table in order. The
@@ -759,10 +759,16 @@ function tablex.zip(a, b, c, d) end
 ---@param e E[]
 ---@return [A, B, C, D, E][]
 ---@nodiscard
-function tablex.zip(a, b, c, d, e, ...) end
+function tablex.zip(a, b, c, d, e) end
 
 ---return a table where each element is a table of the ith values of an
 ---arbitrary number of tables. It is equivalent to a matrix transpose.
+---@param a any[]
+---@param b any[]
+---@param c any[]
+---@param d any[]
+---@param e any[]
+---@param f any[]
 ---@param ... any[] -- arrays to be zipped
 ---@return any[][]
 ---@nodiscard
@@ -772,6 +778,6 @@ function tablex.zip(a, b, c, d, e, ...) end
 ---```lua
 ---zip({10, 20, 30}, {100, 200, 300}) == {{10, 100}, {20, 200}, {30, 300}}
 ---```
-function tablex.zip(...) end
+function tablex.zip(a, b, c, d, e, f, ...) end
 
 return tablex

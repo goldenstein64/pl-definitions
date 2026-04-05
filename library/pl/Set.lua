@@ -58,10 +58,10 @@ function Set:_init(t) end
 ---@nodiscard
 function Set.values(self) end
 
----@generic V, W, A...
+---@generic V, W
 ---@param self pl.Set<V>
----@param fn fun(val: V, ...: A...): W
----@param ... A...
+---@param fn fun(val: V, ...: any): W
+---@param ... any
 ---@return pl.Set<W>
 ---@nodiscard
 function Set.map(self, fn, ...) end
