@@ -10,7 +10,11 @@
 --- [pl.types](https://lunarmodules.github.io/Penlight/libraries/pl.types.html#),
 --- [debug](https://www.lua.org/manual/5.1/manual.html#5.9)
 ---@class pl.seq
----@overload fun<V>(iter: V[]|(fun(): V)|pl.Sequence<V>): pl.Sequence<V>
+---@overload fun<T>(iter: T[]|(fun(): T)|pl.Sequence<T>): pl.Sequence<T>
+---@overload fun<T, U>(iter: (fun(): T, U)|pl.Sequence2<T, U>): pl.Sequence2<T, U>
+---@overload fun<T, U, V>(iter: (fun(): T, U, V)|pl.Sequence3<T, U, V>): pl.Sequence3<T, U, V>
+---@overload fun<T, U, V, W>(iter: (fun(): T, U, V, W)|pl.Sequence4<T, U, V, W>): pl.Sequence4<T, U, V, W>
+---@overload fun<T, U, V, W, X>(iter: (fun(): T, U, V, W, X)|pl.Sequence5<T, U, V, W, X>): pl.Sequence5<T, U, V, W, X>
 local seq = {}
 
 ---@alias pl.seq.Iterable<T> T[] | pl.List<T> | (fun(): T) | pl.Sequence<T>
@@ -431,11 +435,39 @@ function seq.foreach(iter, fn) end
 ---@param fn fun(v1: T1, v2: T2)
 function seq.foreach(iter, fn) end
 
+---create a wrapped iterator over all lines in the file.
+---@param f file*|string -- either a filename, file-like object, or `'STDIN'` (for standard input)
+---@param ... readmode -- for Lua 5.2 only, optional format specifiers, as in `io.read`.
+function seq.lines(f, ...) end
+
 ---call the function on each element of the sequence.
 ---@generic T
 ---@param iter pl.seq.Iterable<T> -- a sequence with up to 3 values
 ---@param fn fun(v: T) -- a function
 function seq.foreach(iter, fn) end
+
+---makes `seq` functions available on raw functions without calling
+---`seq()` on them.
+---
+---Usage:
+---
+---```lua
+---local i = 0
+---local function f()
+---  i = i + 1
+---  if i <= 10 then
+---    return i
+---  else
+---    return nil
+---  end
+---end
+---
+---seq.import()
+---
+----- raw functions can use `seq` methods
+---f:printall() --> 1 2 3 4 5 6 7 8 9 10
+---```
+function seq.import() end
 
 ---@class pl.Sequence<T>
 ---@field iter fun(...: any): T
