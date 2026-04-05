@@ -2,6 +2,71 @@
 
 ## [Unreleased]
 
+### Added
+
+- definitions for missing `pl.class` functions and fields
+  - `pl.Class._post_init`
+  - `pl.Class._class_init`
+  - `pl.Class._create`
+  - `pl.Class.catch`
+  - `pl.Class._handler`
+  - `pl.Instance.super`
+  - `pl.Instance._class`
+- generic definitions for container classes
+  - `pl.List`
+  - `pl.Set`
+  - `pl.Map`
+  - `pl.OrderedMap`
+  - `pl.MultiMap`
+  - `pl.seq`
+- operators of `pl.PlaceholderExpression`
+  - these are not yet accepted as arguments to other methods
+- definitions for missing `pl.func` functions and fields
+  - `func.collect_values`
+  - `func.PE`
+  - `func.isPE`
+  - `func.Var`
+  - `func._`
+  - `func.Nil`
+  - `func.Not`
+  - `func.Len`
+  - `func.And`
+  - `func.Or`
+  - `func.Eq`
+  - `func.Lt`
+  - `func.Gt`
+  - `func.Le`
+  - `func.Ge`
+- definitions for `pl.tablex.merge` with `dup` overloads
+- definitions for `pl.tablex.difference` with `symm` overloads
+- Examples from official documentation to test against
+- Links to `serpent` and `inspect` in `pl.pretty`
+
+### Fixed
+
+- type of `pl.app.parse_args`
+- type of `pl.comprehension.new`
+- type of `pl.data.read`
+- type of several `pl.input` functions
+  - `input.create_getter`
+  - `input.numbers`
+  - `input.words`
+  - `input.fields`
+- type of several `pl.luabalanced` functions
+  - `luabalanced.match_string`
+  - `luabalanced.match_bracketed`
+  - `luabalanced.match_expression`
+  - `luabalanced.match_namelist`
+  - `luabalanced.match_explist`
+  - `luabalanced.gsub`
+- operators of `pl.Set`
+- type of `pl.seq.printall`
+- deprecation status of `pl.Date`
+
+### Changed
+
+- renamed `pl.data` to `pl.DataModule`
+
 ## [v1.15.0.2]
 
 ### Added
