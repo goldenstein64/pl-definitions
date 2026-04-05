@@ -2,6 +2,28 @@
 
 ## [Unreleased]
 
+## [v1.15.0.2]
+
+### Added
+
+- Definition for `pl.utils.execute`
+
+### Changed
+
+- Documentation for some `pl.List` methods
+
+## [v1.15.0.1]
+
+- No changes from v1.14.0.3, just explicitly supporting Penlight v1.15.0
+
+## [v1.14.0.3]
+
+### Fixed
+
+- Breaking API change from LuaLS `luadoc` module
+
+## [v1.14.0.2]
+
 ### Added
 
 - Add `@class` annotations for the rest of the sub-modules
