@@ -14,7 +14,7 @@
 ---@field compat pl.compat
 ---@field comprehension pl.Comprehension
 ---@field config pl.config
----@field data pl.data
+---@field data pl.DataModule
 ---@field dir pl.dir
 ---@field file pl.file
 ---@field func pl.func

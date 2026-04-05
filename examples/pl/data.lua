@@ -1,7 +1,7 @@
 ---@type fun(a: unknown, b: unknown): boolean
 local same = nil
 
-local data = require("pl.data") ---@type pl.data
+local data = require("pl.data") ---@type pl.DataModule
 
 --[[ assuming the data at test.txt is:
 x,y
