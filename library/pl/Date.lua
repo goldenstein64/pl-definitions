@@ -226,12 +226,14 @@ function Date:__sub(other) end
 ---@nodiscard
 function Date:__add(other) end
 
----@class pl.Date.IntervalClass : pl.Class
+---@class pl.Date.IntervalClass : pl.Date.IntervalBase, pl.Class
 ---@overload fun(t: integer): pl.Date.Interval
 local DateIntervalClass = class() --[[@as pl.Date.IntervalClass]]
 
----@class pl.Date.Interval : pl.Instance
-local DateInterval = DateIntervalClass --[[@as pl.Date.Interval]]
+---@class pl.Date.IntervalBase
+local DateInterval = DateIntervalClass --[[@as pl.Date.IntervalBase]]
+
+---@class pl.Date.Interval : pl.Date.IntervalBase, pl.Instance
 
 ---Date.Interval constructor
 ---@param self pl.Date.Interval
@@ -250,8 +252,10 @@ DateClass.Interval = DateIntervalClass
 ---@overload fun(fmt?: string): pl.Date.Format
 local DateFormatClass = class() --[[@as pl.Date.FormatClass]]
 
----@class pl.Date.Format : pl.Instance
-local DateFormat = DateFormatClass --[[@as pl.Date.Format]]
+---@class pl.Date.FormatBase
+local DateFormat = DateFormatClass --[[@as pl.Date.FormatBase]]
+
+---@class pl.Date.Format : pl.Date.FormatBase, pl.Instance
 
 ---Date.Format constructor
 ---@param self pl.Date.Format
