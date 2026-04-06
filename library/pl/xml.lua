@@ -114,6 +114,7 @@ local XMLNode = {}
 ---position to the new Node.
 ---@param tag string -- the tag name
 ---@param attrs? { [string]: string } -- attributes (table of name-value pairs) (default `{}`)
+---@return self self
 ---
 ---Usage:
 ---
@@ -127,7 +128,7 @@ function XMLNode:addtag(tag, attrs) end
 
 ---Adds a text node, at current position.
 ---@param text string -- a string
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 ---
 ---Usage:
 ---
@@ -140,21 +141,21 @@ function XMLNode:addtag(tag, attrs) end
 function XMLNode:text(text) end
 
 ---Moves current position up one level.
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 function XMLNode:up() end
 
 ---Resets current position to top level. Resets to the `self` node.
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 function XMLNode:reset() end
 
 ---Append a child to the current Node (ignoring current position).
 ---@param child string|pl.XMLNode -- a child node (either text or a document)
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 function XMLNode:add_direct_child(child) end
 
 ---Append a child at the current position (without changing position).
 ---@param child string|pl.XMLNode -- a child node (either text or a document)
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 ---
 ---Usage:
 ---
@@ -172,14 +173,14 @@ function XMLNode:add_child(child) end
 ---remove existing ones. Operates on the Node itself, will not take position
 ---into account.
 ---@param t { [string]: string } -- a table containing attribute/value pairs
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 function XMLNode:set_attribs(t) end
 
 ---Set a single attribute of a document node. Operates on the Node itself, will
 ---not take position into account.
 ---@param a string -- attribute
 ---@param v? string -- its value, pass in `nil` to delete the attribute
----@return pl.XMLNode self -- the current node (`self`)
+---@return self self -- the current node (`self`)
 function XMLNode:set_attrib(a, v) end
 
 ---Gets the attributes of a document node. Operates on the Node itself, will
