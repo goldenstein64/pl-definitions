@@ -361,16 +361,35 @@ function xml.basic_parse(s, all_text, html) end
 
 ---Try to match a node against an XML pattern.
 ---
----Nodes up to one level deep can have repeated matches by surrounding the node
----with curly brackets, e.g. `{{<node/>}}`.
+---Nodes can have repeated matches by surrounding the node with curly brackets,
+---e.g. `{{<node/>}}`.
 ---
----Attribute values and text up to two levels deep can be captured by placing
----a key name preceded by `$` at the expected position,  e.g. `<node attr='$my_key'/>` captures
----the value of `attr` and puts it in `my_key`.
+---Attribute values and text can be captured by placing a key name preceded by
+---`$` at the expected position,  e.g. `<node attr='$my_key'/>` captures the
+---value of `attr` and puts it in `my_key`, and `<node>$text</node>` captures
+---raw text inside `<node>` and puts it in `text`.
 ---
----Tag names up to two levels deep can be captured by naming the tag the key
----name with a `-` appended, e.g. `<my_key- />` captures the name of a node and
----puts it in `my_key`.
+---Tag names can be captured by placing a key name proceeded by `-` in place of
+---the tag, e.g. `<my_key- />` captures the name of a node and puts it in
+---`my_key`.
+---
+---Key names that match an integer pattern are converted to a number when placed
+---in the capture table. e.g. the pattern `<node attr='$1'/>` produces
+---`{ [1] = "attr_value" }` rather than `{ ["1"] = "attr_value" }`.
+---
+---Some key names for attribute values and text are special:
+---- `0`: if it is the only capture for this node, replaces an entire node
+---  capture with the value captured at that position. e.g.
+---  `<parent>{{<node attr='$my_key'/>}}</parent>` would produce
+---  `{ { my_key = "attr_value" } }`, but `<node attr='$0'/>` would produce
+---  `{ "attr_value" }`.
+---- `_`: uses the value captured at this position as the key in the parent
+---  node's capture. e.g.
+---  `<parent>{{<node attr='$my_key' attr2='$key2'/>}}</parent>` would produce
+---  `{ { my_key = "attr_value", key2 = "attr_value2" } }`, but
+---  `<parent>{{<node attr='$_' attr2='$key2'/>}}</parent>` would produce
+---  `{ attr_value = { key2 = "attr_value2" } }`.
+---
 ---@param pat string -- the XML pattern to match against
 ---@return NodeCaptures captures -- captures
 ---@return boolean found -- whether the match succeeded
@@ -378,54 +397,54 @@ function xml.basic_parse(s, all_text, html) end
 ---Usage:
 ---
 ---```lua
----node = xml.new("intro", { title = "Introduction", length = "297", width = "210" })
----  node:addtag("hook", { title = "Appeal" })
----  node  :text("This is some text that explains the document's broad appeal.")
----  node:up()
----  node:addtag("blurb", { title = "Structure" })
----  node  :text("This is some text that explains how the document is structured.")
----  node:up()
----  node:addtag("call-to-action", { title = "Purpose" })
----  node  :text("This is some text that explains the document's overarching goal.")
+---local intro = xml.new("intro", { title = "Introduction", length = "297", width = "210" })
+---  :addtag("hook", { title = "Appeal" })
+---    :text("some hook text")
+---  :up()
+---  :addtag("blurb", { title = "Structure" })
+---    :text("some blurb text")
+---  :up()
+---  :addtag("call-to-action", { title = "Purpose" })
+---    :text("some call to action text")
 ---
----print(node)
+---print(intro)
+----- it doesn't actually get prettified like this, this is just for
+----- readability.
 -----[[-->
 ---<intro title='Introduction' length='297' width='210'>
 ---  <hook title='Appeal'>
----    This is some text that explains the document&apos;s broad appeal.
+---    some hook text
 ---  </topic>
 ---  <blurb title='Structure'>
----    This is some text that explains how the document is structured.
+---    some blurb text
 ---  </topic>
 ---  <call-to-action title='Purpose'>
----    This is some text that explains the document&apos;s overarching goal.
+---    some call to action text
 ---  </topic>
 ---</intro>
 ---]]
 ---
----pretty(node:match(
----  "<intro>{{<tag- title='$title'>$text</tag->}}</intro>"
----))
+---local match, ok = intro:match("<intro>{{<tag- title='$title'>$text</tag->}}</intro>")
+---assert(ok, "match not found")
+---
+---print(pretty.write(match))
 -----[[-->
 ---{
----  ["arg 1"] = {
----    {
----      tag = "hook",
----      text = "This is some text that explains the document's broad appeal.",
----      title = "Appeal"
----    },
----    {
----      tag = "blurb",
----      text = "This is some text that explains how the document is structured.",
----      title = "Structure"
----    },
----    {
----      tag = "call-to-action",
----      text = "This is some text that explains the document's overarching goal.",
----      title = "Purpose"
----    }
+---  {
+---    tag = "hook",
+---    text = "some hook text",
+---    title = "Appeal"
 ---  },
----  ["arg 2"] = true
+---  {
+---    tag = "blurb",
+---    text = "some blurb text",
+---    title = "Structure"
+---  },
+---  {
+---    tag = "call-to-action",
+---    text = "some call to action text",
+---    title = "Purpose"
+---  }
 ---}
 ---]]
 ---```
