@@ -357,7 +357,78 @@ function xml.parsehtml(s) end
 ---@nodiscard
 function xml.basic_parse(s, all_text, html) end
 
----does something...
+---@alias NodeCaptures { [string]: string, [integer]: string|NodeCaptures }
+
+---Try to match a node against an XML pattern.
+---
+---Nodes up to one level deep can have repeated matches by surrounding the node
+---with curly brackets, e.g. `{{<node/>}}`.
+---
+---Attribute values and text up to two levels deep can be captured by placing
+---a key name preceded by `$` at the expected position,  e.g. `<node attr='$my_key'/>` captures
+---the value of `attr` and puts it in `my_key`.
+---
+---Tag names up to two levels deep can be captured by naming the tag the key
+---name with a `-` appended, e.g. `<my_key- />` captures the name of a node and
+---puts it in `my_key`.
+---@param pat string -- the XML pattern to match against
+---@return NodeCaptures captures -- captures
+---@return boolean found -- whether the match succeeded
+---
+---Usage:
+---
+---```lua
+---node = xml.new("intro", { title = "Introduction", length = "297", width = "210" })
+---  node:addtag("hook", { title = "Appeal" })
+---  node  :text("This is some text that explains the document's broad appeal.")
+---  node:up()
+---  node:addtag("blurb", { title = "Structure" })
+---  node  :text("This is some text that explains how the document is structured.")
+---  node:up()
+---  node:addtag("call-to-action", { title = "Purpose" })
+---  node  :text("This is some text that explains the document's overarching goal.")
+---
+---print(node)
+-----[[-->
+---<intro title='Introduction' length='297' width='210'>
+---  <hook title='Appeal'>
+---    This is some text that explains the document&apos;s broad appeal.
+---  </topic>
+---  <blurb title='Structure'>
+---    This is some text that explains how the document is structured.
+---  </topic>
+---  <call-to-action title='Purpose'>
+---    This is some text that explains the document&apos;s overarching goal.
+---  </topic>
+---</intro>
+---]]
+---
+---pretty(node:match(
+---  "<intro>{{<tag- title='$title'>$text</tag->}}</intro>"
+---))
+-----[[-->
+---{
+---  ["arg 1"] = {
+---    {
+---      tag = "hook",
+---      text = "This is some text that explains the document's broad appeal.",
+---      title = "Appeal"
+---    },
+---    {
+---      tag = "blurb",
+---      text = "This is some text that explains how the document is structured.",
+---      title = "Structure"
+---    },
+---    {
+---      tag = "call-to-action",
+---      text = "This is some text that explains the document's overarching goal.",
+---      title = "Purpose"
+---    }
+---  },
+---  ["arg 2"] = true
+---}
+---]]
+---```
 function XMLNode:match(pat) end
 
 return xml
