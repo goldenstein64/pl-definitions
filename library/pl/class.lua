@@ -45,7 +45,7 @@ function Class._class_init(cls, class_init_arg) end
 function Class._post_init(obj) end
 
 ---checks whether an instance is derived from this class. Works the other way around as `is_a`
----@param obj pl.Instance
+---@param obj any
 ---@return boolean -- true if `obj` is derived from this class
 ---@nodiscard
 function Class:class_of(obj) end
