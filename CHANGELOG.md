@@ -12,7 +12,7 @@
   - `pl.Class._handler`
   - `pl.Instance.super`
   - `pl.Instance._class`
-- generic definitions for container classes
+- generic definitions for container classes. These have limited functionality.
   - `pl.List`
   - `pl.Set`
   - `pl.Map`
