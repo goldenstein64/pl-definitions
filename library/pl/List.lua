@@ -465,4 +465,25 @@ function List:__eq(L) end
 ---@nodiscard
 function List:__tostring() end
 
+---returns a default indexer meant for subclasses of `List` that maps functions
+---from `T` over its elements. If `T` is not given, it uses the subclass's
+---`mapn` method with the key as the first argument
+---
+---Usage:
+---
+---```lua
+---local Strings = class(List)
+---Strings:catch(List.default_map_with(string))
+---
+---local strs = Strings({ "foo", "bar", "baz" })
+---
+----- becomes `strs:map(string.gsub, "[aeiou]", "v")
+---print(strs:gsub("[aeiou]", "v")) --> { "fvv", "bvr", "bvz" }
+---```
+---@param tbl? table
+---@return fun(self: any, name: string): (value: any)
+function ListClass.default_map_with(tbl) end
+
+ListClass.default_map = ListClass.default_map_with
+
 return ListClass
