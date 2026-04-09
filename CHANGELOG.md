@@ -39,6 +39,7 @@
   - `func.Ge`
 - definitions for `pl.tablex.merge` with `dup` overloads
 - definitions for `pl.tablex.difference` with `symm` overloads
+- definition for `pl.List.default_map_with` and its alias `pl.List.default_map`
 - Examples from official documentation to test against
 - Links to `serpent` and `inspect` in `pl.pretty`
 
