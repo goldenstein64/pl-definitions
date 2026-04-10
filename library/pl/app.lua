@@ -88,7 +88,7 @@ function app.lua() end
 ---Note: if a flag is repeated, the last value wins.
 ---@param args? string[] -- an array of strings (default is the global `arg`).
 ---@param flags_with_values? string[] | { [string]: any } -- any flags that take values, either list or hash table e.g. `{ out=true }` or `{ "out" }`.
----@param flags_valid? (string | string[])[] | { [string]: string | string[] } -- flags that are valid, either list or hashtable. If not given, everything will be accepted(everything in flags_with_values will automatically be allowed).
+---@param flags_valid? string[] | { [string]?: string | string[] | boolean } -- flags that are valid, either list or hashtable. If not given, everything will be accepted(everything in flags_with_values will automatically be allowed).
 ---@return { [string]: string } flags -- a table of flags (flag=value pairs)
 ---@return string[] args -- an array of parameters
 ---@nodiscard
