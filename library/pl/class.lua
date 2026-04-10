@@ -93,4 +93,21 @@ function Instance:super(...) end
 ---@type pl.Class
 Instance._class = nil
 
+---adds property lookups to the class
+---
+---for getter resolution of a key `prop`, it looks for:
+---- `self.prop`
+---- `Class.prop`
+---- `Class.get_prop(self)`
+---- If `self.prop` is `nil` and the rest are falsy, it defaults to the value of
+---  `self._prop`.
+---
+---for setter resolution of a key `prop` and `value`, it looks for:
+---- `self.prop = value`
+---- `Class.set_prop(self, value)`
+---- If `self.prop` is `nil` and `Class.set_prop` is falsy, it defaults to
+---  `self.prop = value`.
+---@type pl.Class
+class.properties = nil
+
 return class

@@ -12,6 +12,7 @@
   - `pl.Class._handler`
   - `pl.Instance.super`
   - `pl.Instance._class`
+  - `pl.ClassModule.properties`
 - generic definitions for container classes. These have limited functionality.
   - `pl.List`
   - `pl.Set`
