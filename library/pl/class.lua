@@ -73,7 +73,7 @@ local Instance = {}
 ---checks whether an instance is derived from some class. Works the other way
 ---around as class_of. It has two ways of using; 1) call with a class to check
 ---against, 2) call without params.
----@param cls pl.Class -- class to check against, or `nil` to return the class
+---@param cls any -- class to check against, or `nil` to return the class
 ---@return boolean -- `true` if instance is derived from `cls`
 ---@nodiscard
 function Instance:is_a(cls) end
