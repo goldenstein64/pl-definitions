@@ -225,9 +225,9 @@ assert(not pcall(createJ))
 assert(not pcall(createK))
 
 --- class methods!
-assert(c:is_a(C --[[@as pl.Class]])) -- no idea why these are warnings, they inherit from pl.Class
-assert(c:is_a(B --[[@as pl.Class]])) -- making these directly inherit from pl.Class doesn't work
-assert(c:is_a(A --[[@as pl.Class]]))
+assert(c:is_a(C)) -- no idea why these are warnings, they inherit from pl.Class
+assert(c:is_a(B)) -- making these directly inherit from pl.Class doesn't work
+assert(c:is_a(A))
 assert(c:is_a() == C)
 assert(C:class_of(c))
 assert(B:class_of(c))
